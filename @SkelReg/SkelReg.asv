@@ -1,0 +1,63 @@
+classdef SkelReg
+%SkelReg facilitates working with correlated skeleton representations of 
+%neurites
+% SkelReg allows for efficient control point-based skeleton registration,
+% as well as for registration evaluation and visualisation of correlated
+% skeleton tuples.
+% 
+% CONSTRUCTOR INPUT:    fpathEM (optional): Full path to webKnossos
+%                           skeleton (.nml) file containing EM annotations
+%                           (registration reference). File selection dialog
+%                           box is opened when not provided.
+%                       fpathLM (optional): Full path to webKnossos
+%                           skeleton (.nml) file containing LM annotations
+%                           (registration target). File selection dialog
+%                           box is opened when not provided.
+%
+% Author:   florian.drawitsch@brain.mpg.de
+%           Max Planck Institute for Brain Research | Frankfurt | Germany
+    
+    properties
+        paths = Struct();
+        skelEM = Skeleton();
+        skelLM = Skeleton();
+        skelLM_AT = Skeleton();
+        skelLM_AT_FT = Skeleton();
+        controlPointsEM = table();
+        controlPointsLM = table();
+        controlPointsLM_AT = table();
+        controlPointsLM_AT_FT = table();
+        controlPointsMatched = table();
+    end
+    
+    methods
+        function obj = SkelReg(fpathEM, fpathLM)
+            
+            if ~exist('fpathEM','var')
+                [file, path] = uigetfile('*.nml','Select a webKnossos (.nml) file containing EM skeleton tracings');
+                fpathEM = fullfile(path,file);
+            end
+            obj.skelEM = Skeleton(fpathEM);
+            obj.paths.fpathEM = fpathEM;
+            obj.controlPointsEM = SkelReg.comments2table(obj.skelEM);
+            
+            if ~exist('fpathLM','var')
+                [file, path] = uigetfile('*.nml','Select a webKnossos (.nml) file containing LM skeleton tracings');
+                obj.paths.fpathLM = fullfile(path,file);
+            end
+            obj.skelLM = Skeleton(fpathLM);
+            obj.paths.fpathLM = fpathLM;
+            obj.controlPointsLM = SkelReg.comments2table(obj.skelLM);
+            
+            obj.controlPointsMatched = SkelReg.joinTables(obj.controlPointsEM, obj.controlPointsLM, 'em', 'lm');
+            
+            
+        end
+    end
+    
+    methods (Static)
+        commentsTable = comments2table(skel, commentPattern, idFun)
+        commentsTableJoined = joinTables(tableLeft, tableRight, typeLeft, typeRight)
+    end
+end
+
