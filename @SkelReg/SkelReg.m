@@ -19,15 +19,8 @@ classdef SkelReg
     
     properties
         paths = struct();
-        skelEM = Skeleton();
-        skelLM = Skeleton();
-        skelLM_AT = Skeleton();
-        skelLM_AT_FT = Skeleton();
-        controlPointsEM = table();
-        controlPointsLM = table();
-        controlPointsLM_AT = table();
-        controlPointsLM_AT_FT = table();
-        controlPointsMatched = table();
+        skeletons = struct();
+        controlPoints = struct();
     end
     
     methods
@@ -40,9 +33,9 @@ classdef SkelReg
             end
             obj.paths.fpathEM = fpathEM;
             % Construct skeleton object
-            obj.skelEM = Skeleton(obj.paths.fpathEM);
+            obj.skeletons.em = Skeleton(obj.paths.fpathEM);
             % Parse control points from skeleton comments
-            obj.controlPointsEM = SkelReg.comments2table(obj.skelEM);
+            obj.controlPoints.em = SkelReg.comments2table(obj.skeletons.em);
             
             % Open dialog box if fpathLM is not provided
             if ~exist('fpathLM','var') || isempty(fpathLM)
@@ -51,12 +44,12 @@ classdef SkelReg
             end
             obj.paths.fpathLM = fpathLM;
             % Construct skeleton object
-            obj.skelLM = Skeleton(fpathLM);
+            obj.skeletons.lm = Skeleton(fpathLM);
             % Parse control points from skeleton comments
-            obj.controlPointsLM = SkelReg.comments2table(obj.skelLM);
+            obj.controlPoints.lm = SkelReg.comments2table(obj.skeletons.lm);
             
             % Match EM and LM controlPoints 
-            obj.controlPointsMatched = SkelReg.joinTables(obj.controlPointsEM, obj.controlPointsLM, 'em', 'lm');
+            obj.controlPoints.matched = SkelReg.joinTables(obj.controlPoints.em, obj.controlPoints.lm, 'em', 'lm');
         end
     end
     

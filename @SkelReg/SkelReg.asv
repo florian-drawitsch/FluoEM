@@ -18,7 +18,9 @@ classdef SkelReg
 %           Max Planck Institute for Brain Research | Frankfurt | Germany
     
     properties
-        paths = Struct();
+        paths = struct();
+        skeletons = struct();
+        controlPoints = struct();
         skelEM = Skeleton();
         skelLM = Skeleton();
         skelLM_AT = Skeleton();
@@ -33,25 +35,30 @@ classdef SkelReg
     methods
         function obj = SkelReg(fpathEM, fpathLM)
             
-            if ~exist('fpathEM','var')
-                [file, path] = uigetfile('*.nml','Select a webKnossos (.nml) file containing EM skeleton tracings');
+            % Open dialog box if fpathEM is not provided
+            if ~exist('fpathEM','var') || isempty(fpathEM)
+                [file, path] = uigetfile('*.nml','Select webKnossos (.nml) file containing EM skeleton tracings');
                 fpathEM = fullfile(path,file);
             end
-            obj.skelEM = Skeleton(fpathEM);
             obj.paths.fpathEM = fpathEM;
-            obj.controlPointsEM = SkelReg.comments2table(obj.skelEM);
+            % Construct skeleton object
+            obj.skeletons.em = Skeleton(obj.paths.fpathEM);
+            % Parse control points from skeleton comments
+            obj.controlPoints.em = SkelReg.comments2table(obj.skeletons.em);
             
-            if ~exist('fpathLM','var')
-                [file, path] = uigetfile('*.nml','Select a webKnossos (.nml) file containing LM skeleton tracings');
-                obj.paths.fpathLM = fullfile(path,file);
+            % Open dialog box if fpathLM is not provided
+            if ~exist('fpathLM','var') || isempty(fpathLM)
+                [file, path] = uigetfile('*.nml','Select webKnossos (.nml) file containing LM skeleton tracings');
+                fpathLM = fullfile(path,file);
             end
-            obj.skelLM = Skeleton(fpathLM);
             obj.paths.fpathLM = fpathLM;
-            obj.controlPointsLM = SkelReg.comments2table(obj.skelLM);
+            % Construct skeleton object
+            obj.skeletons.lm = Skeleton(fpathLM);
+            % Parse control points from skeleton comments
+            obj.controlPoints.lm = SkelReg.comments2table(obj.skeletons.lm);
             
-            obj.controlPointsMatched = SkelReg.joinTables(obj.controlPointsEM, obj.controlPointsLM, 'em', 'lm');
-            
-            
+            % Match EM and LM controlPoints 
+            obj.controlPoints.matched = SkelReg.joinTables(obj.controlPointsEM, obj.controlPoints.lm, 'em', 'lm');
         end
     end
     
