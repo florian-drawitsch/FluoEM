@@ -1,4 +1,4 @@
-function [ A, regParams ] = trafo3_absorWrapper( movingPoints, fixedPoints, scaleVector )
+function [ A, regParams ] = absorWrapper( movingPoints, fixedPoints, scaleVector )
 %TRAFO3_ABSORWRAPPER Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -9,9 +9,9 @@ if ~isempty(scaleVector)
         0               0               scaleVector(3)  0
         0               0               0               1];
     
-    [ movingPointsT ] = trafo3_affineTransformSparseArray( movingPoints, A_scale, 'forward' );
+    [ movingPointsT ] = trafoAT_transformArray( movingPoints, A_scale, 'forward' );
     
-    [regParams,Bfit,ErrorStats]=trafo3_absor(movingPointsT',fixedPoints','doScale',0);
+    [regParams,Bfit,ErrorStats]=absor(movingPointsT',fixedPoints','doScale',0);
     
     regParams.s = scaleVector;
     
@@ -23,7 +23,7 @@ if ~isempty(scaleVector)
     
 else
     
-    [regParams,Bfit,ErrorStats]=trafo3_absor(movingPoints',fixedPoints','doScale',1);
+    [regParams,Bfit,ErrorStats]=absor(movingPoints',fixedPoints','doScale',1);
     
     regParams.s = repmat(regParams.s,[1 3]);
     

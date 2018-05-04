@@ -7,9 +7,10 @@ function tablesJoined = joinTables(tableLeft, tableRight, typeLeft, typeRight)
 %           typeLeft: Left table type (e.g. 'em')
 %           typeRight: Right table type (e.g. 'lm')
 %   OUTPUT  tablesJoined: Joined tables
+% Author: florian.drawitsch@brain.mpg.de
 
 % Perform join
-tablesJoined = innerjoin(tableLeft, tableRight, 'Key', 'id')
+tablesJoined = innerjoin(tableLeft, tableRight, 'Key', 'id');
 
 % Rename columns according to provided types
 colnames = tablesJoined.Properties.VariableNames;

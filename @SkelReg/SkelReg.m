@@ -25,7 +25,6 @@ classdef SkelReg
     
     methods
         function obj = SkelReg(fpathEM, fpathLM)
-            
             % Open dialog box if fpathEM is not provided
             if ~exist('fpathEM','var') || isempty(fpathEM)
                 [file, path] = uigetfile('*.nml','Select webKnossos (.nml) file containing EM skeleton tracings');

@@ -1,4 +1,4 @@
-function [ movingPointsT ] = trafo3_affineTransformSparseArray( movingPoints, A, direction )
+function [ movingPointsT ] = trafoAT_transformArray( movingPoints, A, direction )
 % Transforms sparse array X (N x 3) according to 4x4 transformation Matrix A.
 
 if nargin < 3

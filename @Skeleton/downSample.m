@@ -12,10 +12,8 @@ end
 
 for tr = treeIdx
    secondDegreeNodes =find(cell2mat(skel.calculateNodeDegree(tr))==2);
-   modWithFactor=@(secondDegreeNodeID) logical(mod(secondDegreeNodeID,...
-       downsamplefactor));
-   nodesToDelete = secondDegreeNodes(arrayfun(modWithFactor,...
-       1:length(secondDegreeNodes)));
+   modWithFactor=@(secondDegreeNodeID) logical(mod(secondDegreeNodeID, downsamplefactor));
+   nodesToDelete = secondDegreeNodes(arrayfun(modWithFactor, 1:length(secondDegreeNodes)));
    skel = skel.deleteNodes(tr,nodesToDelete,true);
 end
 

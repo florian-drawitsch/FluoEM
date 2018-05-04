@@ -14,21 +14,22 @@ function commentsTable = comments2table(skel, commentPattern, idGenerator)
 %               from treeName 'tree001_em' and comment 'b1')
 %   OUTPUT  commentsTable: Table with variable names: id, treeName, comment,
 %               xyz.
+% Author: florian.drawitsch@brain.mpg.de
 
 if ~exist('pattern','var')
     commentPattern = '^b\d+$';
 end
 
-if ~exist('idGenerator')
+if ~exist('idGenerator','var')
     idGenerator = @(x,y) sprintf('%s_%s', regexprep(x,'^(\w*)_.*$','$1'), y);
 end
 
-for iTree = 1:numel(skel.names)
-    commentsAll = {skel.nodesAsStruct{iTree}.comment};
+for treeIdx = 1:skel.numTrees
+    commentsAll = {skel.nodesAsStruct{treeIdx}.comment};
     matchInds = find(cellfun(@(x) ~isempty(regexpi(x,commentPattern)),commentsAll))';
-    treeName = repmat(skel.names(iTree),size(matchInds,1),1);
+    treeName = repmat(skel.names(treeIdx),size(matchInds,1),1);
     comment = commentsAll(matchInds)';
-    xyz = skel.nodes{iTree}(matchInds,1:3);
+    xyz = skel.nodes{treeIdx}(matchInds,1:3);
     id = cellfun(idGenerator, treeName, comment, 'UniformOutput', false);
     if ~exist('commentsTable','var')
         commentsTable = table(id, treeName, comment, xyz);

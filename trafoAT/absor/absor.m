@@ -1,4 +1,4 @@
-function [regParams,Bfit,ErrorStats]=trafo3_absor(A,B,varargin)
+function [regParams,Bfit,ErrorStats]=absor(A,B,varargin)
 %ABSOR - a tool for solving the absolute orientation problem using Horn's 
 %quaternion-based method, that is, for finding the rotation, translation, and 
 %optionally also the scaling, that best maps one collection of point coordinates
