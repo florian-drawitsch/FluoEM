@@ -5,6 +5,6 @@ if ~exist('relativeSearchRange','var')
 end
 
 % Affine Trafo
-[ A, regParams ] = trafoAT_compute( CPsEM, CPsLM, skelEM.scale, skelLM.scale, relativeSearchRange );
+A = trafoAT_compute( CPsEM, CPsLM, skelEM.scale, skelLM.scale, relativeSearchRange );
 skelLMT = trafoAT_transformSkeleton( skelLM, A, skelEM.scale );
 skelLMT.parameters.experiment.name = skelEM.parameters.experiment.name;

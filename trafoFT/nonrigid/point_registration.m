@@ -39,7 +39,7 @@ if(~exist('Options','var')), Options=defaultoptions;
 else
     tags = fieldnames(defaultoptions);
     for i=1:length(tags), if(~isfield(Options,tags{i})), Options.(tags{i})=defaultoptions.(tags{i}); end, end
-    if(length(tags)~=length(fieldnames(Options))),
+    if(length(tags)~=length(fieldnames(Options)))
         warning('register_images:unknownoption','unknown options found');
     end
 end
@@ -51,7 +51,7 @@ MaxItt=min(floor(log2(sizeI(1:3)/2)));
 Spacing=[2^MaxItt 2^MaxItt 2^MaxItt];
 
 if exist('initialSpacing','var') 
-    Spacing = repmat(initialSpacing,[1 3])
+    Spacing = repmat(initialSpacing,[1 3]);
 end
 
 % Make an initial uniform b-spline grid

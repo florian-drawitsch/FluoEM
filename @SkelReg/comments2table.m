@@ -1,4 +1,4 @@
-function commentsTable = comments2table(skel, commentPattern, idGenerator)
+function commentsTable = comments2table(skel, columnSuffix, commentPattern, idGenerator)
 %COMMENTS2TABLE Parses skeleton node comments for such matching a 
 % regular expression pattern and outputs them as a table
 %   INPUT   skel: Skeleton object representing one or multiple neurite
@@ -16,11 +16,15 @@ function commentsTable = comments2table(skel, commentPattern, idGenerator)
 %               xyz.
 % Author: florian.drawitsch@brain.mpg.de
 
-if ~exist('pattern','var')
+if ~exist('columnSuffix','var') || isempty(columnSuffix)
+    columnSuffix = '';
+end
+
+if ~exist('commentPattern','var') || isempty(commentPattern)
     commentPattern = '^b\d+$';
 end
 
-if ~exist('idGenerator','var')
+if ~exist('idGenerator','var') || isempty(idGenerator)
     idGenerator = @(x,y) sprintf('%s_%s', regexprep(x,'^(\w*)_.*$','$1'), y);
 end
 
@@ -31,10 +35,11 @@ for treeIdx = 1:skel.numTrees
     comment = commentsAll(matchInds)';
     xyz = skel.nodes{treeIdx}(matchInds,1:3);
     id = cellfun(idGenerator, treeName, comment, 'UniformOutput', false);
+    tmp = table(id, treeName, comment, xyz, 'VariableNames', {'id', ['treeName_',columnSuffix], ['comment_',columnSuffix], ['xyz_',columnSuffix]});
     if ~exist('commentsTable','var')
-        commentsTable = table(id, treeName, comment, xyz);
+        commentsTable = tmp;
     else
-        commentsTable = [commentsTable; table(id, treeName, comment, xyz)];
+        commentsTable = [commentsTable; tmp];
     end
 end
 

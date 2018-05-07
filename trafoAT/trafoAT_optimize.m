@@ -17,9 +17,12 @@ Aeq = [];
 beq = [];
 lb = scaleVector-scaleVector*relativeSearchRange;
 ub = scaleVector+scaleVector*relativeSearchRange;
+nonlcon = [];
+
+options = optimoptions('patternsearch','Display','none');
 
 % Pattern Search
-scaleVectorOpt = patternsearch(func, scaleVector, A, b, Aeq, beq, lb, ub);
+scaleVectorOpt = patternsearch(func, scaleVector, A, b, Aeq, beq, lb, ub, nonlcon, options);
 
 % Get Trafo for optimal scaleVector
 [ A, regParams ] = absorWrapper( movingPoints, fixedPoints, scaleVectorOpt );

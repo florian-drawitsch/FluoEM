@@ -1,4 +1,4 @@
-function [ skel ] = ffd_transformSkeletonClass( skel, ffdGrid, ffdSpacing )
+function [ skel ] = trafoFT_transformSkeleton( skel, ffdGrid, ffdSpacing )
 %FFD_TRANSFORMSKELETONCLASS Summary of this function goes here
 %   Detailed explanation goes here
 

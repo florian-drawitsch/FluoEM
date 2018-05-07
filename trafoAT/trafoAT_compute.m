@@ -3,8 +3,7 @@ function [ A, regParams ] = trafoAT_compute( CPsEM, CPsLM, scaleEM, scaleLM, rel
 %   Detailed explanation goes here
 
 scaleVector = [scaleEM(1)/scaleLM(1) scaleEM(2)/scaleLM(2) scaleEM(3)/scaleLM(3)].^-1;
-[A, regParams, lsqs, lsqsOpt] = trafoAT_optimize(CPsLM, CPsEM, scaleVector, relativeSearchRange);
-disp(['Optimimal transform: lsqs: ',num2str(lsqs),' -> lsqsOpt: ',num2str(lsqsOpt)])
+[A, regParams] = trafoAT_optimize(CPsLM, CPsEM, scaleVector, relativeSearchRange);
 
 end
 
