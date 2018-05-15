@@ -34,8 +34,6 @@ classdef SkelReg
             obj.paths.fpathEM = fpathEM;
             % Construct skeleton object
             obj.skeletons.em = Skeleton(obj.paths.fpathEM);
-            % Parse control points from skeleton comments
-            obj.controlPoints.em = SkelReg.comments2table(obj.skeletons.em,'em');
             
             % Open dialog box if fpathLM is not provided
             if ~exist('fpathLM','var') || isempty(fpathLM)
@@ -45,11 +43,9 @@ classdef SkelReg
             obj.paths.fpathLM = fpathLM;
             % Construct skeleton object
             obj.skeletons.lm = Skeleton(fpathLM);
-            % Parse control points from skeleton comments
-            obj.controlPoints.lm = SkelReg.comments2table(obj.skeletons.lm,'lm');
-            
-            % Match EM and LM controlPoints 
-            obj.controlPoints.matched = innerjoin(obj.controlPoints.em, obj.controlPoints.lm, 'Key', 'id');
+
+            % Construct control point table
+            obj = updateControlPoints( obj );
         end
     end
     
