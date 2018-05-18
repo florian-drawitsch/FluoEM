@@ -13,8 +13,7 @@ function nmlSplit( inputFname, outputPath, fnameGenerator )
 %               function appended to the .nml ending)
 %               Example: fnameGenerator = @(x) sprintf('%s_AT.nml', x) 
 %               produces the filename by appending _AT.nml to the tree name 
-
-% Author: florian.drawitsch@brain.mpg.de
+%   Author: florian.drawitsch@brain.mpg.de
 
 % Get inputFname
 if ~exist('inputFname','var') || isempty(inputFname)
