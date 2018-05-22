@@ -20,10 +20,10 @@ end
         obj.controlPoints.matched.xyz_em);
 
 % Parse control points from skeleton comments
-obj.controlPoints.lm_at_ft = SkelReg.comments2table(obj.skeletons.lm_at_ft,'lm_at_ft');
+obj.controlPoints.lm_at_ft = SkelReg.comments2table(obj.skeletons.lm_at_ft);
 
-% Match EM and LM controlPoints 
-obj.controlPoints.matched = innerjoin(obj.controlPoints.matched, obj.controlPoints.lm_at_ft, 'Key', 'id');
+% Match controlPoints 
+obj = controlPointMatch(obj);
 
 end
 
