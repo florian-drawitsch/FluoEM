@@ -1,14 +1,18 @@
 function [ skel ] = trafoAT_transformSkeleton( skel, A, newScale, direction )
 % trafo3_transformSkeleton transforms skeleton object using 4x4 transformation matrix A
 
-if ~exist('newScale','var') || isempty(newScale)
-    skel.scale = skel.scale./[A(1,1) A(2,2) A(3,3)];
-else
-    skel.scale = newScale;
-end
-
 if ~exist('direction','var')
     direction = 'forward';
+end
+
+if ~exist('newScale','var') || isempty(newScale)
+    if strcmp(direction, 'forward')
+        skel.scale = skel.scale./diag(A(1:3,1:3))';
+    elseif strcmp(direction, 'inverse')
+        skel.scale = skel.scale./diag(inv(A(1:3,1:3)))';
+    end
+else
+    skel.scale = newScale;
 end
 
 % Transform all skelIDs

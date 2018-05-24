@@ -14,8 +14,8 @@ classdef SkelReg
 %                           (registration target). File selection dialog
 %                           box is opened when not provided.
 %
-% Author:   florian.drawitsch@brain.mpg.de
-%           Max Planck Institute for Brain Research | Frankfurt | Germany
+% Author: Florian Drawitsch <florian.drawitsch@brain.mpg.de>
+%         Max Planck Institute for Brain Research | Frankfurt | Germany
     
     properties
         paths = struct();

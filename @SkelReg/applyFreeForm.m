@@ -1,4 +1,4 @@
-function target_at_ft = applyFreeForm( obj, target_at )
+function target_at_ft = applyFreeForm( obj, target_at, direction )
 %APPLYFREEFORM  computes the free-form transformation of the target 
 %based on the transformation attribute stored in the internal state
 %   Use the "registerFreeForm" method to obtain such an free-form 
@@ -8,9 +8,18 @@ function target_at_ft = applyFreeForm( obj, target_at )
 %   input.
 %   INPUT:  target_at: Skeleton object or [Nx3] double
 %               Affine transformed target skeleton or points
+%           direction: (optional) str
+%               Specifies free-form transformation direction:
+%               'forward' means at -> at_ft
+%               'inverse' means at_ft -> at. 
+%               (Default: 'forward')
 %   OUTPUT: target_at_ft: Skeleton object or [Nx3] double
 %               Free-form transformed skeleton or points
 %   Author: Florian Drawitsch <florian.drawitsch@brain.mpg.de>
+
+if ~exist('direction', 'var') || isempty(direction)
+    direction = 'forward';
+end
 
 if ~isfield(obj.transformations, 'ft')
     error('No transformation found at obj.transformations.at_ft. Use the registerFree-Form method to obtain one.');
@@ -23,7 +32,7 @@ if isa(target_at,'Skeleton')
     % Transform from voxel space -> nm space
     target_atr = trafoAT_transformSkeleton(target_at, A, [1 1 1], 'forward');
     % Apply free-form deformation grid in nm space
-    target_atr_ft = trafoFT_transformSkeleton( target_atr, obj.transformations.ft.grid, obj.transformations.ft.spacingConsequent);
+    target_atr_ft = trafoFT_transformSkeleton( target_atr, obj.transformations.ft.grid, obj.transformations.ft.spacingConsequent, direction);
     % Transform from back from nm space -> voxel space
     target_at_ft = trafoAT_transformSkeleton(target_atr_ft, A, scale, 'inverse');
     
@@ -31,7 +40,11 @@ elseif isa(target_at, 'numeric') && size(target_at,2) == 3
     % Transform from voxel space -> nm space
     target_atr = trafoAT_transformArray( target_at, A, 'forward');
     % Apply free-form deformation grid in nm space
-    target_atr_ft = bspline_trans_points_double(obj.transformations.ft.grid, obj.transformations.ft.spacingConsequent, target_atr);
+    if strcmp(direction, 'forward')
+        target_atr_ft = bspline_trans_points_double(obj.transformations.ft.grid, obj.transformations.ft.spacingConsequent, target_atr);
+    elseif strcmp(direction, 'inverse')
+        target_atr_ft = bspline_trans_points_double(-obj.transformations.ft.grid, obj.transformations.ft.spacingConsequent, target_atr);
+    end
     % Transform from back from nm space -> voxel space
     target_at_ft = trafoAT_transformArray( target_atr_ft, A, 'inverse');
     
