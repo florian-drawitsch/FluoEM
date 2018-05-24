@@ -1,4 +1,4 @@
-function commentsTable = comments2table(skel, columnSuffix, commentPattern, idGenerator)
+function commentsTable = comments2table(skel, commentPattern, idGenerator)
 %COMMENTS2TABLE Parses skeleton node comments for such matching a 
 % regular expression pattern and outputs them as a table
 %   INPUT   skel: Skeleton object representing one or multiple neurite
@@ -16,10 +16,6 @@ function commentsTable = comments2table(skel, columnSuffix, commentPattern, idGe
 %               xyz.
 % Author: florian.drawitsch@brain.mpg.de
 
-if ~exist('columnSuffix','var') || isempty(columnSuffix)
-    columnSuffix = '';
-end
-
 if ~exist('commentPattern','var') || isempty(commentPattern)
     commentPattern = '^b\d+$';
 end
@@ -29,18 +25,26 @@ if ~exist('idGenerator','var') || isempty(idGenerator)
 end
 
 for treeIdx = 1:skel.numTrees
+    
+    % Parse skeleton comments
     commentsAll = {skel.nodesAsStruct{treeIdx}.comment};
-    matchInds = find(cellfun(@(x) ~isempty(regexpi(x,commentPattern)),commentsAll))';
-    treeName = repmat(skel.names(treeIdx),size(matchInds,1),1);
-    comment = commentsAll(matchInds)';
-    xyz = skel.nodes{treeIdx}(matchInds,1:3);
+    nodeIdx = find(cellfun(@(x) ~isempty(regexpi(x,commentPattern)),commentsAll))';
+    treeInds = repmat(treeIdx,size(nodeIdx,1),1);
+    treeName = repmat(skel.names(treeIdx),size(nodeIdx,1),1);
+    comment = commentsAll(nodeIdx)';
+    xyz = skel.nodes{treeIdx}(nodeIdx,1:3);
     id = cellfun(idGenerator, treeName, comment, 'UniformOutput', false);
-    tmp = table(id, treeName, comment, xyz, 'VariableNames', {'id', ['treeName_',columnSuffix], ['comment_',columnSuffix], ['xyz_',columnSuffix]});
+    
+    % Create temporary table
+    tmp = table(id, treeInds, treeName, nodeIdx, comment, xyz, 'VariableNames', {'id', 'treeIdx', 'treeName', 'nodeIdx', 'comment', 'xyz'});
+    
+    % Create or append to final table
     if ~exist('commentsTable','var')
         commentsTable = tmp;
     else
         commentsTable = [commentsTable; tmp];
     end
+    
 end
 
 end

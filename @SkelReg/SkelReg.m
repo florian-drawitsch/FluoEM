@@ -45,12 +45,14 @@ classdef SkelReg
             obj.skeletons.lm = Skeleton(fpathLM);
 
             % Construct control point table
-            obj = updateControlPoints( obj );
+            obj = controlPointRead(obj);
+            obj = controlPointMatch(obj);
         end
     end
     
     methods (Static)
         commentsTable = comments2table(skel, columnSuffix, commentPattern, idGenerator)
+        skel = table2comments(skel, commentsTable);
     end
 end
 

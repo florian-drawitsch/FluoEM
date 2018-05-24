@@ -7,10 +7,10 @@ function obj = registerAffine( obj )
 [obj.skeletons.lm_at, obj.transformations.at.trafoMatrix3D] = trafoAT_start(obj.skeletons.lm, obj.skeletons.em, obj.controlPoints.matched.xyz_lm, obj.controlPoints.matched.xyz_em);
 
 % Parse control points from skeleton comments
-obj.controlPoints.lm_at = SkelReg.comments2table(obj.skeletons.lm_at,'lm_at');
+obj.controlPoints.lm_at = SkelReg.comments2table(obj.skeletons.lm_at);
 
-% Match EM and LM controlPoints 
-obj.controlPoints.matched = innerjoin(obj.controlPoints.matched, obj.controlPoints.lm_at, 'Key', 'id');
+% Match controlPoints 
+obj = controlPointMatch(obj);
 
 end
 
