@@ -1,19 +1,22 @@
 function nmlSplit( inputFname, outputPath, fnameGenerator )
 %NMLSPLIT Splits the trees contained in a single .nml file into separate
 %.nml files
-%   INPUT:  inputFname (optional): Full file path to the input .nml file
+%   INPUT:  inputFname: (optional) str
+%               Full file path to the input .nml file
 %               (If no file path is provided, a file selection input dialog 
 %               is presented.)
-%           outputPath (optional): Output directoy for the split .nml files 
+%           outputPath: (optional) str
+%               Output directoy for the split .nml files 
 %               to be written into. (If not specified, the output files are 
 %               written into the directory of the inputFname).
-%           fnameGenerator (optional): Anonymous function modifying the
+%           fnameGenerator: (optional) str
+%               Anonymous function modifying the
 %               name string of the trees contained in the input nml to 
 %               obtain the respective file names. (Default is the identity
 %               function appended to the .nml ending)
 %               Example: fnameGenerator = @(x) sprintf('%s_AT.nml', x) 
 %               produces the filename by appending _AT.nml to the tree name 
-%   Author: florian.drawitsch@brain.mpg.de
+%   Author: Florian Drawitsch <florian.drawitsch@brain.mpg.de>
 
 % Get inputFname
 if ~exist('inputFname','var') || isempty(inputFname)

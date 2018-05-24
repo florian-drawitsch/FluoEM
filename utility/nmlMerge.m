@@ -12,7 +12,7 @@ function skel = nmlMerge( inputPath, pattern, outputFname )
 %               .nml files having lm_AT somewhere in their filename and
 %               merges only those into the target file.
 %               (Default: '.*' -> all .nml files on inputPath are merged)
-%           fnameTarget: (optional) str
+%           outputFname: (optional) str
 %               Filename or full path of the target .nml file to be
 %               written. If empty, the merged skeleton object is returned
 %               as output skel but not written to disk.

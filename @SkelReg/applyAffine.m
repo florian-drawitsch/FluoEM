@@ -18,7 +18,7 @@ if ~isfield(obj.transformations, 'at')
     error('No transformation found at obj.transformations.at. Use the registerAffine method to obtain one.');
 end
 
-if ~exist('direction', 'var')
+if ~exist('direction', 'var') || isempty(direction)
     direction = 'forward';
 end
 

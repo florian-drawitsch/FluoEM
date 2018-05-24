@@ -1,6 +1,14 @@
-function [ skel ] = trafoFT_transformSkeleton( skel, ffdGrid, ffdSpacing )
+function [ skel ] = trafoFT_transformSkeleton( skel, ffdGrid, ffdSpacing, direction )
 %FFD_TRANSFORMSKELETONCLASS Summary of this function goes here
 %   Detailed explanation goes here
+
+if ~exist('direction','var') || isempty(direction)
+    direction = 'forward';
+end
+
+if strcmp(direction,'inverse')
+    ffdGrid = - ffdGrid;
+end
 
 % Transform all skelIDs
 for skelIdx = 1:length(skel.names)    
