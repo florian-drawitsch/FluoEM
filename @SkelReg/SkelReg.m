@@ -1,9 +1,7 @@
 classdef SkelReg
-%SkelReg facilitates working with correlated skeleton representations of 
-%neurites
+%SkelReg facilitates working with correlated neurite skeleton representations 
 % SkelReg allows for efficient control point-based skeleton registration,
-% as well as for registration evaluation and visualisation of correlated
-% skeleton tuples.
+% as well as evaluation and visualisation of correlated skeleton tuples.
 % 
 % CONSTRUCTOR INPUT:    fpathEM (optional): Full path to webKnossos
 %                           skeleton (.nml) file containing EM annotations

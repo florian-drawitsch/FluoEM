@@ -67,11 +67,23 @@ for i = 1:numel(p.Results.include)
         hold on;
     end
 end
+
 % Plot Labels
 if p.Results.labels
     cps = obj.controlPoints.em.xyz;
     comments = obj.controlPoints.em.comment;
     cellfun(@(x,y,z,c) text(x,y,z,c), num2cell(cps(:,1)), num2cell(cps(:,2)), num2cell(cps(:,3)), comments);
 end
-daspect([1 1 1]);
+
+% Check scales
+scales = zeros(numel(p.Results.include),3);
+for i = 1:numel(p.Results.include)
+    scales(i,:) = obj.skeletons.(p.Results.include{i}).scale;
+end
+if isequal(diff(scales),[0 0 0])
+    daspect(scales(1,:));
+else
+    daspect([1 1 1]);
+    warning('Included skeletons have different scales!');
+end
 

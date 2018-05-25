@@ -13,7 +13,7 @@ function skel = nmlExtractTrees( inputFname, pattern, outputFname )
 %               trees is returned as output but not written to disk.
 %               (Default: '' -> No write)
 %   OUTPUT: skel: Skeleton object 
-%               Skeleton object containing the etracted trees
+%               Skeleton object containing the extracted trees
 %   Author: Florian Drawitsch <florian.drawitsch@brain.mpg.de>
 
 if ~iscell(pattern)

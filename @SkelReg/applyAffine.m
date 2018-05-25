@@ -1,5 +1,5 @@
 function target_at = applyAffine( obj, target, direction, expNameNew, scaleNew )
-%APPLYAFFINE  computes the affine transformation of the target
+%APPLYAFFINE computes the affine transformation of the target
 % based on the transformation attribute stored in the internal state
 %   Use the "registerAffine" method to obtain such an affine transformation
 %   model based on control point pairs, or import one.

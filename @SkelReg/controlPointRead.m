@@ -3,11 +3,11 @@ function obj = controlPointRead(obj, commentPattern, idGenerator)
 %   Detailed explanation goes here
 
 if ~exist('commentPattern','var') || isempty(commentPattern)
-    commentPattern = [];
+    commentPattern = '^b\d+$';
 end
 
 if ~exist('idGenerator','var') || isempty(idGenerator)
-    idGenerator = [];
+    idGenerator = @(x,y) sprintf('%s_%s', regexprep(x,'^(\w*)_.*$','$1'), y);
 end
 
 skeletons_available = fieldnames(obj.skeletons);
