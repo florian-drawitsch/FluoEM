@@ -76,7 +76,7 @@ end
 function cr = checkCommonReference(skelRef, skelTar)
     
     mismatchExp = ~strcmp(skelRef.parameters.experiment.name, skelTar.parameters.experiment.name);
-    mismatchScale = ~strcmp(skelRef.scale, skelTar.scale);
+    mismatchScale = ~isequal(skelRef.scale, skelTar.scale);
     
     if any([mismatchExp, mismatchScale])
         cr = false;
