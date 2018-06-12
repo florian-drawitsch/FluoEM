@@ -40,14 +40,11 @@ if isfield(obj.skeletons,'lm_at_ft')
 elseif isfield(obj.skeletons,'lm_at')
     defaultInclude = {'em','lm_at'};
 else
-    warning([...
-        'Neither lm_at nor lm_at_ft skeletons available. ',...
-        'Run registerAffine and/or registerFreeForm first to obtain the registered skeletons. ',...
-        'Showing only em now'])
+    warning(['Neither lm_at nor lm_at_ft skeletons available. Run registerAffine and/or registerFreeForm first to obtain the registered skeletons')
     defaultInclude = {'em'};
 end
-checkInclude = @(x) ~any(~cellfun(@(y) any(strcmp(fieldnames(obj.skeletons),y)), x));
-p.addOptional('include', defaultInclude, checkInclude);
+%checkInclude = @(x) ~any(~cellfun(@(y) any(strcmp(fieldnames(obj.skeletons),y)), x));
+p.addOptional('include', defaultInclude, @checkInclude);
 
 % Downsample
 defaultDownsample = 1;
@@ -123,7 +120,7 @@ end
 end
 
 
-function tf = checkInclude(x, xx)
+function tf = checkInclude(x)
     cellfun(@(y) any(strcmp(fieldnames(obj.skeletons),y)), x);
 end
 

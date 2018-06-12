@@ -2,16 +2,16 @@ classdef SkelReg
 %SkelReg facilitates working with correlated neurite skeleton representations 
 % SkelReg allows for efficient control point-based skeleton registration,
 % as well as evaluation and visualisation of correlated skeleton tuples.
-% 
-% CONSTRUCTOR INPUT:    fpathEM (optional): Full path to webKnossos
-%                           skeleton (.nml) file containing EM annotations
-%                           (registration reference). File selection dialog
-%                           box is opened when not provided.
-%                       fpathLM (optional): Full path to webKnossos
-%                           skeleton (.nml) file containing LM annotations
-%                           (registration target). File selection dialog
-%                           box is opened when not provided.
-%
+% CONSTRUCTOR INPUT:    fpathEM (optional): str
+%                           Full path to webKnossos skeleton (.nml) file
+%                           containing EM annotations (registration 
+%                           reference). File selection dialog box is opened
+%                           when not provided.
+%                       fpathLM (optional): str
+%                           Full path to webKnossos skeleton (.nml) file
+%                           containing LM annotations (registration
+%                           target). File selection dialog box is opened
+%                           when not provided.
 % Author: Florian Drawitsch <florian.drawitsch@brain.mpg.de>
 %         Max Planck Institute for Brain Research | Frankfurt | Germany
     

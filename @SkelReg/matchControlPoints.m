@@ -1,6 +1,7 @@
 function obj = matchControlPoints(obj)
-%UPDATECONTROLPOINTS Summary of this function goes here
-%   Detailed explanation goes here
+%MATCHCONTROLPOINTS Matches control points by performing an inner join on
+% all available separate control point tables.
+% Author: Florian Drawitsch <florian.drawitsch@brain.mpg.de>
 
 skeletons_available = fieldnames(obj.skeletons);
 
