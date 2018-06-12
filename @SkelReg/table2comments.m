@@ -1,6 +1,15 @@
 function skel = table2comments(skel, commentsTable)
-%TABLE2COMMENTS Summary of this function goes here
-%   Detailed explanation goes here
+%TABLE2COMMENTS Writes the comments contained in a table (e.g. output from
+% comments2table) to skeleton node comments
+%   INPUT:  skel: skeleton object 
+%               Skeleton object representing one or multiple traced 
+%               neurites.    
+%           commentsTable: table
+%               Table with variable names: id, treeName, comment, xyz.
+%   OUTPUT: skel: skeleton object
+%               Skeleton object representing one or multiple traced 
+%               neurites and containing the written comments.
+% Author: Florian Drawitsch <florian.drawitsch@brain.mpg.de>
 
 for treeIdx = 1:skel.numTrees
     

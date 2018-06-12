@@ -22,7 +22,7 @@ function target_at = applyAffine( obj, target, direction, expNameNew, scaleNew )
 %               lm scale for inverse)
 %   OUTPUT: target_at: Skeleton object or [Nx3] double
 %               Transformed skeleton or points
-% Author: florian.drawitsch@brain.mpg.de
+% Author: Florian Drawitsch <florian.drawitsch@brain.mpg.de>
 
 if ~isfield(obj.transformations, 'at')
     error('No transformation found at obj.transformations.at. Use the registerAffine method to obtain one.');

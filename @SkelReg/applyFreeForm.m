@@ -15,7 +15,7 @@ function target_at_ft = applyFreeForm( obj, target_at, direction )
 %               (Default: 'forward')
 %   OUTPUT: target_at_ft: Skeleton object or [Nx3] double
 %               Free-form transformed skeleton or points
-%   Author: Florian Drawitsch <florian.drawitsch@brain.mpg.de>
+%Author: Florian Drawitsch <florian.drawitsch@brain.mpg.de>
 
 if ~exist('direction', 'var') || isempty(direction)
     direction = 'forward';

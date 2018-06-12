@@ -1,19 +1,24 @@
 function commentsTable = comments2table(skel, commentPattern, idGenerator)
 %COMMENTS2TABLE Parses skeleton node comments for such matching a 
 % regular expression pattern and outputs them as a table
-%   INPUT   skel: Skeleton object representing one or multiple neurite
+%   INPUT   skel: Skeleton object 
+%               Skeleton object representing one or multiple neurite
 %               tracings in which control points were annotated according
 %               to a specific pattern using webKnossos comments
-%           commentPattern (optional): (Regex-)Pattern formally describing the
-%               comments used to annotate control points.
-%               (By default the comments are parsed for occurences of the
-%               letter 'b' followed by a numeric index: pattern = 'b\d+')
-%           idGenerator (optional): Anonymous function generating a unique
-%               id from treeName and comment.
-%               (The default idGenerator generates e.g. the id 'tree001_b1'
-%               from treeName 'tree001_em' and comment 'b1')
-%   OUTPUT  commentsTable: Table with variable names: id, treeName, comment,
-%               xyz.
+%           commentPattern (optional): str
+%               (Regex-)Pattern formally describing the comments used to             
+%               annotate control points. (By default the comments are 
+%               parsed for occurences of the letter 'b' followed by a 
+%               numeric index: pattern = 'b\d+')
+%           idGenerator (optional): function handle
+%               Anonymous function generating a unique id from treeName and 
+%               comment.
+%               (The default idGenerator = 
+%               @(x,y) sprintf('%s_%s', regexprep(x,'^(\w*)_.*$','$1'), y)
+%               generates e.g. the id 'tree001_b1' from treeName 
+%               'tree001_em' and comment 'b1')
+%   OUTPUT  commentsTable: table
+%               Table with variable names: id, treeName, comment, xyz.
 % Author: florian.drawitsch@brain.mpg.de
 
 if ~exist('commentPattern','var') || isempty(commentPattern)

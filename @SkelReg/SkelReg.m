@@ -30,7 +30,7 @@ classdef SkelReg
                 fpathEM = fullfile(path,file);
             end
             obj.paths.fpathEM = fpathEM;
-            % Construct skeleton object
+            % Construct em skeleton object
             obj.skeletons.em = Skeleton(obj.paths.fpathEM);
             
             % Open dialog box if fpathLM is not provided
@@ -39,10 +39,10 @@ classdef SkelReg
                 fpathLM = fullfile(path,file);
             end
             obj.paths.fpathLM = fpathLM;
-            % Construct skeleton object
+            % Construct lm skeleton object
             obj.skeletons.lm = Skeleton(fpathLM);
 
-            % Construct control point table
+            % Construct control point tables
             obj = readControlPoints(obj);
             obj = matchControlPoints(obj);
         end
