@@ -1,4 +1,4 @@
-function obj = controlPointRead(obj, commentPattern, idGenerator)
+function obj = readControlPoints(obj, commentPattern, idGenerator)
 %UPDATECONTROLPOINTS Summary of this function goes here
 %   Detailed explanation goes here
 

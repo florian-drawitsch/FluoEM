@@ -23,7 +23,7 @@ end
 obj.controlPoints.lm_at_ft = SkelReg.comments2table(obj.skeletons.lm_at_ft);
 
 % Match controlPoints 
-obj = controlPointMatch(obj);
+obj = matchControlPoints(obj);
 
 end
 

@@ -4,6 +4,9 @@ function write( obj, targetPath )
 
 if ~exist('targetPath','var')
    targetPath = fileparts(obj.paths.fpathLM); 
+elseif ~exist(targetPath,'file')
+    warning([targetPath, ' does not exist, creating new directory at target path'])
+    mkdir(targetPath)
 end
 
 if isfield(obj.skeletons,'em')

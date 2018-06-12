@@ -1,4 +1,4 @@
-function obj = controlPointWrite(obj)
+function obj = writeControlPoints(obj)
 %CONTROLPOINT2COMMENTS Writes control points attributes to skeleton
 %comments (allowing for export)
 

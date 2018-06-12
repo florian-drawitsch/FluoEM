@@ -10,7 +10,7 @@ function obj = registerAffine( obj )
 obj.controlPoints.lm_at = SkelReg.comments2table(obj.skeletons.lm_at);
 
 % Match controlPoints 
-obj = controlPointMatch(obj);
+obj = matchControlPoints(obj);
 
 end
 

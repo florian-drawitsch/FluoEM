@@ -1,4 +1,4 @@
-function obj = controlPointRemove(obj, treeName, comment)
+function obj = removeControlPoint(obj, treeName, comment)
 %CONTROLPOINTREMOVE Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -11,7 +11,7 @@ for i = 1:numel(skeletons_available)
     obj.controlPoints.(skeletons_available{i}) = obj.controlPoints.(skeletons_available{i})(cp_keep_inds,:);
 end
 
-obj = controlPointMatch(obj);
+obj = matchControlPoints(obj);
 
 end
 

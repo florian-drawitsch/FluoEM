@@ -1,4 +1,4 @@
-function obj = controlPointMatch(obj)
+function obj = matchControlPoints(obj)
 %UPDATECONTROLPOINTS Summary of this function goes here
 %   Detailed explanation goes here
 

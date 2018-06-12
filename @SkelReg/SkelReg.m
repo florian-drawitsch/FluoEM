@@ -43,8 +43,8 @@ classdef SkelReg
             obj.skeletons.lm = Skeleton(fpathLM);
 
             % Construct control point table
-            obj = controlPointRead(obj);
-            obj = controlPointMatch(obj);
+            obj = readControlPoints(obj);
+            obj = matchControlPoints(obj);
         end
     end
     
