@@ -12,8 +12,7 @@ function commentsTable = comments2table(skel, commentPattern, idGenerator)
 %               numeric index: pattern = 'b\d+')
 %           idGenerator (optional): function handle
 %               Anonymous function generating a unique id from treeName and 
-%               comment.
-%               (The default idGenerator = 
+%               comment. (The default idGenerator = 
 %               @(x,y) sprintf('%s_%s', regexprep(x,'^(\w*)_.*$','$1'), y)
 %               generates e.g. the id 'tree001_b1' from treeName 
 %               'tree001_em' and comment 'b1')

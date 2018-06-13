@@ -1,6 +1,7 @@
 function skel = nmlExtractTrees( inputFname, pattern, outputFname )
-%NMLEXTRACTTREES extracts all trees contained in nml which names are
-%matching the provided pattern
+%NMLEXTRACTTREES extracts trees from nml
+%   Extracts the trees contained in given nml which tree names are
+%   matching the provided regular expression pattern
 %   INPUT:  inputPath: str
 %               Full file path to the input .nml file
 %           pattern: str or cell array of str
@@ -14,7 +15,7 @@ function skel = nmlExtractTrees( inputFname, pattern, outputFname )
 %               (Default: '' -> No write)
 %   OUTPUT: skel: Skeleton object 
 %               Skeleton object containing the extracted trees
-%   Author: Florian Drawitsch <florian.drawitsch@brain.mpg.de>
+%Author: Florian Drawitsch <florian.drawitsch@brain.mpg.de>
 
 if ~iscell(pattern)
     pattern = {pattern};

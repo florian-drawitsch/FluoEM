@@ -1,7 +1,10 @@
 function obj = registerFreeForm( obj )
-%REGISTERFREEFORM computes the free-form transformation lm_at_ft of the 
-% lm_at skeleton based on the provided control point pairs
-% Author: florian.drawitsch@brain.mpg.de
+%REGISTERFREEFORM computes the free-form registration of two skeletons
+%   Computes the free-form transformation (lm_at_ft) of a previously 
+%   computed affine transformed (lm_at) skeleton using the control points 
+%   tables stored in the object. When called without an affine transformed
+%   skeleton available, the registerAffine method is called first.
+% Author: Florian Drawitsch <florian.drawitsch@brain.mpg.de>
 
 if ~isfield(obj.skeletons,'lm_at')
     obj = registerAffine( obj );

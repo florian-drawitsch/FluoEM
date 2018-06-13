@@ -1,4 +1,4 @@
-function [bbox, bboxStr] = getBboxFromCenterPoint(centerPoint, bboxSize, voxelSize, shift)
+usfunction [bbox, bboxStr] = getBboxFromCenterPoint(centerPoint, bboxSize, voxelSize, shift)
 %GETBBOXFROMCENTERPOINT returns a bounding box around a given center point
 %   INPUT   centerPoint: [1x3] double
 %               Coordinate of center point
@@ -20,7 +20,7 @@ function [bbox, bboxStr] = getBboxFromCenterPoint(centerPoint, bboxSize, voxelSi
 %           bboxStr: str
 %               Bounding box around center point
 %               Format: xmin, ymin, zmin, xwidth, ywidth, zwidth
-%   Author: Florian Drawitsch <florian.drawitsch@brain.mpg.de>
+% Author: Florian Drawitsch <florian.drawitsch@brain.mpg.de>
 
 if ~exist('bboxSize','var') || isempty(bboxSize)
     bboxSize = [3000, 3000, 3000];

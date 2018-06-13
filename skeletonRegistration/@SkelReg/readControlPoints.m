@@ -1,6 +1,8 @@
 function obj = readControlPoints(obj, commentPattern, idGenerator)
-%READCONTROLPOINTS Reads control points from skeleton comments matching the 
-% provided commentPattern by calling the static comments2table method
+%READCONTROLPOINTS Reads control points from skeleton comments 
+%   Reads control points from skeleton comments  matching the provided
+%   commentPattern by calling the static comments2table method for each
+%   available skeleton
 % Author: Florian Drawitsch <florian.drawitsch@brain.mpg.de>
 
 if ~exist('commentPattern','var') || isempty(commentPattern)

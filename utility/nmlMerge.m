@@ -1,7 +1,8 @@
 function skel = nmlMerge( inputPath, pattern, outputFname )
-%NMLMERGE Merges all .nml files contained in the specified directory and
-%returns them as a skeleton object and/or writes them as a single .nml file 
-%containing the input files as separate trees.
+%NMLMERGE Merges trees of multiple nml files into a single skeleton object
+%   Merges all nml files contained in the specified directory and returns
+%   them as a skeleton object and/or writes them as a single .nml file 
+%   containing the input files as separate trees.
 %   INPUT:  inputPath: (optional) str
 %               Path to the directory containing the .nml files to be
 %               merged
@@ -19,7 +20,7 @@ function skel = nmlMerge( inputPath, pattern, outputFname )
 %               (Default: '' -> No write)
 %   OUTPUT: skel: Skeleton object 
 %               Skeleton object containing the merged .nml files as trees
-%   Author: Florian Drawitsch <florian.drawitsch@brain.mpg.de>
+% Author: Florian Drawitsch <florian.drawitsch@brain.mpg.de>
 
 % Get input path
 if ~exist('inputPath','var') || isempty(inputPath)

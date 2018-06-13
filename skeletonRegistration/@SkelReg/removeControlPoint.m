@@ -1,6 +1,14 @@
 function obj = removeControlPoint(obj, treeName, comment)
-%CONTROLPOINTREMOVE Summary of this function goes here
-%   Detailed explanation goes here
+%REMOVECONTROLPOINT Removes a specified control point 
+%   Removes a specified control point from all available control point 
+%   tables stored in the object
+%   INPUT:  treeName: str
+%               Tree name specifying the skeleton tree on which the
+%               respective comment is located
+%           comment: str
+%               Comment specifying the control point to be deleted on the 
+%               respective tree.
+% Author: Florian Drawitsch <florian.drawitsch@brain.mpg.de>
 
 skeletons_available = fieldnames(obj.skeletons);
 

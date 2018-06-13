@@ -2,8 +2,7 @@ function fh = plot( obj, varargin )
 %PLOT Shows skeleton reconstructions or their overlays as a simple 3D line
 %plot with various annotations
 % The skeletons to be plottet as well as the annotations to be displayed 
-% can be selected via the varargin arguments. Usage example: 
-% >skelReg.plot('include',{'em','lm_at'},'downsample',2,'labels',false)
+% can be selected via the varargin arguments. 
 %   INPUT (varargin): Accepted input argument pairs include
 %           include (optional): cell array of str
 %               Skeletons to be plotted. Depending on the available
@@ -29,6 +28,8 @@ function fh = plot( obj, varargin )
 %               (Default: true)                 
 %   OUTPUT: fh: figure handle
 %               handle for the generated plot
+%   USAGE EXAMPLE: 
+%   >> skelReg.plot('include',{'em','lm_at'},'downsample',2,'labels',false)
 % Author: Florian Drawitsch <florian.drawitsch@brain.mpg.de>
 
 % Parse Inputs

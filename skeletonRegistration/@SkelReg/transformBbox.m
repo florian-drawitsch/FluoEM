@@ -1,6 +1,6 @@
 function [bboxT, bboxTstr] = transformBbox( obj, bbox, transformationMode )
 %TRANSFORMBBOX Transforms a bounding box using available precomputed
-%transformations
+%transformations stored in the object
 %   INPUT   bbox: [1x6] double
 %               Target bounding box to be transformed.
 %               Format: xmin, ymin, zmin, xwidth, ywidth, zwidth
@@ -10,7 +10,7 @@ function [bboxT, bboxTstr] = transformBbox( obj, bbox, transformationMode )
 %   OUTPUT  bboxT: [1x6] double
 %               Transformed bounding box
 %               Format: xmin, ymin, zmin, xwidth, ywidth, zwidth
-%   Author: Florian Drawitsch <florian.drawitsch@brain.mpg.de>
+% Author: Florian Drawitsch <florian.drawitsch@brain.mpg.de>
 
 if ~exist('transformationMode', 'var')
     transformationMode = 'affine';
