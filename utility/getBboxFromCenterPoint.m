@@ -1,4 +1,4 @@
-usfunction [bbox, bboxStr] = getBboxFromCenterPoint(centerPoint, bboxSize, voxelSize, shift)
+function [bbox, bboxStr] = getBboxFromCenterPoint(centerPoint, bboxSize, voxelSize, shift)
 %GETBBOXFROMCENTERPOINT returns a bounding box around a given center point
 %   INPUT   centerPoint: [1x3] double
 %               Coordinate of center point
