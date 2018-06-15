@@ -16,8 +16,8 @@ addpath(genpath(pkgpath));
 
 
 %% Construct skelReg object
-fpathEM = fullfile(pkgpath, 'examples', 'all_em.nml');
-fpathLM = fullfile(pkgpath, 'examples', 'all_lm.nml');
+fpathEM = fullfile(pkgpath, 'data', 'skeletonRegistration', 'all_em.nml');
+fpathLM = fullfile(pkgpath, 'data', 'skeletonRegistration', 'all_lm.nml');
 skelReg = SkelReg(fpathEM, fpathLM);
 
 
