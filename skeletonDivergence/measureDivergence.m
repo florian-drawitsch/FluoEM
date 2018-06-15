@@ -1,4 +1,4 @@
-function measureDivergence(nmlDirRef, nmlFnameRef, nmlDirTar, nmlFnameTar, bboxOrigin, outputDir, outputFname, bboxRestrictActive, bboxRestrictExtent, ellipsoidRadii, binSize, plotRangeX)
+function measureDivergence(nmlDirRef, nmlFnameRef, nmlDirTar, nmlFnameTar, bboxOrigin, outputDir, outputFname, bboxRestrictActive, bboxRestrictExtent, ellipsoidRadii, binSize, plotRangeX, plotAddY)
 %MEASUREDIVERGENCE measures the divergence of a set of axon skeletons 
 %originating from the same bounding box
 %   To compute the axon divergence, a marching ellipsoid is placed around
@@ -41,12 +41,19 @@ function measureDivergence(nmlDirRef, nmlFnameRef, nmlDirTar, nmlFnameTar, bboxO
 %               Euclidean distance from bbox center over which divergence 
 %               measurement results are plotted
 %               (Default: [0 100] [nm])
+%           plotAddY: (optional) int
+%               Adds int to all neighbor counts before plotting. E.g.
+%               plotAddY = 1 would add 1 to all neighbor counts before
+%               plotting, relieving potential 0 logplot problems.
+%               Obviously the uniqueness definition in the plot is then 
+%               shifted accordingly.
+%               (Default: false)
 % Author: Florian Drawitsch <florian.drawitsch@brain.mpg.de>
 
 
 % Set optional variables
 if ~exist('bboxRestrictActive','var') || isempty(bboxRestrictActive)
-    bboxRestrictActive = 0;
+    bboxRestrictActive = false;
 end
 if ~exist('bboxRestrictExtent','var') || isempty(bboxRestrictExtent)
     bboxRestrictExtent = 40000;
@@ -60,18 +67,21 @@ end
 if ~exist('plotRangeX','var') || isempty(plotRangeX)
     plotRangeX = [0 100];
 end
+if ~exist('plotAddY','var') || isempty(plotAddY)
+    plotAddY = 0;
+end
 
 
-% Load Data
+% Load Ref Data
 skelRef = Skeleton(fullfile(nmlDirRef,nmlFnameRef));
-skelTar = Skeleton(fullfile(nmlDirTar,nmlFnameTar));
 
-
-% Check whether skelRef and skelTar are the same
-if skelRef.numTrees == skelTar.numTrees && prod(strcmp(skelRef.names,skelTar.names))
+% Check whether skelRef and skelTar are the same and load accordingly
+if strcmp(nmlFnameRef, nmlFnameTar)
     refTarIdent = 1;
+    skelTar = skelRef;
 else
     refTarIdent = 0;
+    skelTar = Skeleton(fullfile(nmlDirTar,nmlFnameTar));
 end
 
 
@@ -164,7 +174,7 @@ for treeIdx = 1:skelRef.numTrees
         highlight(hi,:) = [distToOriginAll{treeIdx}(end) neighborCounts(end)];
         scatter(highlight(hi,1),highlight(hi,2)+1,5,'v','MarkerEdgeColor',[1 0 0]);
     end
-    plot(distToOriginAll{treeIdx},neighborCounts,'-','Color',get(gca,'YColor'),'LineWidth',0.2);
+    plot(distToOriginAll{treeIdx},neighborCounts+plotAddY,'-','Color',get(gca,'YColor'),'LineWidth',0.2);
     hold on
 end
 ylim([0.9 skelTar.numTrees+10]);
@@ -174,7 +184,7 @@ yrTickLabels = {'10^0','10^1','10^2'};
 set(gca,'YTick',yrTicks,'YTickLabel',yrTickLabels);
 title(outputFname);
 ylabel({'Axons in neighborhood'});
-xlabel('d_{unique}(µm)');
+xlabel('d_{unique}(ï¿½m)');
 xTicks = [0, 50, 100] .* 1E3;
 xTickLabels = {'0','50','100'};
 set(gca,'XTick',xTicks,'XTickLabel',xTickLabels);
@@ -195,7 +205,7 @@ ylim([0 1.01]);
 
 % General Formatting
 title(outputFname);
-xlabel('Dist to origin (µm)');
+xlabel('Dist to origin (ï¿½m)');
 
 
 % Save Workspace

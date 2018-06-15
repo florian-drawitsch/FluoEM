@@ -8,12 +8,7 @@ nmlFnameTar = 'L23_bboxDense_em.nml';
 bboxOrigin = [4835, 3910, 3692, 415, 415, 208];
 outputDir = fullfile(nmlDir, 'output', 'L23');
 outputFname = 'L23';
-bboxRestrictActive = 0;
-bboxRestrictExtent = 40000; %nm
-ellipsoidRadii = [5000 5000 5000];
-binSize = 2500;
-plotRangeX = [0 100];
-
+plotAddY = 1;
 
 % Start
-measureDivergence(nmlDirRef, nmlFnameRef, nmlDirTar, nmlFnameTar, bboxOrigin, outputDir, outputFname, bboxRestrictActive, bboxRestrictExtent, ellipsoidRadii, binSize, plotRangeX)
+measureDivergence(nmlDirRef, nmlFnameRef, nmlDirTar, nmlFnameTar, bboxOrigin, outputDir, outputFname, [], [], [], [], [], plotAddY)
