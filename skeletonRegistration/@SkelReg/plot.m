@@ -88,7 +88,6 @@ for i = 1:numel(p.Results.include)
 end
 
 % Generate figure
-fh = figure;
 for i = 1:numel(p.Results.include)
     skel = obj.skeletons.(p.Results.include{i});
     skel = skel.downSample([],p.Results.downsample);
@@ -98,7 +97,7 @@ for i = 1:numel(p.Results.include)
     % Plot Control points
     if p.Results.cps && isfield(obj.controlPoints,p.Results.include{i})
         cps = obj.controlPoints.(p.Results.include{i}).xyz;
-        scatter3(cps(:,1),cps(:,2),cps(:,3), 10, cm.cp.(p.Results.include{i}));
+        scatter3(cps(:,1),cps(:,2),cps(:,3), 15, cm.cp.(p.Results.include{i}));
         hold on;
     end
 end
@@ -106,7 +105,7 @@ end
 % Plot Labels
 if p.Results.labels
     cps = obj.controlPoints.em.xyz;
-    comments = obj.controlPoints.em.comment;
+    comments = obj.controlPoints.matched.id;
     cellfun(@(x,y,z,c) text(x,y,z,c), num2cell(cps(:,1)), num2cell(cps(:,2)), num2cell(cps(:,3)), comments);
 end
 
@@ -121,6 +120,9 @@ else
     daspect([1 1 1]);
     warning('Included skeletons have different scales!');
 end
+
+fh = gcf;
+
 end
 
 

@@ -241,6 +241,6 @@ print(fullfile(outputDir,[outputFname,'_log_new.tif']),'-dtiff');
 print(fullfile(outputDir,[outputFname,'_log_new']),'-dsvg');
 print(fullfile(outputDir,[outputFname,'_log_new']),'-depsc');
 print(fullfile(outputDir,[outputFname,'_log_new']),'-dpdf');
-close(fig);
+%close(fig);
 
 
