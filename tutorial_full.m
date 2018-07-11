@@ -163,7 +163,7 @@ fname_axon1_em_candidates_nml = fullfile(skelDir, 'axon1_em_candidates.nml');
 
 % Set parameters
 nmlDirRef = skelDir;
-nmlFnameRef = 'axon1_lm_at.nml';
+nmlFnameRef = 'axon1_lm_AT_AT.nml';
 nmlDirTar = skelDir;
 nmlFnameTar = 'axon1_em_candidates.nml';
 bboxOrigin = [20889,24751,125,444,444,166];
@@ -172,6 +172,37 @@ outputFname = 'initialMatch';
 
 % Start divergence measurements
 measureDivergence(nmlDirRef, nmlFnameRef, nmlDirTar, nmlFnameTar, bboxOrigin, outputDir, outputFname)
+
+
+%% Use first matched axon pair to refine transformation and prepare second match
+% Set parameters
+fname_axon1_lm_nml = fullfile(skelDir, 'axon1_lm.nml'); 
+fname_axon1_em_nml = fullfile(skelDir, 'axon1_em.nml');
+fname_axon2_lm_nml = fullfile(skelDir, 'axon2_lm.nml');
+
+% Load matched axon1 pair, add axon2 and register 
+skelReg = SkelReg(fname_axon1_lm_nml, fname_axon1_em_nml);
+skelReg = skelReg.addTree(fname_axon2_lm_nml, 'lm');
+skelReg = skelReg.registerAffine;
+skelReg.plot;
+
+
+%% Show all registered axons
+% set paremeters
+fname_axons_all_em_nml = fullfile(skelDir, 'axons_all_em.nml');
+fname_axons_all_lm_nml = fullfile(skelDir, 'axons_all_lm.nml');
+
+% Load all matched axon pairs
+skelReg = SkelReg(fname_axons_all_lm_nml, fname_axons_all_em_nml);
+
+% Show affine
+skelReg = skelReg.registerAffine;
+skelReg.plot('labels',false);
+
+% Show free-form
+skelReg = skelReg.registerNonAffine;
+skelReg.plot;
+
 
 
 
