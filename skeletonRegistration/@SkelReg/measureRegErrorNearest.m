@@ -9,12 +9,30 @@ function reg_error_nearest = measureRegErrorNearest( obj, reg_type, num_samples,
 %               Registration type for which cp based error should be
 %               measured. Either 'lm_at' or 'lm_at_ft'
 %               (Default: 'lm_at')
+%           num_samples (optional): int
+%               Number of sample nodes to be drawn from each skeleton tree
+%           rand_seed (optional): int
+%               Seed for random number generator used to draw the node
+%               samples
 %   OUTPUT: reg_error_nearest: struct
 %               Struct containing the measured errors
 
 if ~exist('reg_type', 'var')
     reg_type = 'lm_at';
 end
+
+if ~exist('num_samples', 'var')
+    num_samples = 10;
+end
+
+if ~exist('rand_seed', 'var')
+    rand_seed = 0;
+end
+
+% Set random number generator seed
+rng(rand_seed, 'twister');
+
+
 
 end
 
