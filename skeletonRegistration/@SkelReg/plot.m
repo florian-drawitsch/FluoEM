@@ -104,7 +104,7 @@ end
 
 % Plot Labels
 if p.Results.labels
-    cps = obj.controlPoints.em.xyz;
+    cps = obj.controlPoints.matched.xyz_em;
     comments = obj.controlPoints.matched.id;
     cellfun(@(x,y,z,c) text(x,y,z,c), num2cell(cps(:,1)), num2cell(cps(:,2)), num2cell(cps(:,3)), comments);
 end
