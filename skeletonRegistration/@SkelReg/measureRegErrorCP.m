@@ -14,19 +14,26 @@ if ~exist('reg_type', 'var')
     reg_type = 'lm_at';
 end
 
-tree_names_unique = unique(obj.controlPoints.matched.treeName_em);
-tree_names_unique_inds = cellfun(@(x) find(strcmp(obj.controlPoints.matched.treeName_em,x)), tree_names_unique, 'Uni',false);
-
-if ismember(['xyz_',reg_type],obj.controlPoints.matched.Properties.VariableNames)
-    diffs_cp_at = obj.controlPoints.matched.xyz_em - obj.controlPoints.matched.(['xyz_',reg_type]);
-    norms_cp_at = normList(diffs_cp_at, obj.skeletons.em.scale);
-    reg_error_cp.all.cp.at = rmsList(norms_cp_at);
-    for i = 1:numel(tree_names_unique)
-        reg_error_cp.(tree_names_unique{i}).cp.at = rmsList(norms_cp_at(tree_names_unique_inds{i}));
-    end  
-else
+% Check if reg_type is available
+if ~isfield(obj.skeletons,reg_type)
     warning(['No matched cps were found for the registration type ',reg_type,'. Make sure to compute a valid registration first.'])
     reg_error_cp = [];
+    return;
+end
+
+% Get tree information
+tree_names_unique = unique(obj.controlPoints.matched.treeName_em);
+tree_names_unique_inds = cellfun(@(x) find(strcmp(obj.controlPoints.matched.treeName_em,x)), tree_names_unique, 'Uni',false);
+tree_name_stumps = cellfun(@(x) regexprep(x, '^(\w*)_.*$','$1'), tree_names_unique, 'Uni', false);
+
+% Compute reg error
+diffs = obj.controlPoints.matched.xyz_em - obj.controlPoints.matched.(['xyz_',reg_type]);
+norms = normList(diffs, obj.skeletons.em.scale);
+
+% Construct output
+reg_error_cp.all = rmsList(norms);
+for i = 1:numel(tree_names_unique)
+    reg_error_cp.(tree_name_stumps{i}) = rmsList(norms(tree_names_unique_inds{i}));
 end
 
 end
