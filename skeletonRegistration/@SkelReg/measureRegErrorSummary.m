@@ -18,8 +18,8 @@ end
 for reg_type_idx = 1:numel(reg_types)
     reg_type = reg_types{reg_type_idx};
     if isfield(obj.skeletons,reg_type)
-        reg_error.(reg_type).cp = obj.measureRegErrorCP('lm_at');
-        reg_error.(reg_type).nn = obj.measureRegErrorNN('lm_at', num_samples, rand_seed);
+        reg_error.(reg_type).cp = obj.measureRegErrorCP(reg_type);
+        reg_error.(reg_type).nn = obj.measureRegErrorNN(reg_type, num_samples, rand_seed);
     else
         warning(['Registration type ',reg_type,' not found. Make sure to compute a valid registration first.'])
     end
