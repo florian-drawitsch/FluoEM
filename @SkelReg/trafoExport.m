@@ -1,4 +1,4 @@
-function trafo = exportTransformation( obj, outputPath )
+function trafo = trafoExport( obj, outputPath )
 %EXPORTTRANSFORMATION Exports transformations stored in the internal state
 %   INPUT:  outputPath: (optional) str
 %               If specified, the transformation structure is written to

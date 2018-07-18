@@ -1,4 +1,4 @@
-function reg_error_nearest = measureRegErrorNN( obj, reg_type, num_samples, rand_seed )
+function reg_error_nearest = regErrorNN( obj, reg_type, num_samples, rand_seed )
 %MEASUREREGERRORNN Measures registration error based on randomly
 %sampled skeleton nodes and their nearest registered neighbor node
 % The error is computed as the root mean square of the euclidean distances

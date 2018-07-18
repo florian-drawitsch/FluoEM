@@ -1,4 +1,4 @@
-function reg_error = measureRegErrorSummary( obj, reg_types, num_samples, rand_seed )
+function reg_error = regErrorSummary( obj, reg_types, num_samples, rand_seed )
 %MEASUREREGISTRATIONERROR Measures various registration error metrics
 %   Detailed explanation goes here
 
@@ -18,8 +18,8 @@ end
 for reg_type_idx = 1:numel(reg_types)
     reg_type = reg_types{reg_type_idx};
     if isfield(obj.skeletons,reg_type)
-        reg_error.(reg_type).cp = obj.measureRegErrorCP(reg_type);
-        reg_error.(reg_type).nn = obj.measureRegErrorNN(reg_type, num_samples, rand_seed);
+        reg_error.(reg_type).cp = obj.regErrorCP(reg_type);
+        reg_error.(reg_type).nn = obj.regErrorNN(reg_type, num_samples, rand_seed);
     else
         warning(['Registration type ',reg_type,' not found. Make sure to compute a valid registration first.'])
     end

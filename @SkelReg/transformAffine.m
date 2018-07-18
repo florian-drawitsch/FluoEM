@@ -1,7 +1,7 @@
 function target_at = transformAffine( obj, target, direction, scaleNew, expNameNew )
 %TRANSFORMAFFINE outputs the affine transformation of a target skeleton
 %using the transformation attribute stored in the internal state
-%   Use the "registerAffine" method to obtain such an affine transformation
+%   Use the "trafoComputeAffine" method to obtain such an affine transformation
 %   model based on control point pairs, or import one.
 %   INPUT:  target: Skeleton object or [Nx3] double
 %               Target skeleton or points
@@ -25,7 +25,7 @@ function target_at = transformAffine( obj, target, direction, scaleNew, expNameN
 % Author: Florian Drawitsch <florian.drawitsch@brain.mpg.de>
 
 if ~isfield(obj.transformations, 'at')
-    error('No transformation found at obj.transformations.at. Use the registerAffine method to obtain one.');
+    error('No transformation found at obj.transformations.at. Use the trafoComputeAffine method to obtain one.');
 end
 
 if ~exist('direction', 'var') || isempty(direction)

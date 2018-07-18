@@ -51,5 +51,8 @@ for treeIdx = 1:skel.numTrees
     
 end
 
+commentsTable.Properties.UserData.parameters.experiment = skel.parameters.experiment.name;
+commentsTable.Properties.UserData.parameters.scale = skel.scale;
+
 end
 

@@ -1,4 +1,4 @@
-function reg_error_cp = measureRegErrorCP( obj, reg_type )
+function reg_error_cp = regErrorCP( obj, reg_type )
 %MEASUREREGERRORCP Measures registration error based on control points
 % The error is computed as the root mean square of the euclidean distances
 % between the EM control points and the respective affine or free-form

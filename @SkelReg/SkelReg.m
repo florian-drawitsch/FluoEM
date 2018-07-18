@@ -35,12 +35,14 @@ classdef SkelReg
             if exist('fpathLM', 'var')
                 obj.paths.fpathLM = fpathLM;
                 obj.skeletons.lm = Skeleton(obj.paths.fpathLM);
+                obj.transformations.scales.lm = obj.skeletons.lm.scale;
             end
             
             % If path is provided construct EM skeleton object
             if exist('fpathEM', 'var')
                 obj.paths.fpathEM = fpathEM;
                 obj.skeletons.em = Skeleton(obj.paths.fpathEM);
+                obj.transformations.scales.em = obj.skeletons.em.scale;
             end
 
             % Define default commentPattern
@@ -54,8 +56,8 @@ classdef SkelReg
             end
             
             % Construct control point tables
-            obj = readControlPoints(obj, commentPattern, idGenerator);
-            obj = matchControlPoints(obj);
+            obj = cpReadFromSkel(obj, commentPattern, idGenerator);
+            obj = cpMatch(obj);
         end
     end
     

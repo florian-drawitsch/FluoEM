@@ -19,7 +19,7 @@ for i = 1:numel(skeletons_available)
     obj.controlPoints.(skeletons_available{i}) = obj.controlPoints.(skeletons_available{i})(cp_keep_inds,:);
 end
 
-obj = matchControlPoints(obj);
+obj = cpMatch(obj);
 
 end
 

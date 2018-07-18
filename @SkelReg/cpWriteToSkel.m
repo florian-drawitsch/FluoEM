@@ -1,4 +1,4 @@
-function obj = writeControlPoints(obj)
+function obj = cpWriteToSkel(obj)
 %WRITECONTROLPOINTS Writes control points skeleton comments
 %   Writes the available control point tables  as comments into the
 %   respective skeleton objects, allowing to export any changes made to the

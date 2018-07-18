@@ -1,4 +1,4 @@
-function [pn_diff_table, pn_diff_mean, pn_diff_std] = findControlPointOutliers(obj)
+function [pn_diff_table, pn_diff_mean, pn_diff_std] = cpFindOutliers(obj)
 %FINDCONTROLPOINTOUTLIERS Computes an control point outlier metric  
 %   Computes an outlier metric using the assumption that pairwise
 %   euclidean distances between control point pairs should be preserved

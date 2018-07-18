@@ -1,7 +1,7 @@
 function target_at_ft = transformFreeForm( obj, target_at, direction )
 %TRANSFORMFREEFORM  outputs the free-form transformation of a target 
 %skeleton using the transformation attribute stored in the internal state
-%   Use the "registerFreeForm" method to obtain such an free-form 
+%   Use the "trafoComputeFreeForm" method to obtain such an free-form 
 %   transformation model based on control point pairs, or import one.
 %   The free-form deformation is defined relative to an affine pre-
 %   registration. Use an already affine transformed skeleton or points as

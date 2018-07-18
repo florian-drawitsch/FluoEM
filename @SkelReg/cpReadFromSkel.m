@@ -1,4 +1,4 @@
-function obj = readControlPoints(obj, commentPattern, idGenerator)
+function obj = cpReadFromSkel(obj, commentPattern, idGenerator)
 %READCONTROLPOINTS Reads control points from skeleton comments 
 %   Reads control points from skeleton comments  matching the provided
 %   commentPattern by calling the static comments2table method for each
