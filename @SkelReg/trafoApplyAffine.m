@@ -1,4 +1,4 @@
-function obj = applyAffine(obj, direction, scaleNew)
+function obj = trafoApplyAffine(obj, direction, scaleNew)
 %APPLYAFFINE Applies the affine transformation stored in the internal state
 %to the stored skeleton object
 %           direction: (optional) str
@@ -27,7 +27,7 @@ end
 
 % Apply transformation
 if isfield(obj.transformations, 'at')
-    obj.skeletons.lm_at = transformAffine( obj, obj.skeletons.lm, direction, scaleNew );
+    obj.skeletons.lm_at = trafoApplyAffineExt( obj, obj.skeletons.lm, direction, scaleNew );
 end
 
 % Parse control points from skeleton comments

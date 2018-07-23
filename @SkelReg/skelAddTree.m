@@ -1,4 +1,4 @@
-function obj = addTree(obj, nmlFname, target)
+function obj = skelAddTree(obj, nmlFname, target)
 %ADDTREE Adds nml as an additional tree to a skeleton stored in the
 %skeleton attribute.
 %   INPUT:  nmlFname: str
@@ -9,7 +9,7 @@ function obj = addTree(obj, nmlFname, target)
 % Author: Florian Drawitsch <florian.drawitsch@brain.mpg.de
 
 if isfield(obj.skeletons, target)
-    obj.skeletons.(target) = obj.skeletons.(target).addTreeFromSkel(Skeleton(nmlFname));
+    obj.skeletons.(target) = obj.skeletons.(target).skelAddTreeFromSkel(Skeleton(nmlFname));
 else
     error([target, 'does not exist in .skeletons']);
 end

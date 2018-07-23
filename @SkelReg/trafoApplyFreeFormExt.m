@@ -1,4 +1,4 @@
-function target_at_ft = transformFreeForm( obj, target_at, direction )
+function target_at_ft = trafoApplyFreeFormExt( obj, target_at, direction )
 %TRANSFORMFREEFORM  outputs the free-form transformation of a target 
 %skeleton using the transformation attribute stored in the internal state
 %   Use the "trafoComputeFreeForm" method to obtain such an free-form 

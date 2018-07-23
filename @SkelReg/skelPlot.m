@@ -1,22 +1,22 @@
-function fh = plot( obj, varargin )
+function fh = skelPlot( obj, varargin )
 %PLOT Shows skeleton reconstructions or their overlays as a simple 3D line
-%plot with various annotations
-% The skeletons to be plottet as well as the annotations to be displayed 
+%skelPlot with various annotations
+% The skeletons to be skelPlottet as well as the annotations to be displayed 
 % can be selected via the varargin arguments. 
 %   INPUT (varargin): Accepted input argument pairs include
 %           include (optional): cell array of str
-%               Skeletons to be plotted. Depending on the available
+%               Skeletons to be skelPlotted. Depending on the available
 %               registrations, valid arguments include 
-%               {'em', 'lm', 'lm_at', 'lm_at_ft'}. Warning: To be plotted
+%               {'em', 'lm', 'lm_at', 'lm_at_ft'}. Warning: To be skelPlotted
 %               as an overlay, the skeletons need to be in the same
-%               reference frame. Therefore, attempting to call plot with
+%               reference frame. Therefore, attempting to call skelPlot with
 %               {'em', 'lm'} included will likely result in a warning and
 %               no meaningful overlay.
 %               (Default: {'em', 'lm_at_ft'} or {'em', 'lm_at'} depending
 %               on whether 'lm_at_ft' is available)
 %           downsample (optional): integer
 %               Downsampling factor to be applied to the nodes of the
-%               skeleton before plotting it. Increases plotting performance 
+%               skeleton before skelPlotting it. Increases skelPlotting performance 
 %               for very large .nml files containing skeletons with 
 %               thousands of nodes.
 %               (Default: 1, meaning no downsampling)
@@ -27,9 +27,9 @@ function fh = plot( obj, varargin )
 %               Boolean controlling the display of control point ids
 %               (Default: true)                 
 %   OUTPUT: fh: figure handle
-%               handle for the generated plot
+%               handle for the generated skelPlot
 %   USAGE EXAMPLE: 
-%   >> skelReg.plot('include',{'em','lm_at'},'downsample',2,'labels',false)
+%   >> skelReg.skelPlot('include',{'em','lm_at'},'downsample',2,'labels',false)
 % Author: Florian Drawitsch <florian.drawitsch@brain.mpg.de>
 
 % Parse Inputs
@@ -90,9 +90,9 @@ end
 % Generate figure
 for i = 1:numel(p.Results.include)
     skel = obj.skeletons.(p.Results.include{i});
-    skel = skel.downSample([],p.Results.downsample);
+    skel = skel.downsample([],p.Results.downsample);
     % Plot Skeleton
-    skel.plot([],cm.skel.(p.Results.include{i}),[],[],[],1);
+    skel.skelPlot([],cm.skel.(p.Results.include{i}),[],[],[],1);
     hold on;
     % Plot Control points
     if p.Results.cps && isfield(obj.controlPoints,p.Results.include{i})

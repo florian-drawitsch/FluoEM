@@ -25,7 +25,7 @@ for reg_type_idx = 1:numel(reg_types)
     end
 end
 
-% Produce plots
+% Produce skelPlots
 figure('Name','Registration Error Summary')
 error_reg_types = fieldnames(reg_error);
 sp_idx = 0;
@@ -39,7 +39,7 @@ for rt_idx = 1:numel(error_reg_types)
         re_x = 1:numel(fieldnames(re));
         re_labels = fieldnames(re);
         re_y = structfun(@(x) x, re);
-        ax = subplot(numel(error_reg_types), numel(error_measure_types),sp_idx);
+        ax = subskelPlot(numel(error_reg_types), numel(error_measure_types),sp_idx);
         bar(re_x, re_y);
         ax.XTick = re_x;
         ax.XTickLabel = re_labels;

@@ -1,4 +1,4 @@
-function obj = removeControlPoint(obj, treeName, comment)
+function obj = cpRemove(obj, treeName, comment)
 %REMOVECONTROLPOINT Removes a specified control point 
 %   Removes a specified control point from all available control point 
 %   tables stored in the object

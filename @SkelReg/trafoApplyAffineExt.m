@@ -1,4 +1,4 @@
-function target_at = transformAffine( obj, target, direction, scaleNew, expNameNew )
+function target_at = trafoApplyAffineExt( obj, target, direction, scaleNew, expNameNew )
 %TRANSFORMAFFINE outputs the affine transformation of a target skeleton
 %using the transformation attribute stored in the internal state
 %   Use the "trafoComputeAffine" method to obtain such an affine transformation

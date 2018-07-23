@@ -1,4 +1,4 @@
-function [bboxT, bboxTstr] = transformBbox( obj, bbox, transformationMode )
+function [bboxT, bboxTstr] = trafoApplyToBbox( obj, bbox, transformationMode )
 %TRANSFORMBBOX Transforms a bounding box using available precomputed
 %transformations stored in the object
 %   INPUT   bbox: [1x6] double
@@ -21,7 +21,7 @@ target = [...
     bbox(1) + bbox(4), bbox(2) + bbox(5), bbox(3) + bbox(4) ...
     ];
 
-targetT = applyAffine( obj, target );
+targetT = trafoApplyAffine( obj, target );
 
 if strcmp(transformationMode,'free-form')
     targetT = applyFreeForm( obj, targetT );
