@@ -1,6 +1,6 @@
 function obj = trafoApplyAffine(obj, direction, scaleNew)
-%APPLYAFFINE Applies the affine transformation stored in the internal state
-%to the stored skeleton object
+%TRAFOAPPLYAFFINE Applies the affine transformation stored in the internal 
+% state to the stored skeleton object
 %           direction: (optional) str
 %               Specifies affine transformation direction:
 %               'forward' typically means lm -> em

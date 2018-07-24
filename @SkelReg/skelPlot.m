@@ -92,7 +92,7 @@ for i = 1:numel(p.Results.include)
     skel = obj.skeletons.(p.Results.include{i});
     skel = skel.downsample([],p.Results.downsample);
     % Plot Skeleton
-    skel.skelPlot([],cm.skel.(p.Results.include{i}),[],[],[],1);
+    skel.plot([],cm.skel.(p.Results.include{i}),[],[],[],1);
     hold on;
     % Plot Control points
     if p.Results.cps && isfield(obj.controlPoints,p.Results.include{i})
@@ -105,8 +105,8 @@ end
 % Plot Labels
 if p.Results.labels
     cps = obj.controlPoints.matched.xyz_em;
-    comments = obj.controlPoints.matched.id;
-    cellfun(@(x,y,z,c) text(x,y,z,c), num2cell(cps(:,1)), num2cell(cps(:,2)), num2cell(cps(:,3)), comments);
+    ids = cellfun(@(x) regexprep(x, '^(\w+)(_b\d+)$','$1\\$2'), obj.controlPoints.matched.id, 'Uni', false);
+    cellfun(@(x,y,z,c) text(x,y,z,c), num2cell(cps(:,1)), num2cell(cps(:,2)), num2cell(cps(:,3)), ids);
 end
 
 % Check scales
@@ -126,7 +126,4 @@ fh = gcf;
 end
 
 
-function tf = checkInclude(x, xx)
-    cellfun(@(y) any(strcmp(fieldnames(obj.skeletons),y)), x);
-end
 
