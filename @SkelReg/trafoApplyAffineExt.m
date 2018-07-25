@@ -42,9 +42,9 @@ end
 
 if ~exist('expNameNew', 'var') || ~isempty(expNameNew)
     if strcmp(direction,'forward')
-        expNameNew = obj.skeletons.em.parameters.experiment.name;
-    elseif strcmp(direction,'inverse')
         expNameNew = obj.skeletons.lm.parameters.experiment.name;
+    elseif strcmp(direction,'inverse')
+        expNameNew = obj.skeletons.em.parameters.experiment.name;
     end
 end
 
