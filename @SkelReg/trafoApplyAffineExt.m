@@ -1,8 +1,8 @@
 function target_at = trafoApplyAffineExt( obj, target, direction, scaleNew, expNameNew )
-%TRANSFORMAFFINE outputs the affine transformation of a target skeleton
-%using the transformation attribute stored in the internal state
-%   Use the "trafoComputeAffine" method to obtain such an affine transformation
-%   model based on control point pairs, or import one.
+%TRAFOAPPLYAFFINEEXT applies the affine transformation found in the 
+%object state to an external (lm) skeleton or [Nx3] array
+% Use the "trafoComputeAffine" method to obtain such an affine 
+% transformation based on matched control points, or import one.
 %   INPUT:  target: Skeleton object or [Nx3] double
 %               Target skeleton or points
 %           direction: (optional) str
@@ -10,24 +10,26 @@ function target_at = trafoApplyAffineExt( obj, target, direction, scaleNew, expN
 %               'forward' typically means lm -> em
 %               'inverse' typically means em -> lm. 
 %               (Default: 'forward')
-%           expNameNew: (optional) str
-%               Specifies experiment name of new reference frame for
-%               skeleton objects
-%               (Default: Changed to em exp name for forward, changed to 
-%               lm exp name for inverse)
 %           scaleNew: (optional) [1x3] double
 %               Specifies scale of new reference frame for skeleton
 %               objects
 %               (Default: Changed to em scale for forward, changed to 
 %               lm scale for inverse)
+%           expNameNew: (optional) str
+%               Specifies experiment name of new reference frame for
+%               skeleton objects
+%               (Default: Changed to em exp name for forward, changed to 
+%               lm exp name for inverse)
 %   OUTPUT: target_at: Skeleton object or [Nx3] double
 %               Transformed skeleton or points
 % Author: Florian Drawitsch <florian.drawitsch@brain.mpg.de>
 
+% Perform checks
 if ~isfield(obj.transformations, 'at')
     error('No transformation found at obj.transformations.at. Use the trafoComputeAffine method to obtain one.');
 end
 
+% Set default values
 if ~exist('direction', 'var') || isempty(direction)
     direction = 'forward';
 end

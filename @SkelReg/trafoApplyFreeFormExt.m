@@ -1,11 +1,9 @@
 function target_at_ft = trafoApplyFreeFormExt( obj, target_at, direction )
-%TRANSFORMFREEFORM  outputs the free-form transformation of a target 
-%skeleton using the transformation attribute stored in the internal state
-%   Use the "trafoComputeFreeForm" method to obtain such an free-form 
-%   transformation model based on control point pairs, or import one.
-%   The free-form deformation is defined relative to an affine pre-
-%   registration. Use an already affine transformed skeleton or points as
-%   input.
+%TRANSFORMFREEFORM Applies the free-form transformation found in the 
+%object state to an affine (pre-)transformed (lm_at) external skeleton or 
+%[Nx3] array 
+% Before executing this method, compute a free-form transformation first 
+% via the trafoComputeFreeForm method.
 %   INPUT:  target_at: Skeleton object or [Nx3] double
 %               Affine transformed target skeleton or points
 %           direction: (optional) str
@@ -34,7 +32,7 @@ if isa(target_at,'Skeleton')
     % Apply free-form deformation grid in nm space
     target_atr_ft = trafoFT_transformSkeleton( target_atr, obj.transformations.ft.grid, obj.transformations.ft.spacingConsequent, direction);
     % Transform from back from nm space -> voxel space
-    target_at_ft = trafoAT_transformSkeleton(target_atr_ft, A, scale, 'inverse');
+    target_at_ft = trafoAT_transformSkeleton(target_atr_ft, A, obj.skeletons.lm_at.scale, 'inverse');
     
 elseif isa(target_at, 'numeric') && size(target_at,2) == 3
     % Transform from voxel space -> nm space

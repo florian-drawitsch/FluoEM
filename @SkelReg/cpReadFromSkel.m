@@ -1,8 +1,8 @@
 function obj = cpReadFromSkel(obj, commentPattern, idGenerator)
 %READCONTROLPOINTS Reads control points from skeleton comments 
-%   Reads control points from skeleton comments  matching the provided
-%   commentPattern by calling the static comments2table method for each
-%   available skeleton
+% Reads control points from skeleton comments  matching the provided
+% commentPattern by calling the static comments2table method for each
+% skeleton found in the object's state.
 %   INPUT:  commentPattern (optional): str
 %               Regular expression pattern specifying which webKnossos
 %               skeleton comments should be read as control points

@@ -1,10 +1,9 @@
-function [skelLMT, A] = trafoAT_start(skelLM, skelEM, CPsLM, CPsEM, relativeSearchRange)
+function [ A, regParams ] = trafoAT_start( CPsEM, CPsLM, scaleEM, scaleLM, relativeSearchRange )
+%COMPUTEOPTIMALAFFINETRAFO Summary of this function goes here
+%   Detailed explanation goes here
 
-if ~exist('relativeSearchRange','var')
-    relativeSearchRange = 1;
+scaleVector = [scaleEM(1)/scaleLM(1) scaleEM(2)/scaleLM(2) scaleEM(3)/scaleLM(3)].^-1;
+[A, regParams] = trafoAT_compute(CPsLM, CPsEM, scaleVector, relativeSearchRange);
+
 end
 
-% Affine Trafo
-A = trafoAT_compute( CPsEM, CPsLM, skelEM.scale, skelLM.scale, relativeSearchRange );
-skelLMT = trafoAT_transformSkeleton( skelLM, A, skelEM.scale );
-skelLMT.parameters.experiment.name = skelEM.parameters.experiment.name;
