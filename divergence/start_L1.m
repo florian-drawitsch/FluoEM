@@ -1,6 +1,6 @@
 % Set parameters
 parDir = fileparts(which('start_L1.m'));
-nmlDir = fullfile(parDir,'..','data','skeletonDivergence');
+nmlDir = fullfile(parDir,'..','data');
 nmlDirRef = nmlDir;
 nmlFnameRef = 'L1_bboxDense_em.nml';
 nmlDirTar = nmlDir;

@@ -84,7 +84,6 @@ else
     skelTar = Skeleton(fullfile(nmlDirTar,nmlFnameTar));
 end
 
-
 % Restrict to bbox
 bboxOld = convertBbox(bboxOrigin);
 bboxCenter = mean(reshape(bboxOld,[3 2])',1);
@@ -94,7 +93,6 @@ if bboxRestrictActive
     skelRef = skelRef.restrictToBBox(bboxRestrict);
     skelTar = skelTar.restrictToBBox(bboxRestrict);
 end
-
 
 % Measure Divergence all
 origin = round(bboxOrigin(1:3) + bboxOrigin(4:6)./2);
@@ -121,7 +119,7 @@ end
 % Get unique Fraction
 [uniqueFraction, uniqueFractionBins] = computeUniqueFraction( neighborCountsAll, distToOriginAll, binSize );
 padn = floor((plotRangeX(2)*1E3-uniqueFractionBins(end))/binSize);
-uniqueFraction = padarray(uniqueFraction,[0 padn],'replicate','post');
+uniqueFraction = [uniqueFraction, repmat(uniqueFraction(end),1,padn)];
 uniqueFractionBinsP = 0:binSize:plotRangeX(2)*1E3;
 
 % Make dropToZero vector
@@ -145,7 +143,6 @@ for treeIdx = 1:skelRef.numTrees
     end
 end
 
-
 % Compute Summary Statistics
 drop.skelRefNumTrees = skelRef.numTrees;
 drop.skelTarNumTrees = skelTar.numTrees;
@@ -156,7 +153,6 @@ drop.dunique85 = dUnique(dropToZero, 85)/1000;
 drop.dunique90 = dUnique(dropToZero, 90)/1000;
 drop.dunique95 = dUnique(dropToZero, 95)/1000;
 T = struct2table(drop);
-
 
 % Make Plot
 figure
@@ -184,7 +180,7 @@ yrTickLabels = {'10^0','10^1','10^2'};
 set(gca,'YTick',yrTicks,'YTickLabel',yrTickLabels);
 title(outputFname);
 ylabel({'Axons in neighborhood'});
-xlabel('d_{unique}(�m)');
+xlabel('d_{unique}(um)');
 xTicks = [0, 50, 100] .* 1E3;
 xTickLabels = {'0','50','100'};
 set(gca,'XTick',xTicks,'XTickLabel',xTickLabels);
@@ -201,12 +197,31 @@ yrTickLabels = cellfun(@(x) num2str(x),num2cell(yrTicks),'UniformOutput',0);
 set(gca,'YTick',yrTicks,'YTickLabel',yrTickLabels);
 ylabel('Unique axon fraction');
 ylim([0 1.01]);
-
-
-% General Formatting
 title(outputFname);
-xlabel('Dist to origin (�m)');
+xlabel('Dist to origin (um)');
 
+% Save Plots
+setFigureHandle(fig,'Width',4.5,'Height',3.5);
+setAxisHandle(ax,0);
+print(fullfile(outputDir,[outputFname,'_log_new.tif']),'-dtiff');
+print(fullfile(outputDir,[outputFname,'_log_new']),'-dpdf');
+%close(fig);
+
+% Export xls
+TS.uniqueFraction_binDists = uniqueFractionBinsP';
+TS.uniqueFraction_binFracs = uniqueFraction';
+for treeIdx = 1:skelRef.numTrees
+    TS.([skelRef.names{treeIdx},'_dist']) = distToOriginAll{treeIdx};
+    TS.([skelRef.names{treeIdx},'_counts']) = neighborCountsAll{treeIdx} + 1;
+end
+TSsizes = structfun(@(x) size(x,1),TS);
+TSpadvals = max(TSsizes) - TSsizes;
+fnames = fieldnames(TS);
+for i = 1:numel(fnames)
+    TS.(fnames{i}) = [TS.(fnames{i}); nan(TSpadvals(i),1)];
+end
+TST = struct2table(TS);
+writetable(TST,fullfile(outputDir,[outputFname,'plotData.xlsx']));
 
 % Save Workspace
 mkdir(outputDir);
@@ -216,31 +231,6 @@ tableFname = [outputFname,'.xls'];
 writetable(T,fullfile(outputDir,tableFname));
 
 
-% Export xls
-TS.uniqueFraction_binDists = uniqueFractionBinsP';
-TS.uniqueFraction_binFracs = uniqueFraction';
-for treeIdx = 1:skelRef.numTrees
-    TS.([skelRef.names{treeIdx},'_dist']) = distToOriginAll{treeIdx};
-    TS.([skelRef.names{treeIdx},'_counts']) = neighborCountsAll{treeIdx} + 1;
-end
-% Pad with NaNs
-TSsizes = structfun(@(x) size(x,1),TS);
-TSpadvals = max(TSsizes) - TSsizes;
-fnames = fieldnames(TS);
-for i = 1:numel(fnames)
-    TS.(fnames{i}) = [TS.(fnames{i}); nan(TSpadvals(i),1)];
-end
-TST = struct2table(TS);
-writetable(TST,fullfile(outputDir,[outputFname,'plotData.xlsx']))
 
-
-% Save Plots
-fig = setFigureHandle(fig,'Width',4.5,'Height',3.5);
-setAxisHandle(ax,0);
-print(fullfile(outputDir,[outputFname,'_log_new.tif']),'-dtiff');
-print(fullfile(outputDir,[outputFname,'_log_new']),'-dsvg');
-print(fullfile(outputDir,[outputFname,'_log_new']),'-depsc');
-print(fullfile(outputDir,[outputFname,'_log_new']),'-dpdf');
-%close(fig);
 
 
