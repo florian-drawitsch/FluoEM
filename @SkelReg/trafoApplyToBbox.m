@@ -18,18 +18,20 @@ end
 
 target = [...
     bbox(1), bbox(2), bbox(3);...
-    bbox(1) + bbox(4), bbox(2) + bbox(5), bbox(3) + bbox(4) ...
+    bbox(1) + bbox(4), bbox(2) + bbox(5), bbox(3) + bbox(6) ...
     ];
 
-targetT = trafoApplyAffine( obj, target );
+targetT = trafoApplyAffineExt( obj, target );
 
 if strcmp(transformationMode,'free-form')
-    targetT = applyFreeForm( obj, targetT );
+    targetT = applyFreeFormExt( obj, targetT );
 end
 
 bboxT = round([...
     targetT(1,:), targetT(2,:) - targetT(1,:) ...
     ]);
+
+bboxT(bboxT < 1) = 1;
 
 bboxTstr = sprintf('%d, %d, %d, %d, %d, %d', bboxT);
 
