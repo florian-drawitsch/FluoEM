@@ -1,4 +1,4 @@
-function [ lsqs ] = trafoAT_wrapper( movingPoints, fixedPoints, scaleVector )
+function [ lsqs ] = trafoAT_optWrapper( movingPoints, fixedPoints, scaleVector )
 %TRAFO3O_WRAPPER Summary of this function goes here
 %   Detailed explanation goes here
 A = absorWrapper( movingPoints, fixedPoints, scaleVector );
