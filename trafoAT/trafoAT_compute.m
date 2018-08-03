@@ -1,34 +1,22 @@
-function [A, regParams, lsqs, lsqsOpt] = trafoAT_compute(movingPoints, fixedPoints, scaleVector, relativeSearchRange)
-
-if nargin < 4
-    relativeSearchRange = 0.1;
-end
+function [A, regParams, lsqs, lsqsOpt] = trafoAT_compute(movingPoints, fixedPoints, scaleVector)
 
 % Compute old least Square sum
-lsqs = trafoAT_wrapper( movingPoints, fixedPoints, scaleVector );
+lsqs = trafoAT_optWrapper( movingPoints, fixedPoints, scaleVector );
 
 % Define Closure
-func = @(scaleVector) trafoAT_wrapper( movingPoints, fixedPoints, scaleVector );
+func = @(scaleVector) trafoAT_optWrapper( movingPoints, fixedPoints, scaleVector );
 
-% Define Search Parameters
-A = [];
-b = [];
-Aeq = [];
-beq = [];
-lb = scaleVector-scaleVector*relativeSearchRange;
-ub = scaleVector+scaleVector*relativeSearchRange;
-nonlcon = [];
+% Define optimization parameters
+options = optimset('MaxIter',1E3);
 
-options = optimoptions('patternsearch','Display','none');
-
-% Pattern Search
-scaleVectorOpt = patternsearch(func, scaleVector, A, b, Aeq, beq, lb, ub, nonlcon, options);
+% Perform optimization
+scaleVectorOpt = fminsearch(func, scaleVector, options);
 
 % Get Trafo for optimal scaleVector
 [ A, regParams ] = absorWrapper( movingPoints, fixedPoints, scaleVectorOpt );
 
 % Compute new least Square sum
-lsqsOpt = trafoAT_wrapper( movingPoints, fixedPoints, scaleVectorOpt );
+lsqsOpt = trafoAT_optWrapper( movingPoints, fixedPoints, scaleVectorOpt );
 
 
 
