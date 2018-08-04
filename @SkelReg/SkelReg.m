@@ -53,9 +53,9 @@ classdef SkelReg
                 idGenerator = @(x,y) sprintf('%s_%s', regexprep(x,'^(\w*)_.*$','$1'), y);
             end
             
-            % Construct control point tables
-            obj = cpReadFromSkel(obj, commentPattern, idGenerator);
-            obj = cpMatch(obj);
+%             % Construct control point tables
+%             obj = cpReadFromSkel(obj, commentPattern, idGenerator);
+%             obj = cpMatch(obj);
         end
     end
     
