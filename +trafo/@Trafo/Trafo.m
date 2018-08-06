@@ -3,8 +3,13 @@ classdef Trafo
     %   Detailed explanation goes here
     
     properties
-        transformation = struct();
+        trafo = struct();
         attributes = struct();
+    end
+    
+    methods
+        function obj = Trafo()
+        end
     end
     
 end

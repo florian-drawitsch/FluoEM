@@ -1,9 +1,10 @@
-function cpTable = readFromSkel(skel, commentPattern, idGenerator)
+function cpTab = readFromSkel(skel, commentPattern, idGenerator)
 %READFROMSKEL Reads control points from webKnossos skeleton comments
 %   INPUT   skel: Skeleton object 
-%               Skeleton object representing one or multiple neurite
-%               tracings in which control points were annotated according
-%               to a specific pattern using webKnossos comments
+%               Skeleton object representing 
+%               one or multiple neurite tracings in which control points 
+%               were annotated according to a specific pattern using 
+%               webKnossos comments
 %           commentPattern (optional): str
 %               (Regex-)Pattern formally describing the comments used to             
 %               annotate control points. (By default the comments are 
@@ -15,9 +16,10 @@ function cpTable = readFromSkel(skel, commentPattern, idGenerator)
 %               @(x,y) sprintf('%s_%s', regexprep(x,'^(\w*)_.*$','$1'), y)
 %               generates e.g. the id 'tree001_b1' from treeName 
 %               'tree001_em' and comment 'b1')
-%   OUTPUT  commentsTable: table
+%   OUTPUT  cpTab: table
 %               Table with variable names: id, treeName, comment, xyz.
 % Author: florian.drawitsch@brain.mpg.de
+
 
 if ~exist('commentPattern','var') || isempty(commentPattern)
     commentPattern = '^b\d+$';
@@ -39,13 +41,16 @@ for treeIdx = 1:skel.numTrees
     id = cellfun(idGenerator, treeName, comment, 'UniformOutput', false);
     
     % Create temporary table
-    tmp = cpTable(id, treeInds, treeName, nodeIdx, comment, xyz, 'VariableNames', {'id', 'treeIdx', 'treeName', 'nodeIdx', 'comment', 'xyz'});
+    tmp = table(id, treeInds, treeName, nodeIdx, comment, xyz, 'VariableNames', {'id', 'treeIdx', 'treeName', 'nodeIdx', 'comment', 'xyz'});
     
     % Create or append to final table
-    if ~exist('commentsTable','var')
-        cpTable = tmp;
+    if ~exist('cpTab','var')
+        cpTab = tmp;
     else
-        cpTable = [cpTable; tmp];
+        cpTab = [cpTab; tmp];
     end
     
 end
+
+cpTab.Properties.UserData.name = skel.parameters.experiment.name;
+cpTab.Properties.UserData.scale = skel.scale;
