@@ -1,4 +1,4 @@
-function [outputArg1,outputArg2] = readFromCsv(inputArg1,inputArg2)
+function cpTable = readFromCsv(fpath, csvColOrder, expNameMoving, expNameFixed, scaleMoving, scaleFixed)
 %READFROMCSV Summary of this function goes here
 %   Detailed explanation goes here
 outputArg1 = inputArg1;

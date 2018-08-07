@@ -1,4 +1,4 @@
-function [grid, vectorField, spacingConsequent, spacingInitial] = compute(pointsMoving, pointsFixed, scaleMoving, scaleFixed, spacingInitial, iterations)
+function [grid, vectorField, spacingInitial, spacingConsequent] = compute(pointsMoving, pointsFixed, scaleMoving, scaleFixed, spacingInitial, iterations)
 
 if ~exist('spacingInitial','var') || isempty(spacingInitial)
     spacingInitial = 32768;
@@ -10,10 +10,9 @@ end
 
 % Transform into real world coordinates [nm]
 A = diag([scaleMoving, 1]);
-pointsMovingR = trafoAT_transformArray(pointsMoving, A);
-
+pointsMovingR = trafo.Affine.transformArray(pointsMoving, A);
 A = diag([scaleFixed, 1]);
-pointsFixedR = trafoAT_transformArray(pointsFixed, A);
+pointsFixedR = trafo.Affine.transformArray(pointsFixed, A);
 
 % Free-Form Trafo
 outerBboxEM = [min(pointsFixedR,[],1)', max(pointsFixedR,[],1)'];
@@ -32,7 +31,6 @@ function [O_trans,Spacing,Xreg] = trafoFT_compute( pointsMoving, pointsFixed, bb
 globMin = bbox(1:3);
 globMax = bbox(4:6);
 globDim = globMax - globMin;
-
 options.Verbose = 0;
 options.MaxRef = iterations;
 [O_trans,Spacing,Xreg] = point_registration(globDim+globMin, pointsMoving, pointsFixed, initialSpacing, options);

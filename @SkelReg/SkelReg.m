@@ -24,8 +24,9 @@ classdef SkelReg
     properties
         paths = struct();
         skeletons = struct();
-        controlPoints = struct();
-        transformations = struct();
+        cp = trafo.Cp();
+        affine = trafo.Affine();
+        freeform = trafo.Freeform();
     end
     
     methods
