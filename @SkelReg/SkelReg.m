@@ -1,68 +1,64 @@
 classdef SkelReg
-%SkelReg facilitates working with correlated neurite skeleton representations 
-% SkelReg allows for efficient control point-based skeleton registration,
-% as well as evaluation and visualisation of correlated skeleton tuples. 
-%   CONSTRUCTOR:
-%   INPUT:  fpathLM (optional): str
-%               Full path to webKnossos skeleton (.nml) file containing
-%               LM annotations (registration target). 
-%           fpathEM (optional): str
-%               Full path to webKnossos skeleton (.nml) file containing EM
-%               annotations (registration reference). 
-%           commentPattern (optional): str
-%               Regular expression pattern specifying which webKnossos
-%               skeleton comments should be read as control points
-%           idGenerator (optional): function handle or anonymous function
-%               Defines the rule creating table ids from webKnossos tree
-%               names. These table ids are used for the table join
-%               operations matching the control point tables of the
-%               modalities to be registered.
-% Author: Florian Drawitsch <florian.drawitsch@brain.mpg.de>
-%         Department of Connectomics
-%         Max Planck Institute for Brain Research | Frankfurt | Germany    
+    %SKELREG Summary of this class goes here
+    %   Detailed explanation goes here
     
     properties
-        paths = struct();
         skeletons = struct();
+        parameters = struct();
         cp = trafo.Cp();
-        affine = trafo.Affine();
-        freeform = trafo.Freeform();
+        trafoAT = trafo.Affine();
+        trafoFT = trafo.Freeform();
     end
     
     methods
-        function obj = SkelReg(fpathLM, fpathEM, commentPattern, idGenerator)
+        
+        function obj = SkelReg(fnameMoving, fnameFixed, commentPattern, idGenerator)
+            %SKELREG Construct an instance of this class
+            %   Detailed explanation goes here
             
-            % If path is provided construct LM skeleton object         
-            if exist('fpathLM', 'var')
-                obj.paths.fpathLM = fpathLM;
-                obj.skeletons.lm = Skeleton(obj.paths.fpathLM);
+            % If passed, load skeletons.moving
+            if exist('fnameMoving', 'var') && ~isempty(fnameMoving)
+                obj = obj.skelLoad(fnameMoving, 'moving') ;
             end
             
-            % If path is provided construct EM skeleton object
-            if exist('fpathEM', 'var')
-                obj.paths.fpathEM = fpathEM;
-                obj.skeletons.em = Skeleton(obj.paths.fpathEM);
+            % If passed, load skeletons.fixed
+            if exist('fnameFixed', 'var') && ~isempty(fnameFixed)
+                obj = obj.skelLoad(fnameFixed, 'fixed') ;
             end
-
+            
             % Define default commentPattern
             if ~exist('commentPattern','var') || isempty(commentPattern)
-                commentPattern = '^b\d+$';
+                obj.parameters.commentPattern = '^b\d+$';
             end
             
-            % Define default idGenerator for control point Tables
+            % Define default idGenerator for controlPoint Tables
             if ~exist('idGenerator','var') || isempty(idGenerator)
-                idGenerator = @(x,y) sprintf('%s_%s', regexprep(x,'^(\w*)_.*$','$1'), y);
+                obj.parameters.idGenerator = @(x,y) sprintf('%s_%s', regexprep(x,'^(\w*)_.*$','$1'), y);
             end
             
-%             % Construct control point tables
-%             obj = cpReadFromSkel(obj, commentPattern, idGenerator);
-%             obj = cpMatch(obj);
+            % Read control points from skeletons
+            obj = cpReadFromSkel(obj);
         end
+        
     end
     
-    methods (Static)
-        commentsTable = comments2table(skel, columnSuffix, commentPattern, idGenerator)
-        skel = table2comments(skel, commentsTable);
+    methods (Static = true)
+        
+        function assertSkelType(skelType)
+            validTypes = {'moving', 'fixed', 'moving_at', 'moving_at_ft'};
+            msg = ['Skel type: ',skelType,' is invalid. ', ...
+                'Valid skel types are: ', sprintf('''%s'' ', validTypes{:})];
+            assert(any(strcmp(skelType, validTypes)), msg);
+        end
+        
+        function assertTrafoType(trafoType)
+            validTypes = {'at', 'ft'}; 
+            msg = ['Trafo type: ',trafoType,' is invalid. ', ...
+                'Valid trafo types are: ', sprintf('''%s'' ', validTypes{:})];
+            assert(any(strcmp(trafoType, validTypes)), msg);
+        end
+        
     end
+    
 end
 

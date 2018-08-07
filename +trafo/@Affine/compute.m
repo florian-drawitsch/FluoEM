@@ -3,19 +3,25 @@ function obj = compute( obj, pointsMoving, pointsFixed, scaleFixed, scaleMoving 
 %   Detailed explanation goes here
 
 % Compute ratio of nominal scales
-obj.trafo.scaleVector = scaleMoving./scaleFixed;
+scaleRatioNominal = scaleMoving./scaleFixed;
 
-% Define Closure
+% Define Optimizer Closure
 func = @(scaleVector) optWrapper( pointsMoving, pointsFixed, scaleVector );
 
-% Define optimization parameters
-options = optimset('MaxIter',1E3);
-
 % Perform optimization
-obj.trafo.scaleVectorOpt = fminsearch(func, obj.trafo.scaleVector, options);
+options = optimset('MaxIter',1E3);
+scaleRatioOptimized = fminsearch(func, scaleRatioNominal, options);
 
 % Get Trafo for optimal scaleVector
-[ obj.trafo.A, obj.trafo.regParams ] = absorWrapper( pointsMoving, pointsFixed, obj.trafo.scaleVectorOpt );
+[ A, regParams ] = absorWrapper( pointsMoving, pointsFixed, scaleRatioOptimized );
+
+% Assign to object
+obj.trafo.A = A;
+obj.trafo.regParams = regParams;
+obj.trafo.scale.ratio.nominal = scaleRatioNominal;
+obj.trafo.scale.ratio.optimized = scaleRatioOptimized;
+obj.trafo.scale.moving = scaleMoving;
+obj.trafo.scale.fixed = scaleFixed;
 
 end
 

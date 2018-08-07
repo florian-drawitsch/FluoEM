@@ -3,33 +3,45 @@ classdef Freeform < trafo.Trafo
     %   Detailed explanation goes here
     
     methods
-        function obj = Freeform(pointsMoving, pointsFixed, scaleMoving, scaleFixed, spacingInitial, iterations)
-            %AFFINE Construct an instance of this class
-            %   Detailed explanation goes here
-            
-            if ~exist('scaleMoving', 'var') || isempty(scaleMoving)
-                scaleMoving = [1 1 1];
-            end
-            
-            if ~exist('scaleFixed', 'var') || isempty(scaleFixed)
-                scaleFixed = [1 1 1];
-            end
-            
-            if ~exist('spacingInitial','var') || isempty(spacingInitial)
-                spacingInitial = 32768;
-            end
-            
-            if ~exist('iterations','var') || isempty(iterations)
-                iterations = 4;
-            end
-            
-            [obj.trafo.grid, obj.trafo.vectorField, obj.trafo.spacingInitial, obj.trafo.spacingConsequent] = trafo.Freeform.compute(pointsMoving, pointsFixed, scaleMoving, scaleFixed, spacingInitial, iterations);
-            
+        function obj = Freeform()
         end
     end
     
-    methods (Static)
-        [grid, vectorField, spacingInitial, spacingConsequent] = compute(pointsMoving, pointsFixed, scaleMoving, scaleFixed, spacingInitial, iterations)
+    methods (Static = true)
+        
+        function points_ft = transformArray(points_at, grid, spacing, direction)
+            %TRANSFORMARRAY Free-form transformation of array
+            
+            if ~exist('direction', 'var')
+                direction = 'forward';
+            end
+            
+            switch direction
+                case 'forward'
+                    g = 1;
+                case 'inverse'
+                    g = -1;
+            end
+            
+            % Transform array
+            points_ft = bspline_trans_points_double(g*grid, spacing, points_at);
+        end
+        
+        function skel_ft = transformSkel( skel_at, grid, spacing, direction )
+            %TRANSFORMSKEL Free-form transformation of skeleton object
+            
+            if ~exist('direction', 'var')
+                direction = 'forward';
+            end
+            
+            % Transform all trees
+            skel_ft = skel_at;
+            for treeIdx = 1:skel_at.numTrees
+                nodes_ft = round(trafo.Freeform.transformArray(skel_at.nodes{treeIdx}(:,1:3), grid, spacing, direction));
+                skel_ft = skel_ft.replaceNodes(treeIdx, nodes_ft);
+            end           
+        end
+        
     end
 end
 

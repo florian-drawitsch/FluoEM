@@ -38,16 +38,16 @@ function [fh, ax] = skelPlot( obj, varargin )
 p = inputParser;
 
 % Include
-if isfield(obj.skeletons,'lm_at_ft')    
-    defaultInclude = {'em','lm_at_ft'};
-elseif isfield(obj.skeletons,'lm_at')
-    defaultInclude = {'em','lm_at'};
+if isfield(obj.skeletons,'moving_ft')    
+    defaultInclude = {'fixed','moving_ft'};
+elseif isfield(obj.skeletons,'moving_at')
+    defaultInclude = {'fixed','moving_at'};
 else
     warning([...
-        'Neither lm_at nor lm_at_ft skeletons available. ',...
-        'Run trafoComputeAffine and/or trafoComputeFreeForm first to obtain the registered skeletons. ',...
-        'Showing only em now'])
-    defaultInclude = {'em'};
+        'Neither moving_at nor moving_ft skeletons available. ',...
+        'Run trafoCompute and trafoApply first to obtain the registered skeletons. ',...
+        'Showing only fixed now'])
+    defaultInclude = {'fixed'};
 end
 checkInclude = @(x) ~any(~cellfun(@(y) any(strcmp(fieldnames(obj.skeletons),y)), x));
 p.addOptional('include', defaultInclude, checkInclude);
@@ -80,8 +80,8 @@ for i = 1:numel(p.Results.include)
     cm_tmp(cm_tmp > 1) = 1;
     cm.skel.(p.Results.include{i}) = cm_tmp;
     % Control Points
-    if p.Results.cps && isfield(obj.controlPoints,p.Results.include{i})
-        cp_skel_inds = cellfun(@(x) find(strcmp(x, obj.skeletons.(p.Results.include{i}).names)), obj.controlPoints.(p.Results.include{i}).treeName);
+    if p.Results.cps && isfield(obj.cp.points,p.Results.include{i})
+        cp_skel_inds = cellfun(@(x) find(strcmp(x, obj.skeletons.(p.Results.include{i}).names)), obj.cp.points.(p.Results.include{i}).treeName);
         cm.cp.(p.Results.include{i}) = zeros(length(cp_skel_inds),3);
         for j = 1:length(cp_skel_inds)
             cm.cp.(p.Results.include{i})(j,:) = cm_tmp(cp_skel_inds(j),:);
@@ -97,8 +97,8 @@ for i = 1:numel(p.Results.include)
     skel.plot([],cm.skel.(p.Results.include{i}),[],[],[],1);
     hold on;
     % Plot Control points
-    if p.Results.cps && isfield(obj.controlPoints,p.Results.include{i})
-        cps = obj.controlPoints.(p.Results.include{i}).xyz;
+    if p.Results.cps && isfield(obj.cp.points,p.Results.include{i})
+        cps = obj.cp.points.(p.Results.include{i}).xyz;
         scatter3(cps(:,1),cps(:,2),cps(:,3), 15, cm.cp.(p.Results.include{i}));
         hold on;
     end
@@ -106,8 +106,8 @@ end
 
 % Plot Labels
 if p.Results.labels
-    cps = obj.controlPoints.matched.xyz_em;
-    ids = cellfun(@(x) regexprep(x, '^(\w+)(_b\d+)$','$1\\$2'), obj.controlPoints.matched.id, 'Uni', false);
+    cps = obj.cp.points.matched.xyz_fixed;
+    ids = cellfun(@(x) regexprep(x, '^(\w+)(_b\d+)$','$1\\$2'), obj.cp.points.matched.id, 'Uni', false);
     cellfun(@(x,y,z,c) text(x,y,z,c), num2cell(cps(:,1)), num2cell(cps(:,2)), num2cell(cps(:,3)), ids);
 end
 

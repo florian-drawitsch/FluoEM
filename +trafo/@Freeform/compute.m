@@ -1,4 +1,4 @@
-function [grid, vectorField, spacingInitial, spacingConsequent] = compute(pointsMoving, pointsFixed, scaleMoving, scaleFixed, spacingInitial, iterations)
+function obj = compute(obj, pointsMoving, pointsFixed, scaleMoving, scaleFixed, spacingInitial, iterations)
 
 if ~exist('spacingInitial','var') || isempty(spacingInitial)
     spacingInitial = 32768;
@@ -14,25 +14,35 @@ pointsMovingR = trafo.Affine.transformArray(pointsMoving, A);
 A = diag([scaleFixed, 1]);
 pointsFixedR = trafo.Affine.transformArray(pointsFixed, A);
 
-% Free-Form Trafo
-outerBboxEM = [min(pointsFixedR,[],1)', max(pointsFixedR,[],1)'];
-outerBboxEM = [outerBboxEM(:,1) - spacingInitial, outerBboxEM(:,2) + spacingInitial];
-grid = trafoFT_compute( pointsFixedR, pointsMovingR, outerBboxEM(:), spacingInitial, iterations );
-[gridInitial, spacingConsequent] = trafoFT_compute( pointsFixedR, pointsFixedR, outerBboxEM(:), spacingInitial, iterations );
+% Compute bounding box
+bbox = [min(pointsFixedR,[],1)', max(pointsFixedR,[],1)'];
+bbox = [bbox(:,1) - spacingInitial, bbox(:,2) + spacingInitial];
+
+% Compute initial bspline grid
+[gridInitial, spacingConsequent] = bspline_wrapper( pointsFixedR, pointsFixedR, bbox(:), spacingInitial, iterations );
+
+% Compute transformation bspline grid
+grid = bspline_wrapper( pointsFixedR, pointsMovingR, bbox(:), spacingInitial, iterations );
 vectorField = grid - gridInitial;
+
+% Assign to object
+obj.trafo.grid = grid;
+obj.trafo.vectorField = vectorField;
+obj.trafo.spacingInitial = spacingInitial;
+obj.trafo.spacingConsequent = spacingConsequent;
+obj.trafo.scale.moving = scaleMoving;
+obj.trafo.scale.fixed = scaleFixed;
 
 end
 
 
-function [O_trans,Spacing,Xreg] = trafoFT_compute( pointsMoving, pointsFixed, bbox, initialSpacing, iterations )
-%COMPUTEFREEFORMTRAFO Summary of this function goes here
-%   Detailed explanation goes here
+function [grid, spacing] = bspline_wrapper( pointsMoving, pointsFixed, bbox, initialSpacing, iterations )
 
 globMin = bbox(1:3);
 globMax = bbox(4:6);
 globDim = globMax - globMin;
 options.Verbose = 0;
 options.MaxRef = iterations;
-[O_trans,Spacing,Xreg] = point_registration(globDim+globMin, pointsMoving, pointsFixed, initialSpacing, options);
+[grid, spacing] = point_registration(globDim+globMin, pointsMoving, pointsFixed, initialSpacing, options);
 
 end
