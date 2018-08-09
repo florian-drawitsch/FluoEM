@@ -1,24 +1,24 @@
 function [fh, ax] = skelPlot( obj, varargin )
 %PLOT Shows skeleton reconstructions or their overlays as a simple 3D line
 %skelPlot with various annotations
-% The skeletons to be skelPlottet as well as the annotations to be displayed 
-% can be selected via the varargin arguments. 
+% The skeletons to be skelPlottet as well as the annotations to be 
+% displayed can be selected via the varargin arguments. 
 %   INPUT (varargin): Accepted input argument pairs include
 %           include (optional): cell array of str
 %               Skeletons to be skelPlotted. Depending on the available
 %               registrations, valid arguments include 
-%               {'em', 'lm', 'lm_at', 'lm_at_ft'}. Warning: To be skelPlotted
-%               as an overlay, the skeletons need to be in the same
-%               reference frame. Therefore, attempting to call skelPlot with
-%               {'em', 'lm'} included will likely result in a warning and
-%               no meaningful overlay.
-%               (Default: {'em', 'lm_at_ft'} or {'em', 'lm_at'} depending
-%               on whether 'lm_at_ft' is available)
+%               {'fixed', 'moving', 'moving_at_ft', 'moving_ft'}. Warning: To 
+%               be skelPlotted as an overlay, the skeletons need to be in 
+%               the same reference frame. Therefore, attempting to call 
+%               skelPlot with {'fixed', 'moving'} included will likely 
+%               result in a warning and no meaningful overlay.
+%               (Default: {'fixed', 'moving_ft'} or {'fixed', 'moving_at_ft'} 
+%               depending on whether 'moving_ft' is available)
 %           downsample (optional): integer
 %               Downsampling factor to be applied to the nodes of the
-%               skeleton before plotting it. Increases skelPlotting performance 
-%               for very large .nml files containing skeletons with 
-%               thousands of nodes.
+%               skeleton before plotting it. Increases skelPlotting 
+%               performance for very large .nml files containing skeletons  
+%               with thousands of nodes.
 %               (Default: 1, meaning no downsampling)
 %           cps (optional): boolean
 %               Boolean controlling the highlighting control points
@@ -30,26 +30,18 @@ function [fh, ax] = skelPlot( obj, varargin )
 %               Figure handle for the generated skelPlot
 %           ax: axis handle
 %               Axis handle for the generated skelPlot
+%
 %   USAGE EXAMPLE: 
-%   >> skelReg.skelPlot('include',{'em','lm_at'},'downsample',2,'labels',false)
+%   >> skelReg.skelPlot('include',{'fixed','moving_at_ft'},'downsample',2,'labels',false)
+%
 % Author: Florian Drawitsch <florian.drawitsch@brain.mpg.de>
 
 % Parse Inputs
 p = inputParser;
 
 % Include
-if isfield(obj.skeletons,'moving_ft')    
-    defaultInclude = {'fixed','moving_ft'};
-elseif isfield(obj.skeletons,'moving_at')
-    defaultInclude = {'fixed','moving_at'};
-else
-    warning([...
-        'Neither moving_at nor moving_ft skeletons available. ',...
-        'Run trafoCompute and trafoApply first to obtain the registered skeletons. ',...
-        'Showing only fixed now'])
-    defaultInclude = {'fixed'};
-end
-checkInclude = @(x) ~any(~cellfun(@(y) any(strcmp(fieldnames(obj.skeletons),y)), x));
+defaultInclude = {'fixed','moving_at_ft'};
+checkInclude = @(x) SkelReg.assertSkelType(x);
 p.addOptional('include', defaultInclude, checkInclude);
 
 % Downsample
@@ -81,7 +73,8 @@ for i = 1:numel(p.Results.include)
     cm.skel.(p.Results.include{i}) = cm_tmp;
     % Control Points
     if p.Results.cps && isfield(obj.cp.points,p.Results.include{i})
-        cp_skel_inds = cellfun(@(x) find(strcmp(x, obj.skeletons.(p.Results.include{i}).names)), obj.cp.points.(p.Results.include{i}).treeName);
+        cp_skel_inds = cellfun(@(x) find(strcmp(x, obj.skeletons.(p.Results.include{i}).names)), ...
+            obj.cp.points.(p.Results.include{i}).treeName);
         cm.cp.(p.Results.include{i}) = zeros(length(cp_skel_inds),3);
         for j = 1:length(cp_skel_inds)
             cm.cp.(p.Results.include{i})(j,:) = cm_tmp(cp_skel_inds(j),:);

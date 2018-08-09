@@ -1,6 +1,14 @@
-function obj = compute( obj, pointsMoving, pointsFixed, scaleFixed, scaleMoving )
+function obj = compute( obj, pointsMoving, pointsFixed, scaleMoving, scaleFixed, datasetMoving, datasetFixed  )
 %COMPUTE Summary of this function goes here
 %   Detailed explanation goes here
+
+if ~exist('datasetMoving', 'var') || isempty(datasetMoving)
+    datasetMoving = '';
+end
+
+if ~exist('datasetFixed', 'var') || isempty(datasetFixed)
+    datasetFixed = '';
+end
 
 % Compute ratio of nominal scales
 scaleRatioNominal = scaleMoving./scaleFixed;
@@ -18,10 +26,12 @@ scaleRatioOptimized = fminsearch(func, scaleRatioNominal, options);
 % Assign to object
 obj.trafo.A = A;
 obj.trafo.regParams = regParams;
-obj.trafo.scale.ratio.nominal = scaleRatioNominal;
-obj.trafo.scale.ratio.optimized = scaleRatioOptimized;
-obj.trafo.scale.moving = scaleMoving;
-obj.trafo.scale.fixed = scaleFixed;
+obj.attributes.scale.ratio.nominal = scaleRatioNominal;
+obj.attributes.scale.ratio.optimized = scaleRatioOptimized;
+obj.attributes.scale.moving = scaleMoving;
+obj.attributes.scale.fixed = scaleFixed;
+obj.attributes.dataset.moving = datasetMoving;
+obj.attributes.dataset.fixed = datasetFixed;
 
 end
 

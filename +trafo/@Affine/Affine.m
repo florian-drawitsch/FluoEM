@@ -30,7 +30,7 @@ classdef Affine < trafo.Trafo
             points_at = points_at(1:3, :)';
         end
         
-        function skel_at = transformSkel( skel, A, scaleNew, direction )
+        function skel_at = transformSkel( skel, A, scaleNew, datasetNew, direction )
             %TRANSFORMSKEL Affine transformation of skeleton object
             
             if ~exist('scaleNew','var') || isempty(scaleNew)
@@ -40,6 +40,10 @@ classdef Affine < trafo.Trafo
                     case 'inverse'
                         scaleNew = skel.scale./diag(inv(A(1:3,1:3)))';
                 end
+            end
+            
+            if ~exist('datasetNew', 'var') || isempty(datasetNew)
+                datasetNew = '';
             end
             
             if ~exist('direction','var')
@@ -55,6 +59,9 @@ classdef Affine < trafo.Trafo
             
             % Adapt Scale           
             skel_at = skel_at.adaptScale(scaleNew);
+            
+            % Adapt datasetName
+            skel_at.parameters.experiment.name = datasetNew;
         end
     end
 end

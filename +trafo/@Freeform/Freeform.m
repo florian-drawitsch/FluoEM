@@ -9,36 +9,28 @@ classdef Freeform < trafo.Trafo
     
     methods (Static = true)
         
-        function points_ft = transformArray(points_at, grid, spacing, direction)
+        function points_at_ft = transformArray(points_at, scale, grid, spacing)
             %TRANSFORMARRAY Free-form transformation of array
+                       
+            % Affine transform from voxel space to nm space
+            A = diag([scale, 1]);
+            points_at_nm = trafo.Affine.transformArray(points_at, A, 'forward');
             
-            if ~exist('direction', 'var')
-                direction = 'forward';
-            end
+            % Free-form transform array
+            points_at_ft_nm = bspline_trans_points_double(grid, spacing, points_at_nm);
             
-            switch direction
-                case 'forward'
-                    g = 1;
-                case 'inverse'
-                    g = -1;
-            end
-            
-            % Transform array
-            points_ft = bspline_trans_points_double(g*grid, spacing, points_at);
+            % Affine transform back from nm space to voxel space
+            points_at_ft = trafo.Affine.transformArray(points_at_ft_nm, A, 'inverse');
         end
         
-        function skel_ft = transformSkel( skel_at, grid, spacing, direction )
+        function skel_at_ft = transformSkel( skel_at, scale, grid, spacing )
             %TRANSFORMSKEL Free-form transformation of skeleton object
             
-            if ~exist('direction', 'var')
-                direction = 'forward';
-            end
-            
             % Transform all trees
-            skel_ft = skel_at;
+            skel_at_ft = skel_at;
             for treeIdx = 1:skel_at.numTrees
-                nodes_ft = round(trafo.Freeform.transformArray(skel_at.nodes{treeIdx}(:,1:3), grid, spacing, direction));
-                skel_ft = skel_ft.replaceNodes(treeIdx, nodes_ft);
+                nodes_ft = round(trafo.Freeform.transformArray(skel_at.nodes{treeIdx}(:,1:3), scale, grid, spacing));
+                skel_at_ft = skel_at_ft.replaceNodes(treeIdx, nodes_ft);
             end           
         end
         

@@ -8,13 +8,14 @@ end
 
 switch direction
     case 'forward'
-        scaleNew = obj.trafo.scale.fixed;
+        scaleNew = obj.attributes.scale.fixed;
+        datasetNew = obj.attributes.dataset.fixed;
     case 'inverse'
-        scaleNew = obj.trafo.scale.moving;
+        scaleNew = obj.attributes.scale.moving;
+        datasetNew = obj.attributes.dataset.moving;
 end
 
-skel_at = trafo.Affine.transformSkel( skel, obj.trafo.A, scaleNew, direction );
-
+skel_at = trafo.Affine.transformSkel( skel, obj.trafo.A, scaleNew, datasetNew, direction );
 
 end
 

@@ -1,4 +1,4 @@
-function obj = compute(obj, pointsMoving, pointsFixed, scaleMoving, scaleFixed, spacingInitial, iterations)
+function obj = compute(obj, pointsMoving, pointsFixed, scaleMoving, scaleFixed, datasetMoving, datasetFixed, spacingInitial, iterations)
 
 if ~exist('spacingInitial','var') || isempty(spacingInitial)
     spacingInitial = 32768;
@@ -22,16 +22,18 @@ bbox = [bbox(:,1) - spacingInitial, bbox(:,2) + spacingInitial];
 [gridInitial, spacingConsequent] = bspline_wrapper( pointsFixedR, pointsFixedR, bbox(:), spacingInitial, iterations );
 
 % Compute transformation bspline grid
-grid = bspline_wrapper( pointsFixedR, pointsMovingR, bbox(:), spacingInitial, iterations );
-vectorField = grid - gridInitial;
+grid = bspline_wrapper( pointsMovingR, pointsFixedR, bbox(:), spacingInitial, iterations );
+gridDiff = grid - gridInitial;
 
 % Assign to object
 obj.trafo.grid = grid;
-obj.trafo.vectorField = vectorField;
+obj.trafo.gridDiff = gridDiff;
 obj.trafo.spacingInitial = spacingInitial;
 obj.trafo.spacingConsequent = spacingConsequent;
-obj.trafo.scale.moving = scaleMoving;
-obj.trafo.scale.fixed = scaleFixed;
+obj.attributes.scale.moving = scaleMoving;
+obj.attributes.scale.fixed = scaleFixed;
+obj.attributes.dataset.moving = datasetMoving;
+obj.attributes.dataset.fixed = datasetFixed;
 
 end
 

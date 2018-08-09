@@ -1,7 +1,8 @@
-function [outputArg1,outputArg2] = applyToArray(inputArg1,inputArg2)
+function points_ft = applyToArray(obj, points_at)
 %APPLYTOARRAY Summary of this function goes here
 %   Detailed explanation goes here
-outputArg1 = inputArg1;
-outputArg2 = inputArg2;
+
+points_ft = trafo.Freeform.transformArray(points_at, obj.trafo.grid, obj.trafo.spacingConsequent, direction);
+
 end
 

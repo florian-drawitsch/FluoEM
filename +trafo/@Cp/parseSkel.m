@@ -52,5 +52,5 @@ for treeIdx = 1:skel.numTrees
     
 end
 
-cpTable.Properties.UserData.name = skel.parameters.experiment.name;
+cpTable.Properties.UserData.dataset = skel.parameters.experiment.name;
 cpTable.Properties.UserData.scale = skel.scale;

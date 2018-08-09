@@ -37,25 +37,19 @@ classdef SkelReg
             end
             
             % Read control points from skeletons
-            obj = cpReadFromSkel(obj);
+            obj = cpRead(obj);
         end
         
     end
     
     methods (Static = true)
         
-        function assertSkelType(skelType)
+        function pass = assertSkelType(skelType)
             validTypes = {'moving', 'fixed', 'moving_at', 'moving_at_ft'};
             msg = ['Skel type: ',skelType,' is invalid. ', ...
                 'Valid skel types are: ', sprintf('''%s'' ', validTypes{:})];
-            assert(any(strcmp(skelType, validTypes)), msg);
-        end
-        
-        function assertTrafoType(trafoType)
-            validTypes = {'at', 'ft'}; 
-            msg = ['Trafo type: ',trafoType,' is invalid. ', ...
-                'Valid trafo types are: ', sprintf('''%s'' ', validTypes{:})];
-            assert(any(strcmp(trafoType, validTypes)), msg);
+            assert(all(ismember(skelType, validTypes)), msg);
+            pass = true;
         end
         
     end
