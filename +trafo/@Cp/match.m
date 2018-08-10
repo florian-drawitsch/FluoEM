@@ -5,9 +5,11 @@ function obj = match(obj)
 
 tabs_available = fieldnames(obj.points);
 
+tabs_available(strcmp(tabs_available, 'matched')) = [];
+
 for i = 1:numel(tabs_available)-1
     
-    if i == 1
+    if i == 1 
         table_left = obj.points.(tabs_available{i});
         table_right = obj.points.(tabs_available{i+1});
         % Perform inner join of first two available control points tables
