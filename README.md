@@ -1,88 +1,62 @@
-# Project Title
+# About FluoEM
 
-One Paragraph of project description goes here
+FluoEM is a set of experimental and computational methods allowing to directly match fluorescently labelled axons to their 3D EM counterparts without label conversion.
+
+The FluoEM code package is written in Matlab and does not require any additional toolboxes, other than the core matlab libraries.
+
+It allows to:
+
+* Efficiently handle and register correlated 3D graph representations of neurites
+* Identify potential neurite correspondences based on structural divergence 
+
+It was developed at the Max Planck Institute of Neurobiology (2013 - 2014) and the Max Planck Institute for Brain Research (2014 - 2018)
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+If you have git installed, you can clone the FluoEM repository by entering
+```
+$ git clone https://gitlab.mpcdf.mpg.de/connectomics/FluoEM.git
+```
+into your terminal.
+
+Alternatively, you can download the code as a compressed file via the gitlab frontend (click the small cloud icon).
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
-
-```
-Give examples
-```
+The FluoEM code package is written in Matlab, so you will need Matlab license to run it. You do not need any additional Matlab toolboxes on top of that, the matlab core libraries are sufficient.
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
+After cloning or downloading the code, navigate into the FluoEM main directory inside Matlab and execute 
 ```
-Give the example
+>> setup()
 ```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+inside the Matlab command window to set the required paths. After this, you are ready to go.
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+The FluoEM package was developed by
+* **Florian Drawitsch** 
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+under scientific supervision by
+* **Moritz Helmstaedter**
+
+Some of FluoEM's functionality is built around webKnossos (.nml) neurite skeleton files and makes use of an efficient .nml parser developed by 
+* **Alessandro Motta**
+
+The Matlab class used to represent single neurite skeletons was developed by
+* **Benedikt Staffler**
+* **Alessandro Motta**
+* **Florian Drawitsch**
+* **Ali Karimi**
+* **Kevin Boergens**
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
-
+## Acknowledgements
+We thank
+* **Matt Jacobson** for providing the “Absolute Orientation – Horn’s method” Matlab central package we used in our affine registration workflow
+and
+* **Dirk-Jan Kroon** for providing the “B-spline Grid, image and point registration” Matlab central package we used for our free-form registration workflow

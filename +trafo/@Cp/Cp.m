@@ -16,6 +16,7 @@ classdef Cp
         sourceType = getSourceType(source)
         cpTable = parseSkel(skel, commentPattern, idGenerator)
         cpTable = parseCsv(fpath, csvColOrder, expName, scale)
+        skel = writeToSkel(skel, cpTable)
     end
     
    
