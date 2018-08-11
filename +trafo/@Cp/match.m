@@ -4,7 +4,6 @@ function obj = match(obj)
 % Author: Florian Drawitsch <florian.drawitsch@brain.mpg.de>
 
 tabs_available = fieldnames(obj.points);
-
 tabs_available(strcmp(tabs_available, 'matched')) = [];
 
 for i = 1:numel(tabs_available)-1
@@ -30,6 +29,8 @@ for i = 1:numel(tabs_available)-1
         obj.points.matched = innerjoin(table_left, table_right, 'Key', 'id');
     end
 end
+
+obj.points.matched = sortrows(obj.points.matched);
 
 end
 

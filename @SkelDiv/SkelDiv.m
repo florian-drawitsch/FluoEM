@@ -16,11 +16,11 @@ classdef SkelDiv
             
             % Assert and assign required inputs
             % nmlPathRef
-            SkelDiv.assertNmlFname(nmlPathRef);
+            SkelDiv.assertNmlPath(nmlPathRef);
             obj.skelRef = Skeleton(nmlPathRef);
             
             % nmlPathTar
-            SkelDiv.assertNmlFname(nmlPathTar);
+            SkelDiv.assertNmlPath(nmlPathTar);
             if strcmp(nmlPathRef, nmlPathTar)
                 obj.options.refTarIdent = true;
                 obj.skelTar = obj.skelRef;
@@ -80,18 +80,21 @@ classdef SkelDiv
         end
     end
     
-    methods (Static = true, Access = private)
-        function assertNmlFname(nmlPath)
+    methods (Static = true)
+        
+        function pass = assertNmlPath(nmlPath)
             [~, ~, nmlExt] = fileparts(nmlPath);
-            cond = @(x,y) isfile(nmlPath) && strcmp(y,'.nml');
+            cond = @(x,y) isfile(x) && strcmp(y,'.nml');
             msg = [nmlPath, ' is not a valid file path to a .nml file.'];
             assert(cond(nmlPath, nmlExt), msg);
+            pass = true;
         end
         
-        function assertBbox(bbox)
+        function pass = assertBbox(bbox)
             cond = @(x) isequal(size(x), [1 6]);
             msg = 'Invalid bbox dimensions. Bbox must be of size [1 x 6]';
             assert(cond(bbox), msg);
+            pass = true;
         end
         
         du = dUnique( dropToZeroDists, percentile );

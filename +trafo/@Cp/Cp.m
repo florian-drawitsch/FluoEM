@@ -5,6 +5,7 @@ classdef Cp
     
     properties
         points = struct();
+        pointsDeleted = struct();
     end
     
     methods
@@ -19,6 +20,5 @@ classdef Cp
         skel = writeToSkel(skel, cpTable)
     end
     
-   
 end
 

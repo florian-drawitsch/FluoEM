@@ -1,11 +1,12 @@
-function skel = writeToSkel(skel, cpTable)
+function skel = writeToSkel(skel, points)
 %TABLE2COMMENTS Writes the comments contained in a table (e.g. output from
 % comments2table) to skeleton node comments
 %   INPUT:  skel: skeleton object 
 %               Skeleton object representing one or multiple traced 
 %               neurites.    
-%           cpTable: table
-%               Table with variable names: id, treeName, comment, xyz.
+%           points: table
+%               Control point table with at least the following variable 
+%               names: id, treeName, comment, xyz.
 %   OUTPUT: skel: skeleton object
 %               Skeleton object representing one or multiple traced 
 %               neurites and containing the written comments.
@@ -17,7 +18,7 @@ for treeIdx = 1:skel.numTrees
     skel = skel.clearComments(treeIdx);
     
     % Write comments from table to skeleton
-    skel = skel.setComments(treeIdx, cpTable.nodeIdx(cpTable.treeIdx == treeIdx), cpTable.comment(cpTable.treeIdx == treeIdx));
+    skel = skel.setComments(treeIdx, points.nodeIdx(points.treeIdx == treeIdx), points.comment(points.treeIdx == treeIdx));
 
 end
 
