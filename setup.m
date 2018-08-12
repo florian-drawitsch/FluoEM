@@ -1,8 +1,16 @@
-function mainPath = setup()
-%SETUP Sets the required matlab paths for the FluoEM code
-%   OUTPUT: mainPath: str
-%               The FluoEM main path
+function paths = setup()
+%SETUP Sets and returns relevant FluoEM paths
+% Run this method first before starting to work with the FluoEM code
+%   OUTPUT: paths: struct
+%               Contains relevant project paths
 % Author: Florian Drawitsch <florian.drawitsch@brain.mpg.de>
 
-mainPath = fileparts(mfilename('fullpath'));
-addpath(genpath(mainPath));
+% Retrieve path of invoking function
+paths.main = fileparts(mfilename('fullpath'));
+
+% Construct additional relevant paths
+paths.data = fullfile(paths.main, 'data');
+paths.examples = fullfile(paths.main, 'examples');
+
+% Add FluoEM's directory structure to matlab path
+addpath(genpath(paths.main));

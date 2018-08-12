@@ -4,16 +4,16 @@ function [fh, ax] = skelPlot( obj, varargin )
 % The skeletons to be plotted as well as the annotations to be displayed
 % can be selected via the varargin arguments. 
 %   INPUT (varargin: name, value pairs)
-%           include (optional): cell array of str
-%               Skeletons to be skelPlotted. Depending on the available
-%               registrations, valid arguments include 
+%           includeModality (optional): cell array of str
+%               Skeleton modalities to be plotted. Depending on the available
+%               modalities, valid arguments include 
 %               {'fixed', 'moving', 'moving_at_ft', 'moving_ft'}. Warning: To 
-%               be skelPlotted as an overlay, the skeletons need to be in 
+%               be plotted as an overlay, the skeletons need to be in 
 %               the same reference frame. Therefore, attempting to call 
 %               skelPlot with {'fixed', 'moving'} included will likely 
 %               result in a warning and no meaningful overlay.
-%               (Default: {'fixed', 'moving_ft'} or {'fixed', 'moving_at_ft'} 
-%               depending on whether 'moving_ft' is available)
+%               (Default: {'fixed', 'moving_at'} or {'fixed', 'moving_at_ft'} 
+%               depending on whether 'moving_at_ft' is available)
 %           downsample (optional): integer
 %               Downsampling factor to be applied to the nodes of the
 %               skeleton before plotting it. Increases skelPlotting 
@@ -32,7 +32,7 @@ function [fh, ax] = skelPlot( obj, varargin )
 %               Axis handle for the generated skelPlot
 %
 %   USAGE EXAMPLE: 
-%   >> skelReg.skelPlot('include',{'fixed','moving_at_ft'},'downsample',2,'labels',false)
+%   >> skelReg.skelPlot('includeModality',{'fixed','moving_at_ft'},'downsample',2,'labels',false)
 %
 % Author: Florian Drawitsch <florian.drawitsch@brain.mpg.de>
 
@@ -40,9 +40,9 @@ function [fh, ax] = skelPlot( obj, varargin )
 p = inputParser;
 
 % Include
-defaultInclude = {'fixed','moving_at_ft'};
-checkInclude = @(x) SkelReg.assertSkelType(x);
-p.addOptional('include', defaultInclude, checkInclude);
+defaultIncludeModality = {'fixed','moving_at_ft'};
+checkIncludeModality = @(x) SkelReg.assertModalityType(x);
+p.addOptional('includeModality', defaultIncludeModality, checkIncludeModality);
 
 % Downsample
 defaultDownsample = 1;
@@ -66,33 +66,33 @@ p.parse(varargin{:})
 maxTrees = max(structfun(@(x) numTrees(x), obj.skeletons));
 cm_factor = 0.5;
 cm_base = lines(maxTrees) * cm_factor;
-for i = 1:numel(p.Results.include)
+for i = 1:numel(p.Results.includeModality)
     % Skeletons
     cm_tmp = cm_base .* (cm_factor + i*cm_factor);
     cm_tmp(cm_tmp > 1) = 1;
-    cm.skel.(p.Results.include{i}) = cm_tmp;
+    cm.skel.(p.Results.includeModality{i}) = cm_tmp;
     % Control Points
-    if p.Results.cps && isfield(obj.cp.points,p.Results.include{i})
-        cp_skel_inds = cellfun(@(x) find(strcmp(x, obj.skeletons.(p.Results.include{i}).names)), ...
-            obj.cp.points.(p.Results.include{i}).treeName);
-        cm.cp.(p.Results.include{i}) = zeros(length(cp_skel_inds),3);
+    if p.Results.cps && isfield(obj.cp.points,p.Results.includeModality{i})
+        cp_skel_inds = cellfun(@(x) find(strcmp(x, obj.skeletons.(p.Results.includeModality{i}).names)), ...
+            obj.cp.points.(p.Results.includeModality{i}).treeName);
+        cm.cp.(p.Results.includeModality{i}) = zeros(length(cp_skel_inds),3);
         for j = 1:length(cp_skel_inds)
-            cm.cp.(p.Results.include{i})(j,:) = cm_tmp(cp_skel_inds(j),:);
+            cm.cp.(p.Results.includeModality{i})(j,:) = cm_tmp(cp_skel_inds(j),:);
         end
     end
 end
 
 % Generate figure
-for i = 1:numel(p.Results.include)
-    skel = obj.skeletons.(p.Results.include{i});
+for i = 1:numel(p.Results.includeModality)
+    skel = obj.skeletons.(p.Results.includeModality{i});
     skel = skel.downsample([],p.Results.downsample);
     % Plot Skeleton
-    skel.plot([],cm.skel.(p.Results.include{i}),[],[],[],1);
+    skel.plot([],cm.skel.(p.Results.includeModality{i}),[],[],[],1);
     hold on;
     % Plot Control points
-    if p.Results.cps && isfield(obj.cp.points,p.Results.include{i})
-        cps = obj.cp.points.(p.Results.include{i}).xyz;
-        scatter3(cps(:,1),cps(:,2),cps(:,3), 15, cm.cp.(p.Results.include{i}));
+    if p.Results.cps && isfield(obj.cp.points,p.Results.includeModality{i})
+        cps = obj.cp.points.(p.Results.includeModality{i}).xyz;
+        scatter3(cps(:,1),cps(:,2),cps(:,3), 15, cm.cp.(p.Results.includeModality{i}));
         hold on;
     end
 end
@@ -105,9 +105,9 @@ if p.Results.labels
 end
 
 % Check scales
-scales = zeros(numel(p.Results.include),3);
-for i = 1:numel(p.Results.include)
-    scales(i,:) = obj.skeletons.(p.Results.include{i}).scale;
+scales = zeros(numel(p.Results.includeModality),3);
+for i = 1:numel(p.Results.includeModality)
+    scales(i,:) = obj.skeletons.(p.Results.includeModality{i}).scale;
 end
 if isequal(diff(scales),[0 0 0])
     daspect(scales(1,:));

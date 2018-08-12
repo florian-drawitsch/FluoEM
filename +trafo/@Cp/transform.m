@@ -6,7 +6,7 @@ function obj = transform(obj, modalityType, trafo, trafoAlias)
 %               which should be transformed
 %           trafo: transformation (affine or freeform) object
 %               Transformation object containing a transformation
-%           alias (optional): str
+%           trafoAlias (optional): str
 %               Defines an alias for the transformation used as a suffix
 %               which is appended to the chosen modalityType and used as a
 %               fieldname for the resulting transformed table

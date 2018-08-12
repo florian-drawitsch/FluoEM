@@ -30,7 +30,9 @@ for i = 1:numel(tabs_available)-1
     end
 end
 
-obj.points.matched = sortrows(obj.points.matched);
+if isfield(obj.points, 'matched')
+    obj.points.matched = sortrows(obj.points.matched);
+end
 
 end
 

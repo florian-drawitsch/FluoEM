@@ -4,7 +4,7 @@ function skel_at_ft = applyToSkel(obj, skel_at, direction )
 %   INPUT:  skel_at: skeleton object
 %               Skeleton object to be transformed
 %           direction (optional): str
-%               Direction of affine transformation.
+%               Direction of freeform transformation.
 %               'forward' applies the freeform transformation in the forward
 %               direction, 'inverse' applies it in the inverse direction
 %               (Default: 'forward')
