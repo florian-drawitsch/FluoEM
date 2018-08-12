@@ -1,6 +1,16 @@
 function skel_at_ft = applyToSkel(obj, skel_at, direction )
-%APPLYTOSKEL Summary of this function goes here
-%   Detailed explanation goes here
+%APPLYTOSKEL Applies the freeform transformation stored in the objects 
+%trafo property to a skeleton object
+%   INPUT:  skel_at: skeleton object
+%               Skeleton object to be transformed
+%           direction (optional): str
+%               Direction of affine transformation.
+%               'forward' applies the freeform transformation in the forward
+%               direction, 'inverse' applies it in the inverse direction
+%               (Default: 'forward')
+%   OUTPUT: skel_at_ft: skeleton object
+%               Freeform transformed skeleton object
+% Author: Florian Drawitsch <florian.drawitsch@brain.mpg.de>
 
 if ~exist('direction','var') || isempty(direction)
     direction = 'forward';

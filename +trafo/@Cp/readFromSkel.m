@@ -1,6 +1,6 @@
 function obj = readFromSkel(obj, skel, modalityType, commentPattern, idGenerator)
 %READFROMSKEL reads control points from skeleton comments
-%   INPUT   skel: Skeleton object
+%   INPUT   skel: skeleton object
 %               Skeleton object representing
 %               one or multiple neurite tracings in which control points
 %               were annotated according to a specific pattern using

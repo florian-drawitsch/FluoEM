@@ -3,7 +3,7 @@ function [fh, ax] = skelPlot( obj, varargin )
 %line plot with various annotations
 % The skeletons to be plotted as well as the annotations to be displayed
 % can be selected via the varargin arguments. 
-%   INPUT (name, value pairs)
+%   INPUT (varargin: name, value pairs)
 %           include (optional): cell array of str
 %               Skeletons to be skelPlotted. Depending on the available
 %               registrations, valid arguments include 
@@ -55,7 +55,7 @@ checkCPs = @(x) islogical(x);
 p.addOptional('cps', defaultCPs, checkCPs);
 
 % Labels
-defaultLabels = 1;
+defaultLabels = 0;
 checkLabels = @(x) islogical(x);
 p.addOptional('labels', defaultLabels, checkLabels);
 

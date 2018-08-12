@@ -1,6 +1,16 @@
 function skel_at = applyToSkel(obj, skel, direction)
-%APPLYTOSKEL Summary of this function goes here
-%   Detailed explanation goes here
+%APPLYTOSKEL Applies the affine transformation stored in the objects trafo
+%property to a skeleton object
+%   INPUT:  skel: skeleton object
+%               Skeleton object to be transformed
+%           direction (optional): str
+%               Direction of affine transformation.
+%               'forward' applies the affine transformation in the forward
+%               direction, 'inverse' applies it in the inverse direction
+%               (Default: 'forward')
+%   OUTPUT: skel_at: skeleton object
+%               Affine transformed skeleton object
+% Author: Florian Drawitsch <florian.drawitsch@brain.mpg.de>
 
 if ~exist('direction','var')
     direction = 'forward';

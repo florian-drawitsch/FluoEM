@@ -1,6 +1,25 @@
 function obj = compute( obj, pointsMoving, pointsFixed, scaleMoving, scaleFixed, datasetMoving, datasetFixed  )
-%COMPUTE Summary of this function goes here
-%   Detailed explanation goes here
+%COMPUTE Computes a 3D affine transformation
+% The affine transformation is constrained using corresponding control
+% point pairs. After establishing a coarse initial transformation based on
+% the provided nominal voxel scales, the transformation scale is
+% iteratively optimized by minimizing the sum of the squared control point
+% pair 2-norms until an optimum is reached.
+%   INPUT:  pointsMoving: [N x 3] double
+%               Control points annotated in the moving modality
+%           pointsFixed: [N x 3] double
+%               Control points annotated in the fixed modality
+%           scaleMoving: [1 x 3] double
+%               Nominal voxel size of the moving modality
+%           scaleFixed: [1 x 3] double
+%               Nominal voxel size of the fixed modality
+%           datasetMoving (optional): str
+%               Dataset name of the moving modality
+%               (Default: '')
+%           datasetFixed (optional): str
+%               Dataset name of the fixed modality
+%               (Default: '')
+% Author: Florian Drawitsch <florian.drawitsch@brain.mpg.de>
 
 if ~exist('datasetMoving', 'var') || isempty(datasetMoving)
     datasetMoving = '';
@@ -37,8 +56,6 @@ end
 
 
 function lsqs = optWrapper( pointsMoving, pointsFixed, scaleVector )
-%OPTWRAPPER Summary of this function goes here
-%   Detailed explanation goes here
 
 A = absorWrapper( pointsMoving, pointsFixed, scaleVector );
 [ pointsMovingT ] = trafo.Affine.transformArray( pointsMoving, A);
@@ -49,8 +66,6 @@ end
 
 
 function [A, regParams ] = absorWrapper( pointsMoving, pointsFixed, scaleVector )
-%TRAFO3_ABSORWRAPPER Summary of this function goes here
-%   Detailed explanation goes here
 
 if exist('scaleVector', 'var')
     A_scale = diag([scaleVector, 1]);

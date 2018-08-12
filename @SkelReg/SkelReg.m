@@ -7,8 +7,8 @@ classdef SkelReg
     properties
         skeletons = struct();
         cp = trafo.Cp();
-        trafoAT = trafo.Affine();
-        trafoFT = trafo.Freeform();
+        affine = trafo.Affine();
+        freeform = trafo.Freeform();
         parameters = struct();
     end
     
@@ -95,6 +95,8 @@ classdef SkelReg
             assert(cond(trafoType), msg);
             pass = true;
         end
+        
+        obj = load(loadPath);
         
     end
     

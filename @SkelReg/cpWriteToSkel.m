@@ -25,10 +25,8 @@ else
 end
 
 for i = 1:numel(modalityType)
-    obj.skeletons.(modalityType{i}) = obj.cp.writeToSkel(skel, points)
+    obj.skeletons.(modalityType{i}) = obj.cp.writeToSkel(modalityType{i}, obj.skeletons.(modalityType{i}));
 end
-
-
 
 end
 
