@@ -5,7 +5,7 @@ function nodesRefNeighbors = ellipsoidNhood( skelRef, skelRefTreeIdx, skelTar, s
 %   INPUT:  skelRef: skeleton object
 %               Skeleton object containing the reference tree for which the 
 %               neighbors should be computed
-%           skelRefReeIdx: integer
+%           skelRefTreeIdx: integer
 %               Tree index of the reference for which the neighbors should
 %               be computed
 %           skelTar: skeleton object

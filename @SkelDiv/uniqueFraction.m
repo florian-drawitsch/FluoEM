@@ -1,6 +1,7 @@
 function [uniqueFraction, uniqueFractionBins] = uniqueFraction( neighborCountsAll, distToOriginAll, binSize )
-%COMPUTEUNIQUEFRACTION Summary of this function goes here
-%   Detailed explanation goes here
+%UNIQUEFRACTION Computes the unique fraction for the specified neighbor
+%counts and distances produced by the axonPersistence method
+% Author: Florian Drawitsch <florian.drawitsch@brain.mpg.de>
 
 % Get Drop List
 dropList = nan(numel(neighborCountsAll),1);

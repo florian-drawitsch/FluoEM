@@ -1,6 +1,12 @@
 classdef SkelDiv
-    %SKELDIV Summary of this class goes here
-    %   Detailed explanation goes here
+    %SkelDiv facilitates measuring skeleton divergence 
+    % The skelDiv object holds a reference skeleton object and a target 
+    % skeleton object with both arbitrary numbers of trees as well as a
+    % origin bounding box defining the commong origin of these trees.
+    % It can be used both to perform all-to-all divergence measurements
+    % (see FluoEM Fig. 2) as well as one-to-all divergence measurements
+    % used for correspondence matching (see Fluo Fig. 4)
+    % Author: Florian Drawitsch <florian.drawitsch@brain.mpg.de>
     
     properties
         skelRef = Skeleton();
@@ -11,8 +17,48 @@ classdef SkelDiv
     
     methods
         function obj = SkelDiv(nmlPathRef, nmlPathTar, bboxOrigin, varargin)
-            %SKELDIV Construct an instance of this class
-            %   Detailed explanation goes here
+            %SKELDIV Constructs a skelDiv object
+            %   INPUT:  nmlPathRef: str
+            %               Path to reference .nml file containing the
+            %               reference skeleton object
+            %           nmlPathTar: str
+            %               Path to target .nml file containing the target
+            %               skeleton object
+            %           bboxOrigin: [1 x 6] double
+            %               Common bounding box from which the skeleton
+            %               trees originate
+            %   INPUT (varargin: name, value pairs)
+            %           bboxRestrictActive (optional): boolean
+            %               If active, all skeleton nodes outside the
+            %               specified diameter (see bboxRestrictExtent)
+            %               relative to the bboxOrigin center point are
+            %               pruned away before starting the divergence
+            %               measurement
+            %               (Default: false)
+            %           bboxRestrictExtent (optional): double
+            %               Restriction diameter around the bboxOrigin
+            %               center point in nm
+            %               (Default: 1E5)
+            %           ellipsoidRadii (optional): [1 x 3] double
+            %               Cardinal axes radii defining the neighbor
+            %               criterion ellipsoid in nm
+            %               (Default: [5000 5000 5000]
+            %           binSize (optional): double
+            %               Bin size defining the magnitude of euclidean 
+            %               distance intervals into which nodes are lumped
+            %               in nm
+            %               (Default: 2500)
+            %           verbose (optional): boolean
+            %               If true, progress information is displayed
+            %               during divergence measurement
+            %               (Default: false)
+            %           plotRangeX (optional): [1 x 2] double
+            %               Euclidean distance range for which should be 
+            %               plotted in um
+            %               (Default: [0 100]
+            %           plotAddY (optional): double
+            %               Constant added to y scale of plot
+            %               (Default: 0)
             
             % Assert and assign required inputs
             % nmlPathRef
@@ -42,7 +88,7 @@ classdef SkelDiv
             p.addOptional('bboxRestrictActive', default.bboxRestrictActive, check.bboxRestrictActive);
             
             % bboxRestrictExtent
-            default.bboxRestrictExtent = false;
+            default.bboxRestrictExtent = 1E5;
             check.bboxRestrictExtent = @(x) isnumeric(x);
             p.addOptional('bboxRestrictExtent', default.bboxRestrictExtent, check.bboxRestrictExtent);
             
@@ -67,7 +113,7 @@ classdef SkelDiv
             p.addOptional('plotRangeX', default.plotRangeX, check.plotRangeX);
             
             % plotAddY
-            default.plotAddY = 1;
+            default.plotAddY = 0;
             check.plotAddY = @(x) isnumeric(x);
             p.addOptional('plotAddY', default.plotAddY, check.plotAddY);
             

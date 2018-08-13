@@ -10,7 +10,7 @@ paths.main = fileparts(mfilename('fullpath'));
 
 % Construct additional relevant paths
 paths.data = fullfile(paths.main, 'data');
-paths.examples = fullfile(paths.main, 'tutorial');
+paths.tutorial = fullfile(paths.main, 'tutorial');
 
 % Add FluoEM's directory structure to matlab path
 addpath(genpath(paths.main));

@@ -1,6 +1,14 @@
 function obj = measure(obj)
-%MEASURE Summary of this function goes here
-%   Detailed explanation goes here
+%MEASURE Performs the divergence measurements
+% For each tree contained in the reference skeleton object skelDiv measures
+% the number of neighboring trees contained in the target skeleton
+% object in dependence of the euclidean distance to a defined common
+% origin bounding box. The neighbor criterion is implemented via a
+% moving ellipsoid which is shifted outward from the origin along the
+% skeleton trees. A given target skeleton tree is counted as a neighbor
+% at a given location when at least one of it's nodes is encompassed by
+% the ellipsoid. Such trees having violated the neighbouring criterion
+% only once, permanently loose their status as potential neighbors.
 
 % Restrict to bbox
 bboxOld = util.bbox.convertBbox(obj.options.bboxOrigin);
@@ -94,6 +102,17 @@ for i = 1:numel(fnames)
     uniqueFrac.(fnames{i}) = [uniqueFrac.(fnames{i}); nan(TSpadvals(i),1)];
 end
 obj.results.uniqueFracTable = struct2table(uniqueFrac);
+
+% Make last remaining table
+for treeIdx = 1:obj.skelRef.numTrees
+    treeName = obj.skelRef.names{treeIdx};
+    dropToMinCountIdx = find(~(obj.results.neighborCountsAll{treeIdx} - min(obj.results.neighborCountsAll{treeIdx})), 1, 'first');
+    closestNeighbors.refTreeIdx{treeIdx} = treeIdx;
+    closestNeighbors.tarTreeIdx{treeIdx} = obj.results.neighborIDsAll{treeIdx}{dropToMinCountIdx};
+    closestNeighbors.tarTreeName{treeIdx} = obj.skelTar.names{closestNeighbors.tarTreeIdx{treeIdx}};
+    closestNeighbors.tarDropDist{treeIdx} = round(obj.results.distToOriginAll{treeIdx}(dropToMinCountIdx));
+end
+obj.results.closestNeighbors = closestNeighbors;
 
 end
 

@@ -1,9 +1,22 @@
-function [fh, ax] = plot(obj, savePath)
-%PLOT Summary of this function goes here
-%   Detailed explanation goes here
+function [fh, ax] = plotGraph(obj, savePath, saveFormat)
+%PLOTGRAPH Produces a figure showing the number of remaining neighbors for
+%each tree of the reference skeleton indicated as a line plot
+%   INPUT:  savePath (optional): str
+%               If passed the output figure is written to the specified
+%               savePath
+%               (Default: none)
+%           saveFormat (optional): str
+%               If passed the figure is saved in the specified format. This
+%               format option is passed to matlab's print function. Check
+%               print's documentation to check for supported format
+%               strings.
+%               (Default: '-dpdf')
+% Author: Florian Drawitsch: <florian.drawitsch@brain.mpg.de>
 
 if exist('savePath', 'var')
     saveFig = true;
+else
+    saveFig = false;
 end
 
 % Make Plot
@@ -28,7 +41,7 @@ set(gca,'YScale','log');
 yrTicks = [10^0,10^1,10^2];
 yrTickLabels = {'10^0','10^1','10^2'};
 set(gca,'YTick',yrTicks,'YTickLabel',yrTickLabels);
-ylabel({'Axons in neighborhood'});
+ylabel({'Axons in nhood'});
 xlabel('d_{unique}(um)');
 xTicks = [0, 50, 100] .* 1E3;
 xTickLabels = {'0','50','100'};
@@ -49,8 +62,13 @@ ylabel('Unique axon fraction');
 ylim([0 1.01]);
 xlabel('Dist to origin (um)');
 
+% Format Plot
+fh = util.fig.setFigureHandle(fh, 'Width', 6, 'Height', 5);
+ax = util.fig.setAxisHandle(ax, 0);
+
+% Save Plot if specified
 if saveFig
-    print(fh, savePath)
+    print(fh, savePath, saveFormat)
     close(fh)
 end
 

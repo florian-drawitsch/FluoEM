@@ -1,4 +1,4 @@
-function h = plot(skel, treeIndices, colors, umScale, lineWidths,realEndingComments,unityScale)
+function h = plot(skel, treeIndices, colors, umScale, lineWidths, realEndingComments, unityScale)
 %PLOT Simple line plot of Skeleton. Nodes are scaled with
 % skel.scale.
 % INPUT treeIndices:(Optional) [Nx1] vector of linear indices
