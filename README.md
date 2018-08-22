@@ -4,7 +4,7 @@
 
 [FluoEM](http://fluoem.brain.mpg.de) is a set of experimental and computational methods allowing to directly match fluorescently labelled axons to their 3D EM counterparts without label conversion. The FluoEM paper is published in [eLife](https://elifesciences.org/articles/38976) (2018;7:e38976, doi:10.7554/eLife.38976). 
 
-It allows to:
+The FluoEM code package allows to:
 
 * Efficiently handle and register correlated 3D graph representations of neurites
 * Identify potential neurite correspondences based on structural divergence 
@@ -23,7 +23,9 @@ Alternatively, you can download the code as a compressed file via the gitlab fro
 
 ### Prerequisites
 
-The FluoEM code package is written in Matlab, so you will need Matlab license to run it. You do not need any additional Matlab toolboxes on top of that, the matlab core libraries are sufficient.
+The FluoEM code package is written in [Matlab](https://mathworks.com/), so you will need Matlab license to run it. You do not need any additional Matlab toolboxes on top of that, the matlab core libraries are sufficient.
+
+Furthermore, much of the FluoEM code is designed to manipulate neurite skeleton representations. By default, FluoEM comes with i/o functionality for [webKnossos](https://webknossos.org/) skeleton (.nml) files. While in principle FluoEM can be adapted to work with other skeleton formats, you might want to use FluoEM in combination with webKnossos to avoid the need for adaption.
 
 ### Installing
 
