@@ -1,15 +1,15 @@
+![](img/splash.jpg)
+
 # About FluoEM
 
-FluoEM is a set of experimental and computational methods allowing to directly match fluorescently labelled axons to their 3D EM counterparts without label conversion.
-
-The FluoEM code package is written in Matlab and does not require any additional toolboxes, other than the core matlab libraries.
+[FluoEM](http://fluoem.brain.mpg.de) is a set of experimental and computational methods allowing to directly match fluorescently labelled axons to their 3D EM counterparts without label conversion. The FluoEM paper is published in [eLife](https://elifesciences.org/articles/38976) (2018;7:e38976, doi:10.7554/eLife.38976). 
 
 It allows to:
 
 * Efficiently handle and register correlated 3D graph representations of neurites
 * Identify potential neurite correspondences based on structural divergence 
 
-It was developed at the Max Planck Institute of Neurobiology (2013 - 2014) and the Max Planck Institute for Brain Research (2014 - 2018)
+It was developed at the Max Planck Institute of Neurobiology (2014) and the Max Planck Institute for Brain Research (2014 - 2018)
 
 ## Getting Started
 
@@ -31,7 +31,11 @@ After cloning or downloading the code, navigate into the FluoEM main directory i
 ```
 >> setup()
 ```
-inside the Matlab command window to set the required paths. After this, you are ready to go.
+inside the Matlab command window to set the required paths. After this, you are ready to go. 
+
+### First Steps
+
+To reproduce methodological steps shown in the FluoEM paper or to familiarize yourself with the functionality of the FluoEM repository, have a look at the tutorials found in the `/tutorial` directory.
 
 ## Authors
 

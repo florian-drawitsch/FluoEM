@@ -26,7 +26,7 @@ paths.nml_bv_em = fullfile(paths.data, 'bv_em.nml');
 % id. 
 commentPattern = '^b\d+$';
 
-% No let's construct a skelReg object. The skelReg object handles two or more
+% Now let's construct a skelReg object. The skelReg object handles two or more
 % correlated skeleton objects, reads control points from their comments,
 % registers and visualizes them. The skelReg constructor wants two nml
 % files containing correlated skeleton annotations as inputs. They are
