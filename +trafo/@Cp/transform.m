@@ -38,6 +38,8 @@ points.xyz = round(trafo.applyToArray(points.xyz));
 
 % Assign to object
 obj.points.([modalityType,'_',trafoAlias]) = points;
-    
+obj.points.([modalityType,'_',trafoAlias]).Properties.UserData.scale = trafo.attributes.scale.fixed;
+obj.points.([modalityType,'_',trafoAlias]).Properties.UserData.dataset = trafo.attributes.dataset.fixed;
+
 end
 

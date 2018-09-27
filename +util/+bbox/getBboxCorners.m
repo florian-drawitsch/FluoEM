@@ -12,7 +12,7 @@ function corners = getBboxCorners( bbox )
 corners = zeros(8,3);
 
 c000 = bbox(1:3);
-c111 = bbox(4:6) - bbox(1:3);
+c111 = bbox(1:3) + bbox(4:6);
 
 corners(1,:) = c000;
 corners(8,:) = c111;
