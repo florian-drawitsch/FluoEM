@@ -1,7 +1,6 @@
 classdef Cp
     %CP class handles control points
-    % Control points can be either read from skeleton objects or csv
-    % files.
+    % Control points are read from skeleton objects 
     % Author: Florian Drawitsch <florian.drawitsch@brain.mpg.de>
     
     properties
@@ -12,8 +11,8 @@ classdef Cp
     methods
         function obj = Cp()
             %The Cp constructor creates an empty cp object.
-            % To populate it with control points, either invoke the
-            % readFromSkel or the readFromCsv method.
+            % To populate it with control points, invoke the
+            % readFromSkel method.
         end
         
         function pass = assertModalityType(obj, modalityType)
