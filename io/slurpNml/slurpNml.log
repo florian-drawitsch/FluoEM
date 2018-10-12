@@ -1,0 +1,1977 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/Arch Linux) (preloaded format=mex 2018.9.12)  12 OCT 2018 15:45
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**slurpNml.cpp pugixml.cpp
+(./slurpNml.cpp
+This is MeX  Version 1.05  18 XII 1993  (B. Jackowski & M. Ry\'cko)
+! You can't use `macro parameter character #' in vertical mode.
+l.19 #
+      include <array>
+? 
+! Interruption.
+<to be read again> 
+                   i
+l.19 #i
+       nclude <array>
+? 
+! You can't use `macro parameter character #' in horizontal mode.
+l.20 #
+      include <cmath>
+? 
+! You can't use `macro parameter character #' in horizontal mode.
+l.21 #
+      include <iterator>
+? 
+! You can't use `macro parameter character #' in horizontal mode.
+l.22 #
+      include <string>
+? 
+! You can't use `macro parameter character #' in horizontal mode.
+l.23 #
+      include <vector>
+? 
+! You can't use `macro parameter character #' in horizontal mode.
+l.24 #
+      include <stdint.h>
+? 
+! You can't use `macro parameter character #' in vertical mode.
+l.26 #
+      include "mex.h"
+? 
+! You can't use `macro parameter character #' in horizontal mode.
+l.27 #
+      include "pugixml.hpp"
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.30     NML_
+             DOUBLE,
+? 
+! Extra }, or forgotten $.
+l.34 }
+       nml_type;
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.35 
+     
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.38     nml_
+             type type;
+? 
+! Extra }, or forgotten $.
+l.39 }
+       nml_attribute;
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.40 
+     
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.41 const std::array<nml_
+                          attribute, 9> nml_thing_obj = {{
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.52 
+     
+? 
+
+Overfull \hbox (823.98668pt too wide) in paragraph at lines 41--52
+[]\tenrm const std::array<nml$[]\teni ttribute; \tenrm 9 \teni > nml[]hing[]bj 
+\tenrm = [];$ |
+
+\hbox(6.94444+1.94444)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm c
+.\tenrm o
+.\tenrm n
+.\tenrm s
+.etc.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.53 const std::array<nml_
+                          attribute, 2> nml_group_obj = {{
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.57 
+     
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.59 const std::array<nml_
+                          attribute, 10> nml_node_obj = {{
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.71 
+     
+? 
+
+Overfull \hbox (890.11008pt too wide) in paragraph at lines 59--71
+[]\tenrm const std::array<nml$[]\teni ttribute; \tenrm 10 \teni > nml[]ode[]bj 
+\tenrm = [];$ |
+
+\hbox(6.94444+1.94444)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm c
+.\tenrm o
+.\tenrm n
+.\tenrm s
+.etc.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.72 const std::array<nml_
+                          attribute, 2> nml_edge_obj = {{
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.76 
+     
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.77 const std::array<nml_
+                          attribute, 1> nml_branchpoint_obj = {{
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.80 
+     
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.81 const std::array<nml_
+                          attribute, 2> nml_comment_obj = {{
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.85 
+     
+? 
+
+Overfull \hbox (15.27455pt too wide) in paragraph at lines 81--85
+[]\tenrm const std::array<nml$[]\teni ttribute; \tenrm 2 \teni > nml[]omment[]b
+j \tenrm = [];$ |
+
+\hbox(6.94444+1.94444)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm c
+.\tenrm o
+.\tenrm n
+.\tenrm s
+.etc.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.89 template <std::size_
+                         t N>
+? 
+! Misplaced alignment tab character &.
+l.90 ...names(const std::array<nml_attribute, N> &
+                                                   nml_obj,
+? 
+! Misplaced alignment tab character &.
+l.91 ...             std::array<const char *, N> &
+                                                   names){
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.97 
+     
+? 
+
+Overfull \hbox (261.42798pt too wide) in paragraph at lines 86--97
+\teni nml[]ttribute; N > nml[]bj; std \tenrm :: \teni array < constchar\tensy ^
+^C\teni ; N > names\tenrm )[]$ |
+
+\hbox(7.5+2.5)x469.75499
+.\teni n
+.\teni m
+.\teni l
+.\hbox(3.01389+0.0)x4.83765, shifted 1.49998
+..\seveni a
+.\teni t
+.etc.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.98 void prepare_
+                  struct_field(const size_t nml_obj_count,
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.107 
+      
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+<to be read again> 
+                   $
+<to be read again> 
+                   \par 
+l.107 
+      
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+<to be read again> 
+                   $
+<to be read again> 
+                   \par 
+l.107 
+      
+? 
+
+Overfull \hbox (539.33223pt too wide) in paragraph at lines 98--107
+[]\tenrm void prepare$[]\teni truct[]ield\tenrm (\teni constsize[]nml[]bj[]ount
+; constnml[]ypetype; mxArray \tensy ^^C ^^C\teni out\tenrm )[]$ |
+
+\hbox(7.5+2.86108)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm v
+.\kern-0.27779
+.\tenrm o
+.\tenrm i
+.etc.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.108         case NML_
+                       BOOL:
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.112 
+      
+? 
+
+Overfull \hbox (19.12445pt too wide) in paragraph at lines 108--112
+[]\tenrm case NML$[]\teni OOL \tenrm : \teni arr \tenrm = \teni mxCreateNumeric
+Matrix\tenrm (\teni nml[]bj[]ount; \tenrm 1\teni ; mxUINT\tenrm 8[]\teni LASS; 
+mxREAL\tenrm ); \teni break\tenrm ;$ |
+
+\hbox(7.5+2.5)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm c
+.\tenrm a
+.\tenrm s
+.\tenrm e
+.etc.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.113         case NML_
+                       STRING:
+? 
+! Extra }, or forgotten $.
+l.118     }
+           
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.119 
+      
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.124 template <std::size_
+                          t N>
+? 
+! Misplaced alignment tab character &.
+l.125 ...ruct(const std::array<nml_attribute, N> &
+                                                   nml_obj,
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.131 
+      
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+<to be read again> 
+                   $
+<to be read again> 
+                   \par 
+l.131 
+      
+? 
+
+Overfull \hbox (93.77394pt too wide) in paragraph at lines 124--131
+[]\tenrm template <std::size$[]\teni N > voidprepare[]truct\tenrm (\teni consts
+td \tenrm :: \teni array < nml[]ttribute; N > nml[]bj; constsize[]nml[]bj[]ount
+; mxArray \tensy ^^C|
+
+\hbox(7.5+2.5)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm t
+.\tenrm e
+.\tenrm m
+.\tenrm p
+.etc.
+
+
+Overfull \hbox (3.59293pt too wide) in paragraph at lines 124--131
+\tensy ^^C\teni out\tenrm )[]$ |
+
+\hbox(7.5+2.5)x469.75499
+.\tensy ^^C
+.\teni o
+.\teni u
+.\teni t
+.\tenrm )
+.etc.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.134         1, 1, N, attr_
+                            names.data());
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.135 
+      
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.138         mxArray * field_
+                              arr;
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.139 
+      
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.141         auto type = nml_
+                              obj[idx].type;
+? 
+! Misplaced alignment tab character &.
+l.142 ...epare_struct_field(nml_obj_count, type, &
+                                                  field_arr);
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.143 
+      
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.145 ...   mxSetFieldByNumber(arr, 0, idx, field_
+                                                  arr);
+? 
+! Extra }, or forgotten $.
+l.146     }
+           
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.147 
+      
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.153 void parse_
+                 nml_double(const pugi::xml_attribute & xml_attr,
+? 
+! Misplaced alignment tab character &.
+l.153 ...se_nml_double(const pugi::xml_attribute &
+                                                   xml_attr,
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.158 
+      
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+<to be read again> 
+                   $
+<to be read again> 
+                   \par 
+l.158 
+      
+? 
+
+Overfull \hbox (277.24147pt too wide) in paragraph at lines 152--158
+[]\tenrm inline void parse$[]\teni ml[]ouble\tenrm (\teni constpugi \tenrm :: \
+teni xml[]ttributexml[]ttr; constsize[]xml[]dx; mxArray \tensy ^^C \teni arr\te
+nrm )[]$ |
+
+\hbox(7.5+2.5)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm i
+.\tenrm n
+.\tenrm l
+.\tenrm i
+.etc.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.160     ptr[xml_
+                  idx] = val;
+? 
+! Extra }, or forgotten $.
+l.161 }
+       
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.162 
+      
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.164 void parse_
+                 nml_bool(const pugi::xml_attribute & xml_attr,
+? 
+! Misplaced alignment tab character &.
+l.164 ...arse_nml_bool(const pugi::xml_attribute &
+                                                   xml_attr,
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.169 
+      
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+<to be read again> 
+                   $
+<to be read again> 
+                   \par 
+l.169 
+      
+? 
+
+Overfull \hbox (288.81174pt too wide) in paragraph at lines 163--169
+[]\tenrm inline void parse$[]\teni ml[]ool\tenrm (\teni constpugi \tenrm :: \te
+ni xml[]ttributexml[]ttr; constsize[]xml[]dx; mxArray \tensy ^^C \teni arr\tenr
+m )[]$ |
+
+\hbox(7.5+2.5)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm i
+.\tenrm n
+.\tenrm l
+.\tenrm i
+.etc.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.171     ptr[xml_
+                  idx] = val;
+? 
+! Extra }, or forgotten $.
+l.172 }
+       
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.173 
+      
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.175 void parse_
+                 nml_string(const pugi::xml_attribute & xml_attr,
+? 
+! Misplaced alignment tab character &.
+l.175 ...se_nml_string(const pugi::xml_attribute &
+                                                   xml_attr,
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.180 
+      
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+<to be read again> 
+                   $
+<to be read again> 
+                   \par 
+l.180 
+      
+? 
+
+Overfull \hbox (242.4989pt too wide) in paragraph at lines 174--180
+[]\tenrm inline void parse$[]\teni ml[]tring\tenrm (\teni constpugi \tenrm :: \
+teni xml[]ttributexml[]ttr; constsize[]xml[]dx; mxArray \tensy ^^C \teni arr\te
+nrm )[]$ |
+
+\hbox(7.5+2.5)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm i
+.\tenrm n
+.\tenrm l
+.\tenrm i
+.etc.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.182     mxSetCell(arr, xml_
+                             idx, val_arr);
+? 
+! Extra }, or forgotten $.
+l.183 }
+       
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.184 
+      
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.186 void parse_
+                 nml_attr(const pugi::xml_node & xml_node,
+? 
+! Misplaced alignment tab character &.
+l.186 void parse_nml_attr(const pugi::xml_node &
+                                                 xml_node,
+? 
+! Misplaced alignment tab character &.
+l.188                     const nml_attribute &
+                                                nml_attr,
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.192 
+      
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+<to be read again> 
+                   $
+<to be read again> 
+                   \par 
+l.192 
+      
+? 
+
+Overfull \hbox (37.83557pt too wide) in paragraph at lines 185--192
+[]\tenrm inline void parse$[]\teni ml[]ttr\tenrm (\teni constpugi \tenrm :: \te
+ni xml[]odexml[]ode; constsize[]xml[]dx; constnml[]ttributenml[]ttr; mxArray \t
+ensy ^^C|
+
+\hbox(7.5+2.5)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm i
+.\tenrm n
+.\tenrm l
+.\tenrm i
+.etc.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.194     auto xml_
+                   attr = xml_node.attribute(attr_name);
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.195 
+      
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.196     switch(attr_
+                      type){
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.200 
+      
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+<to be read again> 
+                   $
+<to be read again> 
+                   \par 
+l.200 
+      
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.201         case NML_
+                       BOOL:
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.204 
+      
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.205         case NML_
+                       STRING:
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.208 
+      
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.209         case NML_
+                       MANUAL:
+? 
+! Extra }, or forgotten $.
+l.212     }
+           
+? 
+! Extra }, or forgotten $.
+l.213 }
+       
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.214 
+      
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.215 template <std::size_
+                          t N> inline
+? 
+! Misplaced alignment tab character &.
+l.216 void parse_nml_object(const pugi::xml_node &
+                                                   xml_obj,
+? 
+! Misplaced alignment tab character &.
+l.218 ...     const std::array<nml_attribute, N> &
+                                                   nml_obj,
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.223 
+      
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+<to be read again> 
+                   $
+<to be read again> 
+                   \par 
+l.223 
+      
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+<to be read again> 
+                   $
+<to be read again> 
+                   \par 
+l.223 
+      
+? 
+
+Overfull \hbox (23.82466pt too wide) in paragraph at lines 215--223
+[]\tenrm template <std::size$[]\teni N > inlinevoidparse[]ml[]bject\tenrm (\ten
+i constpugi \tenrm :: \teni xml[]odexml[]bj; constsize[]xml[]dx; conststd \tenr
+m ::|
+
+\hbox(7.5+2.5)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm t
+.\tenrm e
+.\tenrm m
+.\tenrm p
+.etc.
+
+
+Overfull \hbox (202.59404pt too wide) in paragraph at lines 215--223
+\teni array < nml[]ttribute; N > nml[]bj; mxArray \tensy ^^C \teni arr\tenrm )[
+]$ |
+
+\hbox(7.5+2.5)x469.75499, glue set - 1.0
+.\teni a
+.\teni r
+.\kern0.27779
+.\teni r
+.\kern0.27779
+.etc.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.225         auto field_
+                         arr = mxGetFieldByNumber(arr, 0, attr_idx);
+? 
+! Extra }, or forgotten $.
+l.227     }
+           
+? 
+! Extra }, or forgotten $.
+l.228 }
+       
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.229 
+      
+? 
+
+Overfull \hbox (87.34235pt too wide) in paragraph at lines 224--229
+[]\tenrm /* get field po-in-ter */ auto field$[]\teni rr \tenrm = \teni mxGetFi
+eldByNumber\tenrm (\teni arr; \tenrm 0\teni ; attr[]dx\tenrm ); \teni parse[]ml
+[]ttr\tenrm (\teni xml[]bj; xml[]dx; attr; field[]rr\tenrm );$ |
+
+\hbox(7.5+2.5)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm /
+.\tenrm *
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm g
+.etc.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.230 template <std::size_
+                          t N>
+? 
+! Misplaced alignment tab character &.
+l.231 ...ct_range<pugi::xml_named_node_iterator> &
+                                                   xml_iter,
+? 
+! Misplaced alignment tab character &.
+l.232 ...     const std::array<nml_attribute, N> &
+                                                   nml_obj,
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.237 
+      
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+<to be read again> 
+                   $
+<to be read again> 
+                   \par 
+l.237 
+      
+? 
+
+Overfull \hbox (28.24559pt too wide) in paragraph at lines 230--237
+[]\tenrm template <std::size$[]\teni N > voidparse[]ml[]bjects\tenrm (\teni con
+stpugi \tenrm :: \teni xml[]bject[]ange < pugi \tenrm :: \teni xml[]amed[]ode[]
+terator >|
+
+\hbox(7.5+2.5)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm t
+.\tenrm e
+.\tenrm m
+.\tenrm p
+.etc.
+
+
+Overfull \hbox (372.827pt too wide) in paragraph at lines 230--237
+\teni xml[]ter; conststd \tenrm :: \teni array < nml[]ttribute; N > nml[]bj; mx
+Array \tensy ^^C ^^C\teni out\tenrm )[]$ |
+
+\hbox(7.5+2.5)x469.75499, glue set - 1.0
+.\teni x
+.\teni m
+.\teni l
+.\hbox(4.63193+0.0)x3.32928, shifted 1.49998
+..\seveni i
+.\teni t
+.etc.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.240     prepare_
+                  struct(nml_obj, num_objs, &arr);
+? 
+! Misplaced alignment tab character &.
+l.240     prepare_struct(nml_obj, num_objs, &
+                                             arr);
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.241 
+      
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.243     size_
+               t xml_idx = 0;
+? 
+! Misplaced alignment tab character &.
+l.244     for(auto &
+                     xml_node : xml_iter){
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.247 
+      
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+<to be read again> 
+                   $
+<to be read again> 
+                   \par 
+l.247 
+      
+? 
+
+Overfull \hbox (132.70059pt too wide) in paragraph at lines 242--247
+[]\tenrm /* read NML */ size$[]\teni xml[]dx \tenrm = 0; \teni for\tenrm (\teni
+ autoxml[]ode \tenrm : \teni xml[]ter\tenrm )[]$ |
+
+\hbox(7.5+2.5)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm /
+.\tenrm *
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm r
+.etc.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.249         xml_
+                  idx++;
+? 
+! Extra }, or forgotten $.
+l.250     }
+           
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.251 
+      
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.255 void parse_
+                 nml_things(const pugi::xml_object_range<pugi::xml_named_nod...
+
+? 
+! Misplaced alignment tab character &.
+l.255 ...ct_range<pugi::xml_named_node_iterator> &
+                                                   xml_things,
+? 
+! Misplaced alignment tab character &.
+l.259 ..._nml_objects(xml_things, nml_thing_obj, &
+                                                  arr);
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.260 
+      
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+<to be read again> 
+                   $
+<to be read again> 
+                   \par 
+l.260 
+      
+? 
+
+Overfull \hbox (22.84369pt too wide) in paragraph at lines 255--260
+[]\tenrm void parse$[]\teni ml[]hings\tenrm (\teni constpugi \tenrm :: \teni xm
+l[]bject[]ange < pugi \tenrm :: \teni xml[]amed[]ode[]terator > xml[]hings; mxA
+rray \tensy ^^C|
+
+\hbox(7.5+2.5)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm v
+.\kern-0.27779
+.\tenrm o
+.\tenrm i
+.etc.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.261     auto nodes_
+                     arr = mxGetField(arr, 0, "nodes");
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.263 
+      
+? 
+[1]
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.264     size_
+               t xml_idx = 0;
+? 
+! Misplaced alignment tab character &.
+l.265     for(auto &
+                     xml_thing : xml_things){
+? 
+! Misplaced alignment tab character &.
+l.270             nml_node_obj, &
+                                 cur_nodes_arr);
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.271 
+      
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+<to be read again> 
+                   $
+<to be read again> 
+                   \par 
+l.271 
+      
+? 
+
+Overfull \hbox (335.27141pt too wide) in paragraph at lines 264--271
+[]\tenrm size$[]\teni xml[]dx \tenrm = 0; \teni for\tenrm (\teni autoxml[]hing 
+\tenrm : \teni xml[]hings\tenrm )[]$ |
+
+\hbox(7.5+2.5)x469.75499
+.\hbox(0.0+0.0)x20.0
+.\tenrm s
+.\tenrm i
+.\tenrm z
+.\tenrm e
+.etc.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.273         mxArray * cur_
+                            edges_arr;
+? 
+! Misplaced alignment tab character &.
+l.276             nml_edge_obj, &
+                                 cur_edges_arr);
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.277 
+      
+? 
+
+Overfull \hbox (110.92595pt too wide) in paragraph at lines 272--277
+[]\tenrm /* parse ed-ges */ mxAr-ray * cur$[]\teni dges[]rr\tenrm ; \teni parse
+[]ml[]bjects\tenrm (\teni xml[]hing:child\tenrm ("\teni edges\tenrm ")\teni :ch
+ildren\tenrm ("\teni edge\tenrm ")\teni ; nml[]dge[]bj; cur[]dges[]rr\tenrm );$
+ |
+
+\hbox(7.5+2.5)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm /
+.\tenrm *
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm p
+.etc.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.279         mxSetCell(nodes_
+                              arr, xml_idx, cur_nodes_arr);
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.281 
+      
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.283         xml_
+                  idx++;
+? 
+! Extra }, or forgotten $.
+l.284     }
+           
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.285 
+      
+? 
+! Too many }'s.
+l.288 }
+       
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.290 void parse_
+                 nml_parameter_values(const pugi::xml_node & xml_param,
+? 
+! Misplaced alignment tab character &.
+l.290 ...l_parameter_values(const pugi::xml_node &
+                                                   xml_param,
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.295 
+      
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+<to be read again> 
+                   $
+<to be read again> 
+                   \par 
+l.295 
+      
+? 
+
+Overfull \hbox (384.92236pt too wide) in paragraph at lines 290--295
+[]\tenrm void parse$[]\teni ml[]arameter[]alues\tenrm (\teni constpugi \tenrm :
+: \teni xml[]odexml[]aram; mxArray \tensy ^^C ^^C\teni out\tenrm )[]$ |
+
+\hbox(7.5+2.86108)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm v
+.\kern-0.27779
+.\tenrm o
+.\tenrm i
+.etc.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.297     std::vector<const char *> attr_
+                                         names(xml_attr_count);
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.299 
+      
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.300     size_
+               t idx = 0;
+? 
+! Misplaced alignment tab character &.
+l.301     for(auto &
+                     xml_attr : xml_attrs){
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.304 
+      
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+<to be read again> 
+                   $
+<to be read again> 
+                   \par 
+l.304 
+      
+? 
+
+Overfull \hbox (116.21602pt too wide) in paragraph at lines 300--304
+[]\tenrm size$[]\teni idx \tenrm = 0; \teni for\tenrm (\teni autoxml[]ttr \tenr
+m : \teni xml[]ttrs\tenrm )[]$ |
+
+\hbox(7.5+2.5)x469.75499
+.\hbox(0.0+0.0)x20.0
+.\tenrm s
+.\tenrm i
+.\tenrm z
+.\tenrm e
+.etc.
+
+! Too many }'s.
+l.306     }
+           
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.310         1, 1, xml_
+                        attr_count, attr_names.data());
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.311 
+      
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.312     for(idx = 0; idx < xml_
+                                 attr_count; idx++){
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.315 
+      
+? 
+! Too many }'s.
+l.318 }
+       
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.320 void parse_
+                 nml_parameters(const pugi::xml_node & xml_params,
+? 
+! Misplaced alignment tab character &.
+l.320 ...rse_nml_parameters(const pugi::xml_node &
+                                                   xml_params,
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.325 
+      
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+<to be read again> 
+                   $
+<to be read again> 
+                   \par 
+l.325 
+      
+? 
+
+Overfull \hbox (473.021pt too wide) in paragraph at lines 320--325
+[]\tenrm void parse$[]\teni ml[]arameters\tenrm (\teni constpugi \tenrm :: \ten
+i xml[]odexml[]arams; mxArray \tensy ^^C ^^C\teni out\tenrm )[]$ |
+
+\hbox(7.5+2.86108)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm v
+.\kern-0.27779
+.\tenrm o
+.\tenrm i
+.etc.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.327     std::vector<const char *> param_
+                                          names(xml_param_count);
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.329 
+      
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.330     size_
+               t idx = 0;
+? 
+! Misplaced alignment tab character &.
+l.331     for(auto &
+                     xml_param : xml_param_nodes){
+? 
+! Misplaced alignment tab character &.
+l.333 ...  parse_nml_parameter_values(xml_param, &
+                                                  param_arrs[idx]);
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.334 
+      
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+<to be read again> 
+                   $
+<to be read again> 
+                   \par 
+l.334 
+      
+? 
+
+Overfull \hbox (197.86304pt too wide) in paragraph at lines 330--334
+[]\tenrm size$[]\teni idx \tenrm = 0; \teni for\tenrm (\teni autoxml[]aram \ten
+rm : \teni xml[]aram[]odes\tenrm )[]$ |
+
+\hbox(7.5+2.86108)x469.75499
+.\hbox(0.0+0.0)x20.0
+.\tenrm s
+.\tenrm i
+.\tenrm z
+.\tenrm e
+.etc.
+
+! Too many }'s.
+l.337     }
+           
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.341         1, 1, xml_
+                        param_count, param_names.data());
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.342 
+      
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.343     for(idx = 0; idx < xml_
+                                 param_count; idx++){
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.346 
+      
+? 
+! Too many }'s.
+l.349 }
+       
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.351 void parse_
+                 nml_groups(const pugi::xml_object_range<pugi::xml_named_nod...
+
+? 
+! Misplaced alignment tab character &.
+l.356     prepare_struct(nml_obj, num_objects, &
+                                                arr);
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.357 
+      
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+<to be read again> 
+                   $
+<to be read again> 
+                   \par 
+l.357 
+      
+? 
+
+Overfull \hbox (25.2167pt too wide) in paragraph at lines 351--357
+[]\tenrm void parse$[]\teni ml[]roups\tenrm (\teni constpugi \tenrm :: \teni xm
+l[]bject[]ange < pugi \tenrm :: \teni xml[]amed[]ode[]terator > xml[]roups; mxA
+rray \tensy ^^C|
+
+\hbox(7.5+2.86108)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm v
+.\kern-0.27779
+.\tenrm o
+.\tenrm i
+.etc.
+
+
+Overfull \hbox (243.06456pt too wide) in paragraph at lines 351--357
+\tensy ^^C\teni out\tenrm )[]$ |
+
+\hbox(7.5+2.86108)x469.75499
+.\tensy ^^C
+.\teni o
+.\teni u
+.\teni t
+.\tenrm )
+.etc.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.360 ...r, 0, "children", mxCreateCellMatrix(num_
+                                                  objects, 1));
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.361 
+      
+? 
+! Misplaced alignment tab character &.
+l.363     for (auto &
+                      xml_group : xml_groups){
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.363     for (auto & xml_
+                          group : xml_groups){
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.365 
+      
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+<to be read again> 
+                   $
+<to be read again> 
+                   \par 
+l.365 
+      
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.366         if (xml_
+                      group.first_child() != NULL){
+? 
+! Misplaced alignment tab character &.
+l.368 ...nml_groups(xml_group.children("group"), &
+                                                  thisChild);
+? 
+! Extra }, or forgotten $.
+l.373     }
+           
+? 
+! Extra }, or forgotten $.
+l.375 }
+       
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.376 
+      
+? 
+
+Overfull \hbox (521.34937pt too wide) in paragraph at lines 366--376
+[]\tenrm if (xml$[]\teni roup:first[]hild\tenrm ()! = \teni NULL\tenrm )[]\teni
+ i \tenrm +|
+
+\hbox(7.5+2.86108)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm i
+.\tenrm f
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm (
+.etc.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.377 void parse_
+                 nml(const pugi::xml_document & xml_doc,
+? 
+! Misplaced alignment tab character &.
+l.377 void parse_nml(const pugi::xml_document &
+                                                xml_doc,
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.379 
+      
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+<to be read again> 
+                   $
+<to be read again> 
+                   \par 
+l.379 
+      
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.380     std::array<const char *, 5> field_
+                                            names = {{
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.387 
+      
+? 
+
+Overfull \hbox (7.93001pt too wide) in paragraph at lines 380--387
+[]\tenrm std::array<const char *, 5> field$[]\teni ames \tenrm = [];$ |
+
+\hbox(7.5+1.94444)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm s
+.\tenrm t
+.\tenrm d
+.\tenrm :
+.etc.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.390         1, 1, field_
+                          names.size(), field_names.data());
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.391 
+      
+? 
+
+Overfull \hbox (18.87238pt too wide) in paragraph at lines 388--391
+[]\tenrm /* pre-pare struc-ture */ mxAr-ray * arr = mxCre-ate-Struct-Ma-trix( 1
+, 1, field$[]\teni ames:size\tenrm ()\teni ; field[]ames:data\tenrm ());$ |
+
+\hbox(7.5+2.5)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm /
+.\tenrm *
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm p
+.etc.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.393     auto xml_
+                   things = xml_doc.child("things");
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.394 
+      
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.396     mxArray * things_
+                           arr;
+? 
+! Misplaced alignment tab character &.
+l.397 ...ml_things(xml_things.children("thing"), &
+                                                  things_arr);
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.398 
+      
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.400     mxArray * params_
+                           arr;
+? 
+! Misplaced alignment tab character &.
+l.401 ...ameters(xml_things.child("parameters"), &
+                                                  params_arr);
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.402 
+      
+? 
+
+Overfull \hbox (45.611pt too wide) in paragraph at lines 399--402
+[]\tenrm /* parse pa-ra-me-ters */ mxAr-ray * params$[]\teni rr\tenrm ; \teni p
+arse[]ml[]arameters\tenrm (\teni xml[]hings:child\tenrm ("\teni parameters\tenr
+m ")\teni ; params[]rr\tenrm );$ |
+
+\hbox(7.5+2.86108)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm /
+.\tenrm *
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm p
+.etc.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.404     mxArray * branchpoints_
+                                 arr;
+? 
+! Misplaced alignment tab character &.
+l.407         nml_branchpoint_obj, &
+                                    branchpoints_arr);
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.408 
+      
+? 
+
+Overfull \hbox (288.1654pt too wide) in paragraph at lines 403--408
+[]\tenrm /* parse branch-po-ints */ mxAr-ray * branchpoints$[]\teni rr\tenrm ; 
+\teni parse[]ml[]bjects\tenrm (\teni xml[]hings:child\tenrm ("\teni branchpoint
+s\tenrm ")\teni :children\tenrm ("\teni branchpoint\tenrm ")\teni ; nml[]ranchp
+oint[]bj; branchpoints[]rr\tenrm );$ |
+
+\hbox(7.5+2.5)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm /
+.\tenrm *
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm p
+.etc.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.410     mxArray * comments_
+                             arr;
+? 
+! Misplaced alignment tab character &.
+l.413         nml_comment_obj, &
+                                comments_arr);
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.414 
+      
+? 
+
+Overfull \hbox (213.01263pt too wide) in paragraph at lines 409--414
+[]\tenrm /* parse com-ments */ mxAr-ray * comments$[]\teni rr\tenrm ; \teni par
+se[]ml[]bjects\tenrm (\teni xml[]hings:child\tenrm ("\teni comments\tenrm ")\te
+ni :children\tenrm ("\teni comment\tenrm ")\teni ; nml[]omment[]bj; comments[]r
+r\tenrm );$ |
+
+\hbox(7.5+2.5)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm /
+.\tenrm *
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm p
+.etc.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.416     mxArray * groups_
+                           arr;
+? 
+! Misplaced alignment tab character &.
+l.419             &
+                   groups_arr);
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.420 
+      
+? 
+
+Overfull \hbox (60.3571pt too wide) in paragraph at lines 415--420
+[]\tenrm /* parse gro-ups */ mxAr-ray * groups$[]\teni rr\tenrm ; \teni parse[]
+ml[]roups\tenrm (\teni xml[]hings:child\tenrm ("\teni groups\tenrm ")\teni :chi
+ldren\tenrm ("\teni group\tenrm ")\teni ; groups[]rr\tenrm );$ |
+
+\hbox(7.5+2.86108)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm /
+.\tenrm *
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm p
+.etc.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.422     mxSetField(arr, 0, "parameters", params_
+                                                  arr);
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.427 
+      
+? 
+
+Overfull \hbox (634.94035pt too wide) in paragraph at lines 421--427
+[]\tenrm /* set re-sults */ mxS

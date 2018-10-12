@@ -3,6 +3,7 @@ Slurp NML - A Minimalistic NML Parser
 
 Written by
   alessandro.motta@brain.mpg.de
+  benedikt.staffler@brain.mpg.de
 
 Tested with
   MATLAB R2015b on 64-bit Windows
@@ -37,7 +38,7 @@ typedef struct {
     nml_type type;
 } nml_attribute;
 
-const std::array<nml_attribute, 8> nml_thing_obj = {{
+const std::array<nml_attribute, 9> nml_thing_obj = {{
     {"id",      NML_DOUBLE},
     {"color.r", NML_DOUBLE},
     {"color.g", NML_DOUBLE},
@@ -45,8 +46,15 @@ const std::array<nml_attribute, 8> nml_thing_obj = {{
     {"color.a", NML_DOUBLE},
     {"name",    NML_STRING},
     {"nodes",   NML_MANUAL},
-    {"edges",   NML_MANUAL}
+    {"edges",   NML_MANUAL},
+    {"groupId", NML_DOUBLE}
 }};
+
+const std::array<nml_attribute, 2> nml_group_obj = {{
+    {"name",        NML_STRING},
+    {"id",          NML_DOUBLE}
+}};
+    
 
 const std::array<nml_attribute, 10> nml_node_obj = {{
     {"id",            NML_DOUBLE},
@@ -340,14 +348,41 @@ void parse_nml_parameters(const pugi::xml_node & xml_params,
     *out = arr;
 }
 
+void parse_nml_groups(const pugi::xml_object_range<pugi::xml_named_node_iterator> xml_groups,
+                      mxArray ** out){
+    auto nml_obj = nml_group_obj;
+    auto num_objects = std::distance(xml_groups.begin(), xml_groups.end());
+    mxArray * arr;
+    prepare_struct(nml_obj, num_objects, &arr);
+    
+    /* add additional field for children */
+    mxAddField(arr, "children");
+    mxSetField(arr, 0, "children", mxCreateCellMatrix(num_objects, 1));
+    
+    int i = 0;
+    for (auto & xml_group : xml_groups){
+        parse_nml_object(xml_group, i, nml_obj, arr);
+        
+        if (xml_group.first_child() != NULL){
+            mxArray * thisChild;
+            parse_nml_groups(xml_group.children("group"), &thisChild);
+            mxArray * childrenField = mxGetField(arr, 0, "children");
+            mxSetCell(childrenField, i, thisChild);
+        }
+        i++;
+    }
+    *out = arr;
+}
+
 void parse_nml(const pugi::xml_document & xml_doc,
                mxArray ** out){
-    /* configure fields */
-    std::array<const char *, 4> field_names = {{
+    
+    std::array<const char *, 5> field_names = {{
         "parameters",
         "things",
         "branchpoints",
-        "comments"
+        "comments",
+        "groups"
     }};
 
     /* prepare structure */
@@ -376,12 +411,19 @@ void parse_nml(const pugi::xml_document & xml_doc,
     parse_nml_objects(
         xml_things.child("comments").children("comment"),
         nml_comment_obj, &comments_arr);
+    
+    /* parse groups */
+    mxArray * groups_arr;
+    parse_nml_groups(
+        xml_things.child("groups").children("group"),
+            &groups_arr);
 
     /* set results */
     mxSetField(arr, 0, "parameters", params_arr);
     mxSetField(arr, 0, "things", things_arr);
     mxSetField(arr, 0, "branchpoints", branchpoints_arr);
     mxSetField(arr, 0, "comments", comments_arr);
+    mxSetField(arr, 0, "groups", groups_arr);
 
     /* set output */
     *out = arr;

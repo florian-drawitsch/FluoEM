@@ -17,6 +17,9 @@ classdef Skeleton
         nodeOffset;
         verbose = true;
         filename = ''; %the filename without .nml
+        groupId = [];
+        groups = struct2table(struct('name', '', 'id', ...
+                    [], 'parent', []));
     end
 
     methods
@@ -76,6 +79,7 @@ classdef Skeleton
                 end
 
                 obj.thingIDs = zeros(length(temp.things.id),1);
+                obj.groupId = nan(length(temp.things.id),1);
                 obj.nodes = cell(length(temp.things.nodes),1);
                 obj.edges = cell(length(temp.things.edges),1);
                 obj.names = cell(length(temp.things.name),1);
@@ -97,7 +101,10 @@ classdef Skeleton
                         [temp.things.edges{i}.source, ...
                         temp.things.edges{i}.target], ...
                         temp.things.nodes{i}.id);
+                    
+                    
                     obj.thingIDs(i) = temp.things.id(i);
+                    obj.groupId(i) = temp.things.groupId(i);
                     obj.names{i} = temp.things.name{i};
                     obj.colors{i} = [ ...
                         temp.things.('color.r')(i), ...
@@ -143,6 +150,7 @@ classdef Skeleton
                     warning('Nml file %s contains empty trees.', filename);
                 end
                 obj.largestID = max(tmax);
+                obj.groups = obj.flattenOrNestGroup(temp.groups);
                 obj.parameters = temp.parameters;
                 obj.branchpoints = temp.branchpoints.id;
                 obj.scale = structfun(@str2double,obj.parameters.scale)';
@@ -160,6 +168,7 @@ classdef Skeleton
                 obj.scale = [];
                 obj.nodeOffset = 1;
                 obj.verbose = 0;
+                obj.groupId = [];
             end
         end
     end
@@ -167,7 +176,7 @@ classdef Skeleton
     methods (Static)
         [l,nl] = physicalPathLength(nodes, edges, voxelSize)
         [skel, treeOrigin] = loadSkelCollection(paths, nodeOffset, ...
-            toCellOutput)
+            toCellOutput, addFilePrefix)
         skel = fromCellArray(c);
         skel = loadSkelCollectionFromSubfolders(paths, nodeOffset, ...
             toCellOutput)
