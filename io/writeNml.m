@@ -5,7 +5,7 @@ function writeNml( ksw_fname, ksw_skeleton, node_coordinate_offset )
 % * Copyright 2013, 2014, 2015   Max Planck Institute for Brain Research, Frankfurt/Main                *
 % * Version 1.14                 Martin Zauser                                                          *
 % *******************************************************************************************************
-VERSION = '1.16';
+VERSION = '1.17';
 
 % WRITENML: Write Knossos or webKnossos (Oxalis) skeletons in Matlab as a .nml file
 %
@@ -39,6 +39,7 @@ VERSION = '1.16';
 % version 1.14   14.10.2016  Martin Zauser   bugfix: time in column 14 (instead of 8) in nodesNumDataAll
 % version 1.15   18.07.2017  Marcel Beining  made it possible to set skeleton parameter input as numbers instead of strings
 % version 1.16   26.07.2017  Marcel Beining  automatic rounding of non-integer coordinates
+% version 1.17   15.06.2018  Benedikt Staffler - add groups
 
 % print version on the screen
 fprintf( 'This is writeNml version %s, Copyright 2016 MPI for Brain Research, Frankfurt.\n', VERSION );
@@ -202,6 +203,12 @@ for kl_thingC = 1 : numel( ksw_skeleton)
             ksw_skeleton{kl_thingC}.color(1), ksw_skeleton{kl_thingC}.color(2), ...
             ksw_skeleton{kl_thingC}.color(3), ksw_skeleton{kl_thingC}.color(4));
     end
+    
+    if isfield(ksw_skeleton{kl_thingC}, 'groupId') && ...
+       ~isnan(ksw_skeleton{kl_thingC}.groupId)
+        fprintf(fid, ' groupId=\"%d\"', ksw_skeleton{kl_thingC}.groupId);
+    end
+    
     fprintf( fid, '>\n' );
     % Write the nodes of the skeleton into the file.
     fprintf( fid, '\t\t<nodes>\n' );
@@ -465,6 +472,20 @@ else
     fprintf( fid, '\t</comments>\n' );
 end
 
+% write groups into file
+if isfield(ksw_skeleton{1}, 'groups')
+    groups = ksw_skeleton{1}.groups;
+    hasGroups = ~isempty(groups.id);
+    if ~hasGroups
+        fprintf(fid, '<groups />\n');
+    else
+        fprintf(fid, '<groups>');
+        fprintf(fid, generateGroupTags(groups));
+        fprintf(fid, '</groups>\n');
+    end
+end
+    
+
 % Write the last line, then close the file.
 fprintf( fid, '</things>\n' );
 fclose( fid );
@@ -472,4 +493,20 @@ fclose( fid );
 % Print message onto screen.
 fprintf( 'Done writing!\n' );
 
+end
+
+function str = generateGroupTags(groups)
+str = '';
+for i = 1:length(groups.name)
+    % use sprintf everywhere to avoid removing of \n
+    if isempty(groups.children{i})
+        str = sprintf('%s<group name=\"%s\" id=\"%d\" />\n', ...
+            str, groups.name{i}, groups.id(i));
+    else
+        str = sprintf('%s<group name=\"%s\" id=\"%d\">\n', ...
+            str, groups.name{i}, groups.id(i));
+        str = sprintf('%s%s', str, generateGroupTags(groups.children{i}));
+        str = sprintf('%s</group>\n', str);
+    end
+end
 end
