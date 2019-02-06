@@ -1,4 +1,4 @@
-function paths = run_setup()
+function paths = tutorial_setup()
 %RUN_SETUP Runs the setup method for the example scripts in case it has not
 %been executed yet.
 % Author: Florian Drawitsch <florian.drawitsch@brain.mpg.de>
