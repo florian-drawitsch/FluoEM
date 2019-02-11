@@ -109,8 +109,9 @@ scales = zeros(numel(p.Results.includeModality),3);
 for i = 1:numel(p.Results.includeModality)
     scales(i,:) = obj.skeletons.(p.Results.includeModality{i}).scale;
 end
-if isequal(diff(scales),[0 0 0])
-    daspect(scales(1,:));
+% Note: single scale would fail the condition added an additional condition
+if isequal(diff(scales),[0 0 0]) || size(scales,1)==1
+    daspect(1./scales(1,:));
 else
     daspect([1 1 1]);
     warning('Included skeletons have different scales!');
