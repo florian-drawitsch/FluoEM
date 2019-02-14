@@ -25,7 +25,10 @@ function [fh, ax] = skelPlot( obj, varargin )
 %               (Default: true)
 %           labels (optional): boolean
 %               Boolean controlling the display of control point ids
-%               (Default: true)                 
+%               (Default: true)
+%           cpSize (optional): numeric
+%               Gives the size of the control points in the plot
+%               (Default: 15)
 %   OUTPUT: fh: figure handle
 %               Figure handle for the generated skelPlot
 %           ax: axis handle
@@ -58,6 +61,11 @@ p.addOptional('cps', defaultCPs, checkCPs);
 defaultLabels = 0;
 checkLabels = @(x) islogical(x);
 p.addOptional('labels', defaultLabels, checkLabels);
+
+% CPs
+defaultCPsize = 15;
+checkCPsize = @(x) isnumeric(x);
+p.addOptional('cpSize', defaultCPsize, checkCPsize);
 
 % Parse Inputs
 p.parse(varargin{:})
@@ -92,7 +100,8 @@ for i = 1:numel(p.Results.includeModality)
     % Plot Control points
     if p.Results.cps && isfield(obj.cp.points,p.Results.includeModality{i})
         cps = obj.cp.points.(p.Results.includeModality{i}).xyz;
-        scatter3(cps(:,1),cps(:,2),cps(:,3), 15, cm.cp.(p.Results.includeModality{i}));
+        scatter3(cps(:,1),cps(:,2),cps(:,3), p.Results.cpSize, ...
+            cm.cp.(p.Results.includeModality{i}));
         hold on;
     end
 end
