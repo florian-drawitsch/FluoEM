@@ -52,7 +52,7 @@ switch trafoType
         % Trafo target control points
         if any(strcmp(trafoTarget, 'cp'))  
             obj.assertModalityAvailability('moving_at', {'cp', 'points'});
-            obj.cp = obj.cp.transform('moving_at', obj.freeform, 'at_ft');
+            obj.cp = obj.cp.transform('moving_at', obj.freeform, 'ft');
             obj.cp = obj.cp.match;
         end
         % Trafo target skeleton

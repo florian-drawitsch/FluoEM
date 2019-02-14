@@ -28,7 +28,7 @@ if ~exist('trafoAlias', 'var') || isempty(trafoAlias)
         case 'trafo.Affine'
             trafoAlias = 'at';
         case 'trafo.Freeform'
-            trafoAlias = 'at_ft';
+            trafoAlias = 'ft';
     end
 end
 
