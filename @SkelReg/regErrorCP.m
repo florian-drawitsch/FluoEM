@@ -8,12 +8,14 @@ function errCP = regErrorCP(obj)
 % Author: Florian Drawitsch <florian.drawitsch@brain.mpg.de>
 
 tabs_available = fieldnames(obj.cp.points);
-modalities_available = tabs_available(ismember(tabs_available, {'moving_at', 'moving_at_ft'}));
+modalities_available = tabs_available...
+    (ismember(tabs_available, {'moving_at', 'moving_at_ft'}));
 
 for i = 1:numel(modalities_available)
     
     % Compute reg error
-    diffs = obj.cp.points.matched.xyz_fixed - obj.cp.points.matched.(['xyz_',modalities_available{i}]);
+    diffs = obj.cp.points.matched.xyz_fixed - ...
+        obj.cp.points.matched.(['xyz_',modalities_available{i}]);
     norms = util.normList(diffs, obj.skeletons.fixed.scale);
     
     % Construct cp struct
