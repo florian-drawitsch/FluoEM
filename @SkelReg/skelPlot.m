@@ -1,23 +1,23 @@
 function [fh, ax] = skelPlot( obj, varargin )
-%SKELPLOT Shows skeleton reconstructions or their overlays as a simple 3D 
+%SKELPLOT Shows skeleton reconstructions or their overlays as a simple 3D
 %line plot with various annotations
 % The skeletons to be plotted as well as the annotations to be displayed
-% can be selected via the varargin arguments. 
+% can be selected via the varargin arguments.
 %   INPUT (varargin: name, value pairs)
 %           includeModality (optional): cell array of str
 %               Skeleton modalities to be plotted. Depending on the available
-%               modalities, valid arguments include 
-%               {'fixed', 'moving', 'moving_at_ft', 'moving_ft'}. Warning: To 
-%               be plotted as an overlay, the skeletons need to be in 
-%               the same reference frame. Therefore, attempting to call 
-%               skelPlot with {'fixed', 'moving'} included will likely 
+%               modalities, valid arguments include
+%               {'fixed', 'moving', 'moving_at_ft', 'moving_ft'}. Warning: To
+%               be plotted as an overlay, the skeletons need to be in
+%               the same reference frame. Therefore, attempting to call
+%               skelPlot with {'fixed', 'moving'} included will likely
 %               result in a warning and no meaningful overlay.
-%               (Default: {'fixed', 'moving_at'} or {'fixed', 'moving_at_ft'} 
+%               (Default: {'fixed', 'moving_at'} or {'fixed', 'moving_at_ft'}
 %               depending on whether 'moving_at_ft' is available)
 %           downsample (optional): integer
 %               Downsampling factor to be applied to the nodes of the
-%               skeleton before plotting it. Increases skelPlotting 
-%               performance for very large .nml files containing skeletons  
+%               skeleton before plotting it. Increases skelPlotting
+%               performance for very large .nml files containing skeletons
 %               with thousands of nodes.
 %               (Default: 1, meaning no downsampling)
 %           cps (optional): boolean
@@ -25,6 +25,10 @@ function [fh, ax] = skelPlot( obj, varargin )
 %               (Default: true)
 %           labels (optional): boolean
 %               Boolean controlling the display of control point ids
+%               (Default: true)
+%           connectCPs (optional): boolean
+%               Boolean controlling whether the control points get
+%               connected or not
 %               (Default: true)
 %           cpSize (optional): numeric
 %               Gives the size of the control points in the plot
@@ -34,7 +38,7 @@ function [fh, ax] = skelPlot( obj, varargin )
 %           ax: axis handle
 %               Axis handle for the generated skelPlot
 %
-%   USAGE EXAMPLE: 
+%   USAGE EXAMPLE:
 %   >> skelReg.skelPlot('includeModality',{'fixed','moving_at_ft'},'downsample',2,'labels',false)
 %
 % Author: Florian Drawitsch <florian.drawitsch@brain.mpg.de>
@@ -66,6 +70,11 @@ p.addOptional('labels', defaultLabels, checkLabels);
 defaultCPsize = 15;
 checkCPsize = @(x) isnumeric(x);
 p.addOptional('cpSize', defaultCPsize, checkCPsize);
+
+% connectCPs
+defaultConnectCPs = 0;
+checkConnectCPs = @(x) islogical(x);
+p.addOptional('connectCPs', defaultConnectCPs, checkConnectCPs);
 
 % Parse Inputs
 p.parse(varargin{:})
@@ -106,12 +115,18 @@ for i = 1:numel(p.Results.includeModality)
     end
 end
 
+% Connect control points
+if p.Results.connectCPs
+    connectControlPoints(obj)
+end
+
 % Plot Labels
 if p.Results.labels
     cps = obj.cp.points.matched.xyz_fixed;
     ids = cellfun(@(x) regexprep(x, '^(\w+)(_b\d+)$','$1\\$2'), obj.cp.points.matched.id, 'Uni', false);
     cellfun(@(x,y,z,c) text(x,y,z,c), num2cell(cps(:,1)), num2cell(cps(:,2)), num2cell(cps(:,3)), ids);
 end
+
 
 % Check scales
 scales = zeros(numel(p.Results.includeModality),3);
@@ -131,6 +146,18 @@ fh = gcf;
 ax = gca;
 ax.Color = 'none';
 
+end
+
+function connectControlPoints(obj)
+coords=cat(3,obj.cp.points.matched.xyz_fixed,...
+    obj.cp.points.matched.xyz_moving_at);
+
+for i=1:size(coords,1)
+    % Add 2 so that they are differentiable from the points themselves
+    curC=squeeze(coords(i,:,:));
+    plot3(curC(1,:),curC(2,:),curC(3,:),'color','k')
+    hold on
+end
 end
 
 
