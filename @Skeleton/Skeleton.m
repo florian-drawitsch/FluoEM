@@ -171,6 +171,12 @@ classdef Skeleton
                 obj.groupId = [];
             end
         end
+    % Method definitions: this helps with identification of new methods
+    % when added
+    skel=replaceComments( skel, comment, rep, searchMode, ...
+            repMode, treeIndices,nodeIdx);
+    nodesIdx = getNodesWithComment...
+            (skel, comment, treeIndices, mode,returnCell);
     end
 
     methods (Static)
