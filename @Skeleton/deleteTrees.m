@@ -25,6 +25,11 @@ obj.branchpoints = setdiff(obj.branchpoints,nodeIDs);
 %set largest object id if it was deleted
 if any(nodeIDs == obj.largestID)
     obj.largestID = max(cellfun(@(x)max(x(:,1)),obj.nodesNumDataAll));
+    % Deleting all trees creates an empty largest ID which creates a bug
+    % when you add trees later
+    if isempty(obj.largestID)
+        obj.largestID=0;
+    end
 end
 
 end
