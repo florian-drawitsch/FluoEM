@@ -6,6 +6,7 @@ classdef Cp
     properties
         points = struct();
         pointsDeleted = struct();
+        ignoreAxons= struct('name',[],'searchMode',[])
     end
     
     methods
