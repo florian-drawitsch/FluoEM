@@ -1,23 +1,23 @@
 function [fh, ax] = skelPlot( obj, varargin )
-%SKELPLOT Shows skeleton reconstructions or their overlays as a simple 3D 
+%SKELPLOT Shows skeleton reconstructions or their overlays as a simple 3D
 %line plot with various annotations
 % The skeletons to be plotted as well as the annotations to be displayed
-% can be selected via the varargin arguments. 
+% can be selected via the varargin arguments.
 %   INPUT (varargin: name, value pairs)
 %           includeModality (optional): cell array of str
 %               Skeleton modalities to be plotted. Depending on the available
-%               modalities, valid arguments include 
-%               {'fixed', 'moving', 'moving_at_ft', 'moving_ft'}. Warning: To 
-%               be plotted as an overlay, the skeletons need to be in 
-%               the same reference frame. Therefore, attempting to call 
-%               skelPlot with {'fixed', 'moving'} included will likely 
+%               modalities, valid arguments include
+%               {'fixed', 'moving', 'moving_at_ft', 'moving_ft'}. Warning: To
+%               be plotted as an overlay, the skeletons need to be in
+%               the same reference frame. Therefore, attempting to call
+%               skelPlot with {'fixed', 'moving'} included will likely
 %               result in a warning and no meaningful overlay.
-%               (Default: {'fixed', 'moving_at'} or {'fixed', 'moving_at_ft'} 
+%               (Default: {'fixed', 'moving_at'} or {'fixed', 'moving_at_ft'}
 %               depending on whether 'moving_at_ft' is available)
 %           downsample (optional): integer
 %               Downsampling factor to be applied to the nodes of the
-%               skeleton before plotting it. Increases skelPlotting 
-%               performance for very large .nml files containing skeletons  
+%               skeleton before plotting it. Increases skelPlotting
+%               performance for very large .nml files containing skeletons
 %               with thousands of nodes.
 %               (Default: 1, meaning no downsampling)
 %           cps (optional): boolean
@@ -25,13 +25,20 @@ function [fh, ax] = skelPlot( obj, varargin )
 %               (Default: true)
 %           labels (optional): boolean
 %               Boolean controlling the display of control point ids
-%               (Default: true)                 
+%               (Default: true)
+%           connectCPs (optional): boolean
+%               Boolean controlling whether the control points get
+%               connected or not
+%               (Default: true)
+%           cpSize (optional): numeric
+%               Gives the size of the control points in the plot
+%               (Default: 15)
 %   OUTPUT: fh: figure handle
 %               Figure handle for the generated skelPlot
 %           ax: axis handle
 %               Axis handle for the generated skelPlot
 %
-%   USAGE EXAMPLE: 
+%   USAGE EXAMPLE:
 %   >> skelReg.skelPlot('includeModality',{'fixed','moving_at_ft'},'downsample',2,'labels',false)
 %
 % Author: Florian Drawitsch <florian.drawitsch@brain.mpg.de>
@@ -58,6 +65,16 @@ p.addOptional('cps', defaultCPs, checkCPs);
 defaultLabels = 0;
 checkLabels = @(x) islogical(x);
 p.addOptional('labels', defaultLabels, checkLabels);
+
+% CPs
+defaultCPsize = 15;
+checkCPsize = @(x) isnumeric(x);
+p.addOptional('cpSize', defaultCPsize, checkCPsize);
+
+% connectCPs
+defaultConnectCPs = 0;
+checkConnectCPs = @(x) islogical(x);
+p.addOptional('connectCPs', defaultConnectCPs, checkConnectCPs);
 
 % Parse Inputs
 p.parse(varargin{:})
@@ -92,9 +109,15 @@ for i = 1:numel(p.Results.includeModality)
     % Plot Control points
     if p.Results.cps && isfield(obj.cp.points,p.Results.includeModality{i})
         cps = obj.cp.points.(p.Results.includeModality{i}).xyz;
-        scatter3(cps(:,1),cps(:,2),cps(:,3), 15, cm.cp.(p.Results.includeModality{i}));
+        scatter3(cps(:,1),cps(:,2),cps(:,3), p.Results.cpSize, ...
+            cm.cp.(p.Results.includeModality{i}));
         hold on;
     end
+end
+
+% Connect control points
+if p.Results.connectCPs
+    connectControlPoints(obj)
 end
 
 % Plot Labels
@@ -104,13 +127,15 @@ if p.Results.labels
     cellfun(@(x,y,z,c) text(x,y,z,c), num2cell(cps(:,1)), num2cell(cps(:,2)), num2cell(cps(:,3)), ids);
 end
 
+
 % Check scales
 scales = zeros(numel(p.Results.includeModality),3);
 for i = 1:numel(p.Results.includeModality)
     scales(i,:) = obj.skeletons.(p.Results.includeModality{i}).scale;
 end
-if isequal(diff(scales),[0 0 0])
-    daspect(scales(1,:));
+% Note: single scale would fail the condition added an additional condition
+if isequal(diff(scales),[0 0 0]) || size(scales,1)==1
+    daspect(1./scales(1,:));
 else
     daspect([1 1 1]);
     warning('Included skeletons have different scales!');
@@ -121,6 +146,18 @@ fh = gcf;
 ax = gca;
 ax.Color = 'none';
 
+end
+
+function connectControlPoints(obj)
+coords=cat(3,obj.cp.points.matched.xyz_fixed,...
+    obj.cp.points.matched.xyz_moving_at);
+
+for i=1:size(coords,1)
+    % Add 2 so that they are differentiable from the points themselves
+    curC=squeeze(coords(i,:,:));
+    plot3(curC(1,:),curC(2,:),curC(3,:),'color','k')
+    hold on
+end
 end
 
 

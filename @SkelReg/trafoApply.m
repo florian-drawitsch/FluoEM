@@ -42,7 +42,8 @@ switch trafoType
         % Trafo target skeleton
         if any(strcmp(trafoTarget, 'skel'))  
             assertSkeletonAvailability(obj, 'moving');
-            obj.skeletons.moving_at = obj.affine.applyToSkel( obj.skeletons.moving, 'forward');
+            obj.skeletons.moving_at = obj.affine.applyToSkel...
+                (obj.skeletons.moving, 'forward');
         end
         
     % Trafo type freeform
@@ -51,13 +52,14 @@ switch trafoType
         % Trafo target control points
         if any(strcmp(trafoTarget, 'cp'))  
             obj.assertModalityAvailability('moving_at', {'cp', 'points'});
-            obj.cp = obj.cp.transform('moving_at', obj.freeform, 'at_ft');
+            obj.cp = obj.cp.transform('moving_at', obj.freeform, 'ft');
             obj.cp = obj.cp.match;
         end
         % Trafo target skeleton
         if any(strcmp(trafoTarget, 'skel'))
             assertSkeletonAvailability(obj, 'moving_at');
-            obj.skeletons.moving_at_ft = obj.freeform.applyToSkel( obj.skeletons.moving_at, 'forward');
+            obj.skeletons.moving_at_ft = obj.freeform.applyToSkel...
+                (obj.skeletons.moving_at, 'forward');
         end
 end
 
