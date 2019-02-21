@@ -177,6 +177,11 @@ classdef Skeleton
             repMode, treeIndices,nodeIdx);
     nodesIdx = getNodesWithComment...
             (skel, comment, treeIndices, mode,returnCell);
+    skel = setEditPosition(skel, pos);
+    idx2IdMap = nodeIdx2Id( skel, treeIndices );
+    skel=setActiveNodeID(skel, treeIdx, NodeIdx);
+    allPaths = getShortestPaths(skel, treeIdx);
+    distMat = createDistanceMatrix(obj, treeIdx);
     end
 
     methods (Static)
@@ -187,6 +192,6 @@ classdef Skeleton
         skel = loadSkelCollectionFromSubfolders(paths, nodeOffset, ...
             toCellOutput)
         [scaledCoords]=setScale(coords,scale)
-        resultsTable=synCellTableFun(fun,synapseTable)
+        resultsTable=synCellTableFun(fun,synapseTable);
     end
 end
