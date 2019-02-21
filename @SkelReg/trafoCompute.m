@@ -15,20 +15,22 @@ else
     SkelReg.assertTrafoType(trafoType);
 end
 
+rowIdx=true(size(1:height(obj.cp.points.matched)))';
 % Get the idx of axons to ignore
 if ~isempty(obj.cp.ignoreAxons.name)
-    switch obj.cp.ignoreAxons.searchMode
-        case 'exact'
-            rowIdx = ...
-                ~strcmp(obj.cp.points.matched.id, ...
-                obj.cp.ignoreAxons.name);
-        case 'regexp'
-            rowIdx = ~cellfun...
-                (@(x) ~isempty(regexpi(x, obj.cp.ignoreAxons.name)), ...
-                obj.cp.points.matched.id);
+    for i=1:length(obj.cp.ignoreAxons.name)
+        curNameTag=obj.cp.ignoreAxons.name{i};
+        switch obj.cp.ignoreAxons.searchMode
+            case 'exact'
+                rowIdx =rowIdx & ...
+                    ~strcmp(obj.cp.points.matched.id, ...
+                    curNameTag);
+            case 'regexp'
+                rowIdx =rowIdx & ~cellfun...
+                    (@(x) ~isempty(regexpi(x,curNameTag)), ...
+                    obj.cp.points.matched.id);
+        end
     end
-else
-    rowIdx=true(size(1:height(obj.cp.points.matched)))';
 end
 
 switch trafoType
