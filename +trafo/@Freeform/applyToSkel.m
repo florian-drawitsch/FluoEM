@@ -23,7 +23,9 @@ switch direction
         grid = obj.trafo.grid - 2*obj.trafo.gridDiff;
 end
 
-skel_at_ft = trafo.Freeform.transformSkel( skel_at, obj.attributes.scale.moving, grid, obj.trafo.spacingConsequent );
+skel_at_ft = trafo.Freeform.transformSkel( skel_at,...
+    obj.attributes.scale.moving, grid, obj.trafo.spacingConsequent,...
+    obj.trafo.bbox);
 
 end
 

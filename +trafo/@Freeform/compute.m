@@ -52,6 +52,9 @@ grid = bspline_wrapper( pointsMovingR, pointsFixedR, bbox(:), spacingInitial, it
 gridDiff = grid - gridInitial;
 
 % Assign to object
+% The bbox will be used to define the valid transformation regions (in
+% voxels)
+obj.trafo.bbox = round(bbox./scaleFixed');
 obj.trafo.grid = grid;
 obj.trafo.gridDiff = gridDiff;
 obj.trafo.spacingInitial = spacingInitial;
