@@ -1,8 +1,7 @@
 ![](img/splash.jpg)
 
-|----------------------------------------------------------------------------------------------------------------|
-| This github repository is a mirror of a gitlab repository hosted by the Max Planck Computing and Data Facility |
-|----------------------------------------------------------------------------------------------------------------|
+Note: This github repository is a mirror of a gitlab repository hosted by the Max Planck Computing and Data Facility (https://gitlab.mpcdf.mpg.de/connectomics/FluoEM)
+
 
 # About FluoEM
 
