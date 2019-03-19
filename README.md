@@ -1,5 +1,9 @@
 ![](img/splash.jpg)
 
+|----------------------------------------------------------------------------------------------------------------|
+| This github repository is a mirror of a gitlab repository hosted by the Max Planck Computing and Data Facility |
+|----------------------------------------------------------------------------------------------------------------|
+
 # About FluoEM
 
 [FluoEM](http://fluoem.brain.mpg.de) is a set of experimental and computational methods allowing to directly match fluorescently labelled axons to their 3D EM counterparts without label conversion. The FluoEM paper is published in [eLife](https://elifesciences.org/articles/38976) (2018;7:e38976, doi:10.7554/eLife.38976). 
@@ -15,7 +19,7 @@ It was developed at the Max Planck Institute of Neurobiology (2014) and the Max 
 
 If you have git installed, you can clone the FluoEM repository by entering
 ```
-$ git clone https://gitlab.mpcdf.mpg.de/connectomics/FluoEM.git
+$ git clone https://github.com/florian-drawitsch/FluoEM.git
 ```
 into your terminal.
 
@@ -41,10 +45,12 @@ To reproduce methodological steps shown in the FluoEM paper or to familiarize yo
 
 ## Authors
 
-The FluoEM package was developed by
+The initial FluoEM package development was carried out by
 * **Florian Drawitsch** 
+Further development and maintenance will be performed in collaboration with
+* **Ali Karimi**
 
-under scientific supervision by
+The FluoEM project was developed under scientific supervision by
 * **Moritz Helmstaedter**
 
 Some of FluoEM's functionality is built around webKnossos (.nml) neurite skeleton files and makes use of an efficient .nml parser developed by 
