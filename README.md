@@ -46,6 +46,7 @@ To reproduce methodological steps shown in the FluoEM paper or to familiarize yo
 
 The initial FluoEM package development was carried out by
 * **Florian Drawitsch** 
+
 Further development and maintenance will be performed in collaboration with
 * **Ali Karimi**
 
